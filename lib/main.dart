@@ -23,10 +23,31 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+    theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Color(0xff9c27b0),
+        accentColor: Colors.cyan[600],
+        hintColor: Colors.white,
+        colorScheme: ColorScheme(
+          primary: Color(0xff9c27b0),
+          primaryVariant: Color(0xff641971),
+          brightness: Brightness.light,
+          error: Colors.red,
+          onBackground: Colors.black,
+          onError: Colors.white,
+          onPrimary: Colors.white,
+          onSecondary: Colors.white,
+          onSurface: Colors.white,
+          secondary: Color(0xff273bb0),
+          secondaryVariant: Color(0xff5827b0),
+          surface: Colors.black,
+          background: Colors.grey[100],
+        ),
+        fontFamily: 'Montserrat',
+        textTheme: TextTheme(
+            body1: TextStyle(color: Colors.black),
+            headline:
+            TextStyle(color: Colors.black))),
       home: LoginScreen(authenticationBloc: _authenticationBloc),
     );
   }
