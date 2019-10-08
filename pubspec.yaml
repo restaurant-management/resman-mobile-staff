@@ -1,4 +1,4 @@
-name: resman_mobile_customer
+name: resman_mobile_staff
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -23,6 +23,10 @@ dependencies:
   equatable: ^0.6.0
   bloc: ^0.13.0
   flutter_bloc: ^0.13.0
+  pull_to_refresh: ^1.4.3
+  intl: ^0.15.8
+  gradient_widgets: ^0.4.1
+  image_picker: ^0.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
