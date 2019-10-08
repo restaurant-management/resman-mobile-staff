@@ -5,11 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/authenticationBloc/bloc.dart';
 import '../../blocs/authenticationBloc/state.dart';
 import '../../blocs/loginBloc/bloc.dart';
-import '../../blocs/registerBloc/bloc.dart';
 //import '../dishesTodayScreen/dishesTodayScreen.dart';
 import 'widgets/imageBackground.dart';
 import 'widgets/loginForm.dart';
-import 'widgets/signUpForm.dart';
 
 class LoginScreen extends StatefulWidget {
   final AuthenticationBloc authenticationBloc;
@@ -24,7 +22,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   LoginBloc _loginBloc;
-  RegisterBloc _registerBloc;
   bool isLoading;
 
   final PageController controller = PageController();
@@ -36,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
 //    _loginBloc = LoginBloc(authenticationBloc: _authenticationBloc);
     _loginBloc = LoginBloc();
-    _registerBloc = RegisterBloc();
     isLoading = false;
     super.initState();
   }
@@ -78,7 +74,6 @@ class _LoginScreenState extends State<LoginScreen> {
             PageView.builder(
               controller: controller,
               itemBuilder: (context, position) {
-                if (position == 0) {
                   return Transform(
                     transform: Matrix4.identity()
                       ..rotateY(currentPageValue - position)
@@ -93,23 +88,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   );
-                } else {
-                  return Transform(
-                    transform: Matrix4.identity()
-                      ..rotateY(currentPageValue - position)
-                      ..rotateZ(currentPageValue - position),
-                    child: SignUpForm(
-                      registerBloc: _registerBloc,
-                      onTap: () {
-                        controller.animateToPage(
-                          0,
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.decelerate,
-                        );
-                      },
-                    ),
-                  );
-                }
               },
               itemCount: 2,
             ),
