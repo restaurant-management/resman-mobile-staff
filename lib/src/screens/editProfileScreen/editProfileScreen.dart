@@ -21,9 +21,13 @@ import '../../widgets/drawerScaffold.dart';
 
 class EditProfileScreen extends StatelessWidget {
 
-  UserModel user = UserModel.fromJson(jsonDecode('{"userId":1,"uuid":1,"userName":"ThanhDuy","fullName":"Phan Thanh Duy","email":"abc@mail.com","password":"","avatar":"https://www.facebook.com/photo.php?fbid=679484192551191&set=a.127365384429744&type=3&theater","birthday":"1969-07-20 20:18:04Z","phoneNumber":120382103821098,"address":"abc","roles":["update-paid-bill-status"]}'));
+
   @override
   Widget build(BuildContext context) {
+
+    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "","avatar": "https://www.facebook.com/photo.php?fbid=679484192551191&set=a.127365384429744&type=3&theater","birthday": "1969-07-20 20:18:04Z","phoneNumber": 120382103821098,"address": "abc","roles":[]}');
+    UserModel user = UserModel.fromJson(userJson);
+
     return DrawerScaffold(
         appBar: BackAppBar(
           showShoppingCart: false,

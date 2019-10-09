@@ -1,4 +1,5 @@
 // https://www.developerlibs.com/2018/08/flutter-collapsing-toolbar-layout.html
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -24,10 +25,16 @@ class ProfileScreen extends StatefulWidget {
 class ProfileScreenState extends State<ProfileScreen> {
   ScrollController scrollController;
 
-  UserModel get user => widget.user;
+  // UserModel get user => widget.user;
+  UserModel user;
 
   @override
   Widget build(BuildContext context) {
+
+    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "123","avatar": "https://www.facebook.com/photo.php?fbid=679484192551191&set=a.127365384429744&type=3&theater","birthday": "1969-07-20 20:18:04Z","phoneNumber": 120382103821098,"address": "abc","roles":[{"slug":"update-paid-bill-status","name":"staff","description":"abczyx","level":3,"permission":["update-paid-bill-status"]}]}');
+    user = UserModel.fromJson(userJson);
+
+
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       body: DefaultTabController(

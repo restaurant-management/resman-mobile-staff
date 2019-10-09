@@ -32,9 +32,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   @override
   Widget build(BuildContext context) {
     //Fake data
-    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "","avatar": "https://www.facebook.com/photo.php?fbid=679484192551191&set=a.127365384429744&type=3&theater","birthday": "1969-07-20 20:18:04Z","phoneNumber": 120382103821098,"address": "abc","roles":[{"slug":"update-paid-bill-status","name":"staff","description":"abczyx","level":3,"permission":["update-paid-bill-status"]}]}');
+    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "123","avatar": "https://www.facebook.com/photo.php?fbid=679484192551191&set=a.127365384429744&type=3&theater","birthday": "1969-07-20 20:18:04Z","phoneNumber": 120382103821098,"address": "abc","roles":[{"slug":"update-paid-bill-status","name":"staff","description":"abczyx","level":3,"permission":["update-paid-bill-status"]}]}');
     UserModel user = UserModel.fromJson(userJson);
-    print(user);
+    
     return Drawer(
         child: _buildContent(user, user.roles)
       );

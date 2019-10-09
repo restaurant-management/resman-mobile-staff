@@ -44,8 +44,8 @@ class UserModel extends Equatable {
         : null;
     _point = parsedJson['point'];
     // Parse complex json
-    var listRole = parsedJson['role'] as List;
-    _roles = listRole.map((i) => RoleModel.fromJson(i)).toList();
+    // var listRole = parsedJson['role'] as List;
+    // _roles = listRole.map((i) => RoleModel.fromJson(i)).toList();
   }
 
   UserModel.empty() {

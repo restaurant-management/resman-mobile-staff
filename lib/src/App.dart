@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/dailyDish.dart';
 import 'package:resman_mobile_staff/src/screens/dishesTodayScreen/dishesTodayScreen.dart';
 import 'package:resman_mobile_staff/src/screens/editProfileScreen/editProfileScreen.dart';
+import 'package:resman_mobile_staff/src/screens/profileScreen/profileScreen.dart';
 
 import 'screens/splashScreen/splashScreen.dart';
 
@@ -36,7 +37,7 @@ class App extends StatelessWidget {
               body1: TextStyle(color: Colors.black),
               headline:
               TextStyle(color: Colors.black))),
-      home: EditProfileScreen(),
+      home: ProfileScreen(),
     );
   }
 }
