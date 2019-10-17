@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:resman_mobile_staff/src/models/dailyDish.dart';
+import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/widgets/dishList/dishItemCard.dart';
 
 class DishesList extends StatefulWidget {
-  final List<DailyDish> listDailyDish;
+  final List<DailyDishModel> listDailyDish;
 
   const DishesList({Key key, @required this.listDailyDish})
       : assert(listDailyDish != null),
@@ -15,7 +15,7 @@ class DishesList extends StatefulWidget {
 }
 
 class _DishesListState extends State<DishesList> {
-  List<DailyDish> get listDailyDish => widget.listDailyDish;
+  List<DailyDishModel> get listDailyDish => widget.listDailyDish;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _DishesListState extends State<DishesList> {
         ));
   }
 
-  List<Widget> _buildRow(List<DailyDish> listDailyDish) {
+  List<Widget> _buildRow(List<DailyDishModel> listDailyDish) {
     List<Widget> rows = [];
     for (int i = 0; i < listDailyDish.length; i += 2) {
       rows.add(SizedBox(

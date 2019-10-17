@@ -31,7 +31,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
 
-    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "123","avatar": "https://www.facebook.com/photo.php?fbid=679484192551191&set=a.127365384429744&type=3&theater","birthday": "1969-07-20 20:18:04Z","phoneNumber": 120382103821098,"address": "abc","roles":[{"slug":"update-paid-bill-status","name":"staff","description":"abczyx","level":3,"permission":["update-paid-bill-status"]}]}');
+    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "123","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","address": "abc","roles":[{"slug":"update-paid-bill-status","name":"staff","description":"abczyx","level":3,"permission":["update-paid-bill-status"]}]}');
     user = UserModel.fromJson(userJson);
 
 

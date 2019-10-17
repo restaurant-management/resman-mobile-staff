@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:restaurant_management_mobile/src/blocs/cartBloc/bloc.dart';
 //import 'package:restaurant_management_mobile/src/blocs/cartBloc/event.dart';
-import 'package:resman_mobile_staff/src/models/dailyDish.dart';
+import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 
 class DishItemCard extends StatelessWidget {
-  final DailyDish dailyDish;
+  final DailyDishModel dailyDish;
 
   const DishItemCard({Key key, this.dailyDish}) : super(key: key);
 

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'dishModel.dart';
 import '../enums/daySession.dart';
 
-class DailyDish extends Equatable {
+class DailyDishModel extends Equatable {
   DateTime _day;
   DaySession _session;
   int _storeId;
@@ -25,7 +25,7 @@ class DailyDish extends Equatable {
 
   DateTime get confirmAt => _confirmAt;
 
-  DailyDish.fromJson(Map<String, dynamic> parsedJson) {
+  DailyDishModel.fromJson(Map<String, dynamic> parsedJson) {
     _day = DateTime.parse(parsedJson['day']);
     _session = DaySession(parsedJson['session']);
     _storeId = parsedJson['storeId'];
