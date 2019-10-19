@@ -16,10 +16,9 @@ import 'screens/splashScreen/splashScreen.dart';
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","address": "abc","roles":[]}');
+    Map<String, dynamic> userJson = jsonDecode(
+        '{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","address": "abc","roles":[]}');
     UserModel user = UserModel.fromJson(userJson);
-
 
     return MaterialApp(
       theme: ThemeData(
@@ -45,9 +44,8 @@ class App extends StatelessWidget {
           fontFamily: 'Montserrat',
           textTheme: TextTheme(
               body1: TextStyle(color: Colors.black),
-              headline:
-              TextStyle(color: Colors.black))),
-      home: TestScreen(),
+              headline: TextStyle(color: Colors.black))),
+      home: SplashScreen(),
     );
   }
 }

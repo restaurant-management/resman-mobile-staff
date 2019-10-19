@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+
 //import 'package:restaurant_management_mobile/src/blocs/currentUserBloc/bloc.dart';
 //import 'package:restaurant_management_mobile/src/blocs/currentUserBloc/state.dart';
 //import 'package:restaurant_management_mobile/src/blocs/editProfileBloc/bloc.dart';
@@ -20,12 +21,10 @@ import '../../widgets/AppBars/backAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
 
 class EditProfileScreen extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
-
-    Map<String, dynamic> userJson = jsonDecode('{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","address": "abc","roles":[]}');
+    Map<String, dynamic> userJson = jsonDecode(
+        '{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","address": "abc","roles":[]}');
     UserModel user = UserModel.fromJson(userJson);
 
     return DrawerScaffold(
@@ -33,9 +32,8 @@ class EditProfileScreen extends StatelessWidget {
           showShoppingCart: false,
         ),
         body: EditProfileForm(
-                currentUser: user,
-              )
-        );
+          currentUser: user,
+        ));
   }
 }
 
@@ -101,187 +99,186 @@ class EditProfileState extends State<EditProfileForm> {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 20,
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 20,
+          ),
+          Stack(children: [
+            Container(
+              width: 200.0,
+              height: 200.0,
+              padding: const EdgeInsets.all(4.0),
+              decoration: new BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                shape: BoxShape.circle,
+              ),
+              child: ClipOval(
+                child: _newAvatar != null
+                    ? Image.file(
+                        _newAvatar,
+                        fit: BoxFit.cover,
+                      )
+                    : _oldAvatar != null
+                        ? Image.network(
+                            _oldAvatar,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            'assets/images/default-avatar.jpg',
+                            fit: BoxFit.cover,
+                          ),
+              ),
             ),
-            Stack(children: [
-              Container(
-                width: 200.0,
-                height: 200.0,
-                padding: const EdgeInsets.all(4.0),
-                decoration: new BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  shape: BoxShape.circle,
-                ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: SizedBox(
+                width: 60,
+                height: 60,
                 child: ClipOval(
-                  child: _newAvatar != null
-                      ? Image.file(
-                    _newAvatar,
-                    fit: BoxFit.cover,
-                  )
-                      : _oldAvatar != null
-                      ? Image.network(
-                    _oldAvatar,
-                    fit: BoxFit.cover,
-                  )
-                      : Image.asset(
-                    'assets/images/default-avatar.jpg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: ClipOval(
-                    child: RaisedButton(
-                      color: Color.fromRGBO(0, 0, 0, 0.3),
-                      child: Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        showCupertinoModalPopup(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return CupertinoActionSheet(
-                                title: Text('Chọn cách nhập ảnh:'),
-                                actions: <Widget>[
-                                  CupertinoActionSheetAction(
-                                    child: Text('Máy ảnh'),
-                                    onPressed: () {
-                                      pickImageByCamera().then((value) {
-                                        Navigator.pop(context, 'Cancel');
-                                      });
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: Text('Thư viện'),
-                                    onPressed: () {
-                                      pickImageByGallery().then((value) {
-                                        Navigator.pop(context, 'Cancel');
-                                      });
-                                    },
-                                  ),
-                                ],
-                                cancelButton: CupertinoActionSheetAction(
-                                  child: Text('Huỷ chọn ảnh'),
-                                  isDefaultAction: true,
-                                  onPressed: () {
-                                    Navigator.pop(context, 'Cancel');
-                                  },
-                                ),
-                              );
-                            });
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-            Form(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    decoration: new BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                  child: RaisedButton(
+                    color: Color.fromRGBO(0, 0, 0, 0.3),
+                    child: Icon(
+                      Icons.edit,
                       color: Colors.white,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            TextFormField(
-                              initialValue: _name,
-                              style: TextStyle(color: primaryColor),
-                              decoration: InputDecoration(
+                    onPressed: () {
+                      showCupertinoModalPopup(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CupertinoActionSheet(
+                              title: Text('Chọn cách nhập ảnh:'),
+                              actions: <Widget>[
+                                CupertinoActionSheetAction(
+                                  child: Text('Máy ảnh'),
+                                  onPressed: () {
+                                    pickImageByCamera().then((value) {
+                                      Navigator.pop(context, 'Cancel');
+                                    });
+                                  },
+                                ),
+                                CupertinoActionSheetAction(
+                                  child: Text('Thư viện'),
+                                  onPressed: () {
+                                    pickImageByGallery().then((value) {
+                                      Navigator.pop(context, 'Cancel');
+                                    });
+                                  },
+                                ),
+                              ],
+                              cancelButton: CupertinoActionSheetAction(
+                                child: Text('Huỷ chọn ảnh'),
+                                isDefaultAction: true,
+                                onPressed: () {
+                                  Navigator.pop(context, 'Cancel');
+                                },
+                              ),
+                            );
+                          });
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ]),
+          Form(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          TextFormField(
+                            initialValue: _name,
+                            style: TextStyle(color: primaryColor),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.contact_mail,
+                                color: primaryColor,
+                              ),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
+                              labelText: 'Họ và tên',
+                              labelStyle: TextStyle(color: primaryColor),
+                            ),
+                            onFieldSubmitted: (value) {
+                              setState(() {
+                                _name = value;
+                              });
+                            },
+                          ),
+                          TextFormField(
+                            initialValue: _email,
+                            style: TextStyle(color: primaryColor),
+                            decoration: InputDecoration(
                                 prefixIcon: Icon(
-                                  Icons.contact_mail,
+                                  Icons.mail,
                                   color: primaryColor,
                                 ),
                                 contentPadding:
-                                EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                labelText: 'Họ và tên',
-                                labelStyle: TextStyle(color: primaryColor),
-                              ),
-                              onFieldSubmitted: (value) {
-                                setState(() {
-                                  _name = value;
-                                });
-                              },
-                            ),
-                            TextFormField(
-                              initialValue: _email,
-                              style: TextStyle(color: primaryColor),
-                              decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.mail,
-                                    color: primaryColor,
-                                  ),
-                                  contentPadding:
-                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                  labelText: 'Email',
-                                  labelStyle: TextStyle(color: primaryColor)),
-                            ),
-                            GestureDetector(
-                              onTap: () => _selectDate(context),
-                              child: AbsorbPointer(
-                                child: TextFormField(
-                                  controller: _birthdayTextFieldController,
-                                  enabled: false,
-                                  style: TextStyle(color: primaryColor),
-                                  decoration: InputDecoration(
-                                      prefixIcon: Icon(
-                                        Icons.calendar_today,
-                                        color: primaryColor,
-                                      ),
-                                      contentPadding:
-                                      EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                      labelText: 'Ngày sinh',
-                                      labelStyle:
-                                      TextStyle(color: primaryColor)),
-                                ),
+                                    EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                labelText: 'Email',
+                                labelStyle: TextStyle(color: primaryColor)),
+                          ),
+                          GestureDetector(
+                            onTap: () => _selectDate(context),
+                            child: AbsorbPointer(
+                              child: TextFormField(
+                                controller: _birthdayTextFieldController,
+                                enabled: false,
+                                style: TextStyle(color: primaryColor),
+                                decoration: InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.calendar_today,
+                                      color: primaryColor,
+                                    ),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    labelText: 'Ngày sinh',
+                                    labelStyle: TextStyle(color: primaryColor)),
                               ),
                             ),
-                            SizedBox(
-                              height: 8,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          GradientButton(
+                            increaseWidthBy: 50,
+                            child: Text('Lưu'),
+                            gradient: LinearGradient(
+                              colors: <Color>[
+                                !isSaving
+                                    ? Color.fromRGBO(88, 39, 176, 1)
+                                    : Color.fromRGBO(0, 0, 0, 0.3),
+                                !isSaving
+                                    ? Color.fromRGBO(0, 39, 176, 1)
+                                    : Color.fromRGBO(0, 0, 0, 0.3),
+                              ],
+                              stops: [0.1, 1.0],
+                              begin: Alignment.bottomRight,
+                              end: Alignment.topLeft,
                             ),
-                            GradientButton(
-                              increaseWidthBy: 50,
-                              child: Text('Lưu'),
-                              gradient: LinearGradient(
-                                colors: <Color>[
-                                  !isSaving
-                                      ? Color.fromRGBO(88, 39, 176, 1)
-                                      : Color.fromRGBO(0, 0, 0, 0.3),
-                                  !isSaving
-                                      ? Color.fromRGBO(0, 39, 176, 1)
-                                      : Color.fromRGBO(0, 0, 0, 0.3),
-                                ],
-                                stops: [0.1, 1.0],
-                                begin: Alignment.bottomRight,
-                                end: Alignment.topLeft,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 

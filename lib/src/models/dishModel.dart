@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class DishModal extends Equatable {
+class DishModel extends Equatable {
   int _dishId;
   String _name;
   String _description;
@@ -17,7 +17,7 @@ class DishModal extends Equatable {
 
   int get defaultPrice => _defaultPrice;
 
-  DishModal.fromJson(Map<String, dynamic> parsedJson) {
+  DishModel.fromJson(Map<String, dynamic> parsedJson) {
     _dishId = parsedJson['dishId'];
     _name = parsedJson['name'];
     _description = parsedJson['description'];

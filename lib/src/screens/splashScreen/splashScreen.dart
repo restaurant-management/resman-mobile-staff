@@ -30,14 +30,15 @@ class _SplashScreenState extends State<SplashScreen> {
     return BlocListener(
       bloc: authenticationBloc,
       listener: (BuildContext context, state) {
-        if (state is AuthenticationAuthenticated) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (BuildContext context) => DishesTodayScreen(),
-            ),
-          );
-        }
-        if (state is AuthenticationUnauthenticated) {
+//        if (state is AuthenticationAuthenticated) {
+//          Navigator.of(context).pushReplacement(
+//            MaterialPageRoute(
+//              builder: (BuildContext context) => DishesTodayScreen(),
+//            ),
+//          );
+//        }
+//        if (state is AuthenticationUnauthenticated)
+        {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (BuildContext context) => LoginScreen(
