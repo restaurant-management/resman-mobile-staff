@@ -42,11 +42,11 @@ class _DishesListState extends State<DishesList> {
           ),
           i + 1 < listDailyDish.length
               ? DishItemCard(
-            dailyDish: listDailyDish[i + 1],
-          )
+                  dailyDish: listDailyDish[i + 1],
+                )
               : Container(
-            width: MediaQuery.of(context).size.width / 2.2,
-          ),
+                  width: MediaQuery.of(context).size.width / 2.2,
+                ),
         ],
       ));
     }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/authenticationBloc/bloc.dart';
 import '../../blocs/authenticationBloc/state.dart';
 import '../../blocs/loginBloc/bloc.dart';
+
 //import '../dishesTodayScreen/dishesTodayScreen.dart';
 import 'widgets/imageBackground.dart';
 import 'widgets/loginForm.dart';
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //              builder: (BuildContext context) => DishesTodayScreen(),
 //            ),
 //          );
-            print("Dang nhap thanh cong");
+          print("Dang nhap thanh cong");
         }
         if (state is AuthenticationLoading) {
           setState(() {
@@ -74,20 +75,20 @@ class _LoginScreenState extends State<LoginScreen> {
             PageView.builder(
               controller: controller,
               itemBuilder: (context, position) {
-                  return Transform(
-                    transform: Matrix4.identity()
-                      ..rotateY(currentPageValue - position)
-                      ..rotateZ(currentPageValue - position),
-                    child: LoginForm(
-                      loginBloc: _loginBloc,
-                      authenticationBloc: _authenticationBloc,
-                      onTap: () {
-                        controller.animateToPage(1,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.decelerate);
-                      },
-                    ),
-                  );
+                return Transform(
+                  transform: Matrix4.identity()
+                    ..rotateY(currentPageValue - position)
+                    ..rotateZ(currentPageValue - position),
+                  child: LoginForm(
+                    loginBloc: _loginBloc,
+                    authenticationBloc: _authenticationBloc,
+                    onTap: () {
+                      controller.animateToPage(1,
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.decelerate);
+                    },
+                  ),
+                );
               },
               itemCount: 2,
             ),

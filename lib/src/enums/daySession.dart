@@ -9,10 +9,10 @@ class DaySession extends BaseEnum {
 
   DaySession(String value)
       : super(value, [
-    'none',
-    'morning',
-    'noon',
-    'afternoon',
-    'evening',
-  ]);
+          'none',
+          'morning',
+          'noon',
+          'afternoon',
+          'evening',
+        ]);
 }

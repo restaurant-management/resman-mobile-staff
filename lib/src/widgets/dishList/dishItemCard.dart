@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 //import 'package:restaurant_management_mobile/src/blocs/cartBloc/bloc.dart';
 //import 'package:restaurant_management_mobile/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
@@ -17,8 +18,7 @@ class DishItemCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-          ),
+          MaterialPageRoute(),
         );
       },
       child: Card(
@@ -78,7 +78,7 @@ class DishItemCard extends StatelessWidget {
                           Text(
                             '${dailyDish.dish.defaultPrice} VNĐ',
                             style: TextStyle(
-                                color: Colors.grey,
+                              color: Colors.grey,
                             ),
                           ),
                         ],
@@ -106,8 +106,7 @@ class DishItemCard extends StatelessWidget {
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20)),
                 ),
-                onPressed: () {
-                },
+                onPressed: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -135,23 +134,23 @@ class DishItemCard extends StatelessWidget {
   Widget _buildDiscount({String discount = ''}) {
     return discount != ''
         ? Positioned(
-      right: 5,
-      top: 5,
-      width: 40,
-      height: 40,
-      child: Stack(children: <Widget>[
-        Image.asset(
-          'assets/icons/sticker.png',
-          fit: BoxFit.cover,
-        ),
-        Center(
-          child: Text(
-            '$discount%',
-            style: TextStyle(color: Colors.white),
-          ),
-        )
-      ]),
-    )
+            right: 5,
+            top: 5,
+            width: 40,
+            height: 40,
+            child: Stack(children: <Widget>[
+              Image.asset(
+                'assets/icons/sticker.png',
+                fit: BoxFit.cover,
+              ),
+              Center(
+                child: Text(
+                  '$discount%',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ]),
+          )
         : SizedBox();
   }
 }

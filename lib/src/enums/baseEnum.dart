@@ -12,9 +12,9 @@ class BaseEnum {
   @override
   bool operator ==(other) =>
       identical(this, other) ||
-          other is BaseEnum &&
-              runtimeType == other.runtimeType &&
-              value == other.value;
+      other is BaseEnum &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
 
   @override
   int get hashCode => value.hashCode;

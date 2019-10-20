@@ -6,10 +6,10 @@ import 'package:resman_mobile_staff/src/models/dishModel.dart';
 
 class BillStatusItem extends StatefulWidget {
   final BillModel bill;
-  BillStatusItem({Key key, this.bill})
-      : super(key: key);
 
-  _BillStatusItem createState() =>_BillStatusItem();
+  BillStatusItem({Key key, this.bill}) : super(key: key);
+
+  _BillStatusItem createState() => _BillStatusItem();
 }
 
 class _BillStatusItem extends State<BillStatusItem> {
@@ -17,28 +17,25 @@ class _BillStatusItem extends State<BillStatusItem> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-         Container(
-            width: 400,
+        Container(
+            margin: const EdgeInsets.only(left: 10, right: 10),
             height: 50,
             decoration: BoxDecoration(
               color: Colors.blue,
-               borderRadius: const BorderRadius.all(const Radius.circular(90)),
+              borderRadius: const BorderRadius.all(const Radius.circular(90)),
             ),
             child: Center(
               child: Text(
-              "Hoa don ${widget.bill.billId}",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white
-                ),
+                "Hoa don ${widget.bill.billId}",
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
               ),
-        )
-          ),
-          Positioned(
-            right: 20,
-            top: 12.5,
-            child: Container(
+            )),
+        Positioned(
+          right: 30,
+          top: 12.5,
+          child: Container(
               padding: EdgeInsets.all(2),
               decoration: new BoxDecoration(
                 color: Colors.red,
@@ -50,18 +47,16 @@ class _BillStatusItem extends State<BillStatusItem> {
               ),
               child: Center(
                 child: Text(
-                    '${widget.bill.collectValue}',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                    ),
-                    textAlign: TextAlign.center,
+                  '${widget.bill.collectValue}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
                   ),
-                )
-            ),
-          )
+                  textAlign: TextAlign.center,
+                ),
+              )),
+        )
       ],
-    )
-    ;
+    );
   }
 }

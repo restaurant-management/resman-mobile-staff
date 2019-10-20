@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class OutlineText extends StatelessWidget{
+class OutlineText extends StatelessWidget {
   final Color color;
   final String text;
 

@@ -30,8 +30,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         tag: 'HeroLogoImage',
         child: Text(
           'Năm Nhỏ',
-          style:
-          TextStyle(color: primaryColor, fontSize: 40, fontFamily: 'Rukola'),
+          style: TextStyle(
+              color: primaryColor, fontSize: 40, fontFamily: 'Rukola'),
         ),
       ),
       actions: <Widget>[

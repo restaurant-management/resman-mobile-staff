@@ -14,7 +14,6 @@ class UserModel extends Equatable {
   List<RoleModel> _roles;
   int _point;
 
-
   int get userId => _userId;
 
   String get uuid => _uuid;
@@ -29,7 +28,7 @@ class UserModel extends Equatable {
 
   DateTime get birthday => _birthday;
 
-  String get phoneNumber => _phoneNumber; 
+  String get phoneNumber => _phoneNumber;
 
   List<RoleModel> get roles => _roles;
 

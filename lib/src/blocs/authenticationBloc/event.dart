@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-abstract class AuthenticationEvent extends Equatable{
+abstract class AuthenticationEvent extends Equatable {
   AuthenticationEvent([List props = const []]) : super();
 }
 

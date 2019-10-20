@@ -23,7 +23,7 @@ class RegisterLoading extends RegisterState {
   List<Object> get props => null;
 }
 
-class RegisterSuccess extends RegisterState{
+class RegisterSuccess extends RegisterState {
   @override
   String toString() => 'RegisterSuccess';
 

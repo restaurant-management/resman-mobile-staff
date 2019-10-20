@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/authenticationBloc/bloc.dart';
+
 //import '../screens/cartScreen/cartDrawer.dart';
 //import '../screens/profileScreen/ProfileDrawer.dart';
 
@@ -17,11 +18,11 @@ class DrawerScaffold extends StatefulWidget {
 
   DrawerScaffold(
       {Key key,
-        this.body,
-        this.appBar,
-        this.bottomNavigationBar,
-        this.floatingActionButton,
-        this.floatingActionButtonLocation})
+      this.body,
+      this.appBar,
+      this.bottomNavigationBar,
+      this.floatingActionButton,
+      this.floatingActionButtonLocation})
       : super(key: key);
 
   @override

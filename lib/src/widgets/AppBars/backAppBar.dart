@@ -39,7 +39,7 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         'Năm Nhỏ',
         style:
-        TextStyle(color: primaryColor, fontSize: 40, fontFamily: 'Rukola'),
+            TextStyle(color: primaryColor, fontSize: 40, fontFamily: 'Rukola'),
       ),
       actions: actions,
     );

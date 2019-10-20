@@ -22,7 +22,7 @@ class RegisterButtonPressed extends RegisterEvent {
   List<Object> get props => null;
 }
 
-class InitializeRegisterForm extends RegisterEvent{
+class InitializeRegisterForm extends RegisterEvent {
   @override
   String toString() => 'InitializeRegisterForm';
 

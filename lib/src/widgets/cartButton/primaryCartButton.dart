@@ -22,37 +22,37 @@ class _PrimaryCartButtonState extends State<PrimaryCartButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          Scaffold.of(context).openDrawer();
-        },
-        child: Stack(children: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.shopping_cart,
-              color: widget.color != null
-                  ? widget.color
-                  : Theme.of(context).primaryColor,
-            ),
+      onTap: () {
+        Scaffold.of(context).openDrawer();
+      },
+      child: Stack(children: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.shopping_cart,
+            color: widget.color != null
+                ? widget.color
+                : Theme.of(context).primaryColor,
           ),
-          Positioned(
-            top: 5,
-            right: 5,
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: <Widget>[
-                Icon(
-                  Icons.brightness_1,
-                  color: Colors.red,
-                  size: 20,
-                ),
-                Text(
-                  _count.toString(),
-                  style: TextStyle(color: Colors.white),
-                )
-              ],
-            ),
-          )
-        ]),
-      );
+        ),
+        Positioned(
+          top: 5,
+          right: 5,
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: <Widget>[
+              Icon(
+                Icons.brightness_1,
+                color: Colors.red,
+                size: 20,
+              ),
+              Text(
+                _count.toString(),
+                style: TextStyle(color: Colors.white),
+              )
+            ],
+          ),
+        )
+      ]),
+    );
   }
 }
