@@ -21,7 +21,7 @@ class LoginButtonPressed extends LoginEvent {
   List<Object> get props => null;
 }
 
-class InitializeLoginForm extends LoginEvent{
+class InitializeLoginForm extends LoginEvent {
   @override
   String toString() => 'InitializeLoginForm';
 

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 abstract class LoginState extends Equatable {
-  LoginState([List props = const[]]) : super();
+  LoginState([List props = const []]) : super();
 }
 
 class LoginInitial extends LoginState {
@@ -35,4 +35,3 @@ class LoginFailure extends LoginState {
   // TODO: implement props
   List<Object> get props => null;
 }
-

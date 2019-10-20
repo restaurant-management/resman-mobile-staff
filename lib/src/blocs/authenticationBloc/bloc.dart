@@ -17,7 +17,7 @@ class AuthenticationBloc
 
   static AuthenticationBloc _singleton = AuthenticationBloc._internal();
 
-  factory AuthenticationBloc(){
+  factory AuthenticationBloc() {
     return _singleton;
   }
 

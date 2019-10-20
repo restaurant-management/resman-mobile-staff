@@ -10,12 +10,14 @@ class LoginTextInput extends StatelessWidget {
   final TextInputType keyboardType;
   final VoidCallback onEditingComplete;
 
-  LoginTextInput({this.hint,
-    this.obscure,
-    this.icon,
-    this.validator,
-    this.controller,
-    this.keyboardType, this.onEditingComplete});
+  LoginTextInput(
+      {this.hint,
+      this.obscure,
+      this.icon,
+      this.validator,
+      this.controller,
+      this.keyboardType,
+      this.onEditingComplete});
 
   @override
   Widget build(BuildContext context) {
