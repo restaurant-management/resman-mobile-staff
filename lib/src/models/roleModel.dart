@@ -8,7 +8,6 @@ class RoleModel extends Equatable {
   int _level;
 
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
   int get rodeId => _rodeId;

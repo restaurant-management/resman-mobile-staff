@@ -35,6 +35,5 @@ class DishModal extends Equatable {
   String toString() => '{dishId: $_dishId, name: $_name}';
 
   @override
-  // TODO: implement props
   List<Object> get props => null;
 }
