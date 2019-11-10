@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
+import 'package:resman_mobile_staff/src/screens/profileScreen/profileDrawer.dart';
 
 import '../blocs/authenticationBloc/bloc.dart';
 
@@ -43,11 +45,9 @@ class _DrawerScaffoldState extends State<DrawerScaffold> {
           floatingActionButton: widget.floatingActionButton,
           floatingActionButtonLocation: widget.floatingActionButtonLocation,
           backgroundColor: Theme.of(context).colorScheme.background,
-//          endDrawer: ProfileDrawer(
-//            authenticationBloc: authenticationBloc,
-//          ),
-//          drawer: CartDrawer(),
-//          bottomNavigationBar: widget.bottomNavigationBar,
+          endDrawer: ProfileDrawer(),
+          drawer: CartDrawer(),
+          bottomNavigationBar: widget.bottomNavigationBar,
         );
       },
     );

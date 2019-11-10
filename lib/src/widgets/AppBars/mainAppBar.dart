@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-//import '../../screens/searchScreen/searchScreen.dart';
-
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   MainAppBar({Key key})
       : preferredSize = Size.fromHeight(56.0),
@@ -24,7 +22,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           Icons.menu,
           color: primaryColor,
         ),
-        onPressed: () => Scaffold.of(context).openEndDrawer(),
+        onPressed: () => Scaffold.of(context).openDrawer(),
       ),
       title: Hero(
         tag: 'HeroLogoImage',
@@ -37,13 +35,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: <Widget>[
         IconButton(
           icon: Icon(
-            Icons.search,
+            Icons.people,
             color: Theme.of(context).primaryColor,
           ),
-          onPressed: () {
-//            Navigator.push(context,
-//                MaterialPageRoute(builder: (context) => SearchScreen()));
-          },
+          onPressed: () => Scaffold.of(context).openEndDrawer(),
         )
       ],
     );

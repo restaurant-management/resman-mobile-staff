@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resman_mobile_staff/src/models/billDishModel.dart';
-import 'package:resman_mobile_staff/src/models/billModel.dart';
-import 'package:resman_mobile_staff/src/models/dishModel.dart';
 
 class BillStatusItem extends StatefulWidget {
-  final BillModel bill;
+  final String content;
+  final int number;
 
-  BillStatusItem({Key key, this.bill}) : super(key: key);
+  BillStatusItem({Key key, this.content, this.number}) : super(key: key);
 
   _BillStatusItem createState() => _BillStatusItem();
 }
@@ -26,7 +24,7 @@ class _BillStatusItem extends State<BillStatusItem> {
             ),
             child: Center(
               child: Text(
-                "Hoa don ${widget.bill.billId}",
+                widget.content,
                 textAlign: TextAlign.center,
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
@@ -47,7 +45,7 @@ class _BillStatusItem extends State<BillStatusItem> {
               ),
               child: Center(
                 child: Text(
-                  '${widget.bill.collectValue}',
+                  '${widget.number}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 13,

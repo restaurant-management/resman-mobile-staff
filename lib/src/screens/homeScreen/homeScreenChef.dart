@@ -1,23 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
-import 'package:resman_mobile_staff/src/widgets/cartButton/secondaryCartButton.dart';
-import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
-import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
-import 'package:resman_mobile_staff/src/models/billDishModel.dart';
-import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/widgets/billBar/billListItem.dart';
 import 'package:resman_mobile_staff/src/widgets/billBar/billStatusItem.dart';
+import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
 
 import '../../blocs/authenticationBloc/bloc.dart';
-import '../../blocs/authenticationBloc/event.dart';
-import '../../blocs/authenticationBloc/state.dart';
-import '../../widgets/animationLogo.dart';
-import '../dishesTodayScreen/dishesTodayScreen.dart';
-import '../loginScreen/loginScreen.dart';
 
 class HomeScreenChef extends StatefulWidget {
   @override
@@ -27,14 +16,7 @@ class HomeScreenChef extends StatefulWidget {
 }
 
 class _HomeScreenChefState extends State<HomeScreenChef> {
-  String jsonParsed =
-      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","delivaryAt":"1969-07-20 20:18:04Z","quantily":5,"price":10000,"dish":{"dishId":10,"name":"Chao ga","description":"abcsaca","defaultPrice":20000,"images":[]}}';
-  String billJson =
-      '{"billId":1,"createBy;":{},"preparedBy;":{},"collectBy;":{},"customerId;":{},"tableNumber;":{},"createAt;":{},"prepareAt;":{},"collectAt;":{},"collectValue":10}';
   AuthenticationBloc authenticationBloc;
-
-  BillDishModel billDish;
-  BillModel bill;
 
   void onpress() {
     print("Button Pressed!");
@@ -43,8 +25,6 @@ class _HomeScreenChefState extends State<HomeScreenChef> {
   @override
   void initState() {
     super.initState();
-    billDish = BillDishModel.fromJson(jsonDecode(jsonParsed));
-    bill = BillModel.fromJson(jsonDecode(billJson));
   }
 
   @override
@@ -62,20 +42,18 @@ class _HomeScreenChefState extends State<HomeScreenChef> {
                       SizedBox(
                         height: 10,
                       ),
-                      BillStatusItem(
-                        bill: bill,
+                      FlatButton(
+                        child: BillStatusItem(
+                          content: 'Hoa don da chuan bi',
+                          number: FakeData.bill.collectValue,
+                        ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       BillStatusItem(
-                        bill: bill,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      BillStatusItem(
-                        bill: bill,
+                        content: 'Hoa don chuan bi xong',
+                        number: FakeData.bill.collectValue,
                       ),
                       SizedBox(
                         height: 10,
@@ -96,7 +74,7 @@ class _HomeScreenChefState extends State<HomeScreenChef> {
                   itemCount: 7,
                   itemBuilder: (BuildContext context, int index) {
                     return BillListItem(
-                      billDish: billDish,
+                      billDish: FakeData.billDish,
                       count: 10,
                       onpressed: this.onpress,
                       icon: Icons.email,

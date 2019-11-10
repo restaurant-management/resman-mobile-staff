@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resman_mobile_staff/src/screens/buildDetailScreen/billDetailScreen.dart';
 
 import '../../blocs/authenticationBloc/bloc.dart';
 import '../../blocs/authenticationBloc/event.dart';
 import '../../blocs/authenticationBloc/state.dart';
 import '../../widgets/animationLogo.dart';
-import '../dishesTodayScreen/dishesTodayScreen.dart';
 import '../loginScreen/loginScreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (state is AuthenticationAuthenticated) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (BuildContext context) => DishesTodayScreen(),
+              builder: (BuildContext context) => BillDetailScreen(),
             ),
           );
         }
