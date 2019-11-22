@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 //import 'package:restaurant_management_mobile/src/blocs/cartBloc/bloc.dart';
 //import 'package:restaurant_management_mobile/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
+import 'package:resman_mobile_staff/src/models/dishModel.dart';
 
 class DishItemCard extends StatelessWidget {
   final DailyDishModel dailyDish;
+  final DishModal dish;
+  final String buttonText;
 
-  const DishItemCard({Key key, this.dailyDish}) : super(key: key);
+  const DishItemCard({Key key, this.dailyDish, this.dish, this.buttonText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +121,7 @@ class DishItemCard extends StatelessWidget {
                       width: 8,
                     ),
                     Text(
-                      'Thêm',
+                      buttonText != null ? buttonText : 'Thêm',
                       style: TextStyle(color: primaryColor),
                     ),
                   ],

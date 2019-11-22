@@ -1,37 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
-import 'package:intl/intl.dart';
-import 'package:resman_mobile_staff/src/models/billDishModel.dart';
-import 'package:resman_mobile_staff/src/models/billModel.dart';
+import 'package:resman_mobile_staff/src/models/dishModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
-import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 
-import '../../../FakeData.dart';
 
-class BillListItem extends StatefulWidget {
-  final BillDishModel billDish;
-  final int count;
+class DishListItem extends StatefulWidget {
+  final DishModal dish;
   final Function onPressed;
-  final IconData icon;
+  final String note;
 
-  BillListItem({Key key, this.billDish, this.count, this.onPressed, this.icon})
+  DishListItem({Key key, this.dish, this.onPressed, this.note})
       : super(key: key);
 
-  _BillListItemState createState() => _BillListItemState();
+  _DishListItemState createState() => _DishListItemState();
 }
 
-class _BillListItemState extends State<BillListItem> {
+class _DishListItemState extends State<DishListItem> {
+  DishModal get dishItem => widget.dish;
+  String get note => widget.note;
   @override
   Widget build(BuildContext context) {
-    var bill = FakeData.bill;
     final primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => BillDetailScreenChef(
+                builder: (context) => BillDetailScreen(
                 )));
       },
       child: Card(
@@ -59,7 +55,7 @@ class _BillListItemState extends State<BillListItem> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: Text(
-                        'Mã: ${bill.billId}',
+                        '',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -78,7 +74,7 @@ class _BillListItemState extends State<BillListItem> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: Text(
-                        _mapBillStatus(bill),
+                        '',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -99,7 +95,7 @@ class _BillListItemState extends State<BillListItem> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Số món',
+                          'Ten',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: primaryColor,
@@ -108,7 +104,7 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(bill.collectValue.toString())
+                        Text(dishItem.name.toString())
                       ],
                     ),
                   ),
@@ -124,7 +120,7 @@ class _BillListItemState extends State<BillListItem> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Thời gian',
+                          'Ghi chu',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: primaryColor,
@@ -133,20 +129,20 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(DateFormat('hh:mm dd/MM/yyyy').format(bill.createAt))
+                        Text(note)
                       ],
                     ),
                   ),
                 ],
               ),
-              _buildButton(context, bill)
+              _buildButton(context)
             ],
           ),
         ),
       ),
     );
   }
-  Widget _buildButton(BuildContext context, BillModel bill) {
+  Widget _buildButton(BuildContext context) {
 
     return _buildButtonWidget('Xác nhận chuẩn bị xong', increaseWidthBy: 90,
         onPressed: () {
@@ -180,16 +176,5 @@ class _BillListItemState extends State<BillListItem> {
         ),
       ],
     );
-  }
-
-  String _mapBillStatus(BillModel bill) {
-    var status = bill.getStatus();
-    if (status == "Prepared")
-      return 'Chưa thanh toán';
-    else if (status == "Preparing")
-      return 'Đang chuẩn bị';
-    else if (status == "Ordered")
-      return 'Chuẩn bị xong';
-    return 'Đã hoàn thành';
   }
 }

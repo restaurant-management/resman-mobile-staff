@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'src/App.dart';
 
 void main() {
+  // Ensure all widgets were init
+  WidgetsFlutterBinding.ensureInitialized();
   BlocSupervisor().delegate = SimpleBlocDelegate();
   runApp(App());
 }

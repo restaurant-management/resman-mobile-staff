@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 
-class SummaryBill extends StatefulWidget {
-  @override
-  _SummaryBillState createState() => _SummaryBillState();
-}
+class SummaryBill extends StatelessWidget {
+  final List<BillDishModel> billDetails;
 
-class _SummaryBillState extends State<SummaryBill> {
+  const SummaryBill({Key key, @required this.billDetails})
+      : assert(billDetails != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+    var sum = 0;
+    for (int i = 0; i < billDetails.length; i++) {
+      sum += billDetails[i].quantity * billDetails[i].price;
+    }
     return Card(
       margin: EdgeInsets.all(0),
       color: Colors.white,
@@ -28,7 +34,7 @@ class _SummaryBillState extends State<SummaryBill> {
                 SizedBox(
                   height: 5,
                 ),
-                Text('100 000 VNĐ')
+                Text('$sum VNĐ')
               ],
             ),
             SizedBox(
@@ -40,7 +46,7 @@ class _SummaryBillState extends State<SummaryBill> {
             ),
             InkWell(
               splashColor: primaryColor,
-              onTap: _showSelectTableNumber,
+              onTap: () {},
               child: Text(
                 'Mã giảm giá?',
                 style: TextStyle(color: Colors.black),
@@ -49,40 +55,6 @@ class _SummaryBillState extends State<SummaryBill> {
           ],
         ),
       ),
-    );
-  }
-
-  void _showSelectTableNumber() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Text("Mã giảm giá"),
-          content: TextField(
-            decoration: InputDecoration(
-                hintStyle: TextStyle(
-                    color: Colors.grey
-                ),
-                hintText: "Nhập mã giảm giá..."
-            ),
-          ),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("Skip"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            new FlatButton(
-              child: new Text("Confirm"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

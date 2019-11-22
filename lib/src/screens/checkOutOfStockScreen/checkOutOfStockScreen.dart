@@ -6,7 +6,7 @@ import 'package:resman_mobile_staff/FakeData.dart';
 
 import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/cartButton/secondaryCartButton.dart';
-import '../../widgets/dishList/dishesList.dart';
+import '../../widgets/dishList/dailyDishesList.dart';
 import '../../widgets/drawerScaffold.dart';
 
 class PreparedBillScreen extends StatefulWidget {
@@ -38,7 +38,7 @@ class _PreparedBillScreenState extends State<PreparedBillScreen> {
             flex: 3,
             child: ListView(
               children: <Widget>[
-                DishesList(listDailyDish: FakeData.listDailyDish),
+                DailyDishesList(listDailyDish: FakeData.listDailyDish),
               ],
             ),
           ),

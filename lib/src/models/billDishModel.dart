@@ -5,8 +5,8 @@ class BillDishModel extends Equatable {
   int _billHistoryId;
   String _note;
   DateTime _preparedAt;
-  DateTime _delivaryAt;
-  int _quantily;
+  DateTime _deliveryAt;
+  int _quantity;
   int _price;
   DishModal _dish;
 
@@ -16,9 +16,9 @@ class BillDishModel extends Equatable {
 
   DateTime get preparedAt => _preparedAt;
 
-  DateTime get delivaryAt => _delivaryAt;
+  DateTime get deliveryAt => _deliveryAt;
 
-  int get quantily => _quantily;
+  int get quantity => _quantity;
 
   int get price => _price;
 
@@ -28,17 +28,23 @@ class BillDishModel extends Equatable {
     _billHistoryId = json["billHistoryId"];
     _note = json["note"];
     _preparedAt = DateTime.parse(json["preparedAt"]);
-    _delivaryAt = DateTime.parse(json["delivaryAt"]);
-    _quantily = json["quantily"];
+    _deliveryAt = DateTime.parse(json["deliveryAt"]);
+    _quantity = json["quantity"];
     _price = json["price"];
     _dish = DishModal.fromJson(json["dish"]);
+//    List<dynamic> dishDetail = json["dish"];
+//    _dish = [];
+//    for(int i=0; i<dishDetail.length; i++)
+//      {
+//        _dish.add(DishModal.fromJson(dishDetail[i]));
+//      }
   }
 
   @override
   String toString() {
-    return '{billHistory: $_billHistoryId, note: $_note, name: ${dish.name}}';
+    return '{billHistory: $_billHistoryId, note: $_note}';
   }
 
   @override
-  List<Object> get props => null;
+  List<Object> get props => [_billHistoryId];
 }

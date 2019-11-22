@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resman_mobile_staff/src/screens/buildDetailScreen/billDetailScreen.dart';
+import 'package:resman_mobile_staff/src/screens/homeScreen/homeScreenChef.dart';
 
 import '../../blocs/authenticationBloc/bloc.dart';
 import '../../blocs/authenticationBloc/event.dart';
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (state is AuthenticationAuthenticated) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (BuildContext context) => BillDetailScreen(),
+              builder: (BuildContext context) => HomeScreenChef(),
             ),
           );
         }

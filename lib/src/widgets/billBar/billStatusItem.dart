@@ -17,43 +17,47 @@ class _BillStatusItem extends State<BillStatusItem> {
       children: <Widget>[
         Container(
             margin: const EdgeInsets.only(left: 10, right: 10),
-            height: 50,
+            height: 80,
+            width: 80,
             decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: const BorderRadius.all(const Radius.circular(90)),
+              color: Colors.transparent,
+              border: Border.all( width: 2, color: Colors.black),
+              borderRadius: const BorderRadius.all(const Radius.circular(10)),
             ),
             child: Center(
               child: Text(
                 widget.content,
                 textAlign: TextAlign.center,
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16.0),
               ),
             )),
-        Positioned(
-          right: 30,
-          top: 12.5,
-          child: Container(
-              padding: EdgeInsets.all(2),
-              decoration: new BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(90),
-              ),
-              constraints: BoxConstraints(
-                minWidth: 25,
-                minHeight: 25,
-              ),
-              child: Center(
-                child: Text(
-                  '${widget.number}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              )),
-        )
+//        Positioned(
+//          right: 30,
+//          top: 12.5,
+//          child: Container(
+//              padding: EdgeInsets.all(2),
+//              decoration: new BoxDecoration(
+//                color: Colors.red,
+//                borderRadius: BorderRadius.circular(90),
+//              ),
+//              constraints: BoxConstraints(
+//                minWidth: 25,
+//                minHeight: 25,
+//              ),
+//              child: Center(
+//                child: Text(
+//                  '${widget.number}',
+//                  style: TextStyle(
+//                    color: Colors.white,
+//                    fontSize: 13,
+//                  ),
+//                  textAlign: TextAlign.center,
+//                ),
+//              )),
+//        )
       ],
     );
   }

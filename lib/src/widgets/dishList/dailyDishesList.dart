@@ -1,24 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
-import 'package:resman_mobile_staff/src/models/dishModel.dart';
 import 'package:resman_mobile_staff/src/widgets/dishList/dishItemCard.dart';
-import 'package:resman_mobile_staff/src/widgets/dishList/dishListItem.dart';
 
-class DishesList extends StatefulWidget {
-  final List<DishModal> dishList;
-  final String note;
+class DailyDishesList extends StatefulWidget {
+  final List<DailyDishModel> listDailyDish;
 
-  const DishesList({Key key, @required this.dishList, @required this.note})
-      : assert(dishList != null),
+  const DailyDishesList({Key key, @required this.listDailyDish})
+      : assert(listDailyDish != null),
         super(key: key);
 
   @override
-  _DishesListState createState() => _DishesListState();
+  _DailyDishesListState createState() => _DailyDishesListState();
 }
 
-class _DishesListState extends State<DishesList> {
-  List<DishModal> get listDailyDish => widget.dishList;
+class _DailyDishesListState extends State<DailyDishesList> {
+  List<DailyDishModel> get listDailyDish => widget.listDailyDish;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +28,7 @@ class _DishesListState extends State<DishesList> {
         ));
   }
 
-  List<Widget> _buildRow(List<DishModal> listDailyDish) {
+  List<Widget> _buildRow(List<DailyDishModel> listDailyDish) {
     List<Widget> rows = [];
     for (int i = 0; i < listDailyDish.length; i += 2) {
       rows.add(SizedBox(
@@ -40,11 +37,12 @@ class _DishesListState extends State<DishesList> {
       rows.add(Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          DishListItem(dish: listDailyDish[i], note: widget.note),
+          DishItemCard(
+            dailyDish: listDailyDish[i],
+          ),
           i + 1 < listDailyDish.length
-              ? DishListItem(
-                  dish: listDailyDish[i + 1],
-                  note: widget.note,
+              ? DishItemCard(
+                  dailyDish: listDailyDish[i + 1],
                 )
               : Container(
                   width: MediaQuery.of(context).size.width / 2.2,

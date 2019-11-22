@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
+import 'package:resman_mobile_staff/src/screens/outOfStockScreen/outOfStockDrawer.dart';
 import 'package:resman_mobile_staff/src/screens/profileScreen/profileDrawer.dart';
 
 import '../blocs/authenticationBloc/bloc.dart';
@@ -47,6 +48,7 @@ class _DrawerScaffoldState extends State<DrawerScaffold> {
           backgroundColor: Theme.of(context).colorScheme.background,
           endDrawer: ProfileDrawer(),
           drawer: CartDrawer(),
+//          drawer: OutOfStockDrawer(),
           bottomNavigationBar: widget.bottomNavigationBar,
         );
       },

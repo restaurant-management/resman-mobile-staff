@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
-
 import 'sumaryBill.dart';
+//import 'package:qrcode_reader/qrcode_reader.dart';
 
 class CartFooter extends StatefulWidget {
   final double height;
@@ -53,11 +53,71 @@ class _CartFooterState extends State<CartFooter> {
                   begin: Alignment.bottomRight,
                   end: Alignment.topLeft,
                 ),
+                callback: _showSelectTableNumber,
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  void _showSelectTableNumber() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text("Chọn số bàn"),
+          content: TextField(
+            decoration: InputDecoration(
+              hintStyle: TextStyle(
+                color: Colors.grey
+              ),
+                hintText: "Nhập số bàn..."
+            ),
+          ),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Đóng"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Xác nhận"),
+              onPressed: _showSelectCustomer,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSelectCustomer() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text("Chọn khách hàng"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Đóng"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Quét mã QR"),
+              onPressed: () async {
+//                Future<String> futureString = new QRCodeReader().scan();
+              },
+            ),
+
+          ],
+        );
+      },
     );
   }
 }
