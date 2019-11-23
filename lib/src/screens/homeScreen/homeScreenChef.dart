@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/billListItem.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/customAppBar.dart';
@@ -22,7 +23,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
 {
   AuthenticationBloc authenticationBloc;
   ScrollController scrollController;
-  final tabList = ['Hóa đơn', 'Hóa đơn đang chuẩn bị'];
+  final tabList = ['Hóa đơn', 'Đang chuẩn bị'];
   TabController _tabController;
   void onpress() {
     print("Button Pressed!");
@@ -56,8 +57,8 @@ class _HomeScreenChefState extends State<HomeScreenChef>
                       style: BorderStyle.solid,
                     ),
                   ),
-                  color: colorScheme.surface),
-              labelColor: colorScheme.onSurface,
+                  color: colorScheme.onPrimary),
+              labelColor: colorScheme.onBackground,
               indicator: PointTabIndicator(
                   color: colorScheme.primary, insets: EdgeInsets.only(bottom: 4)),
               labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -89,7 +90,9 @@ class _HomeScreenChefState extends State<HomeScreenChef>
                   );
                 },
               ),
-              Container(),
+              DishListChef(
+                billDetails: FakeData.billDishes,
+              ),
             ],
           ),
     );
