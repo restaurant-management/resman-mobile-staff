@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.15.8
   gradient_widgets: ^0.4.1
   image_picker: ^0.4.0
+  badges: ^1.1.0
 #  qrcode_reader: ^0.4.4
 
 #  module:

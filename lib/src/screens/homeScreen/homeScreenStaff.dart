@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
+import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/tableButton.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/billBar/billStatusItem.dart';
+import 'package:resman_mobile_staff/src/widgets/cartButton/secondaryCartButton.dart';
 import 'package:resman_mobile_staff/src/widgets/dishList/dailyDishesList.dart';
 import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
 
@@ -34,6 +36,8 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
   Widget build(BuildContext context) {
     return DrawerScaffold(
       appBar: MainAppBar(),
+      floatingActionButton: SecondaryCartButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: NestedScrollView(
         headerSliverBuilder: (_, __) => [
           SliverAppBar(
@@ -41,9 +45,9 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
             pinned: true,
             floating: false,
             snap: false,
-            title: Center(child: Text('Danh sách hóa đơn')),
+//            title: Center(child: Text('Danh sách hóa đơn')),
             actions: <Widget>[Container()],
-            expandedHeight: 180,
+            expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: Container(
@@ -54,70 +58,30 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                     SizedBox(
                       height: 5,
                     ),
-                    CupertinoButton(
-                      child: BillStatusItem(
-                        content: 'Ban 1',
-                        number: FakeData.bill.collectValue,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BillDetailScreen(),
-                          ),
-                        );
-                      },
+                    TableButton(
+                      tableNumber: 1,
+                      badgeNumber: FakeData.bill.collectValue,
                     ),
                     SizedBox(
                       height: 5,
                     ),
-                    CupertinoButton(
-                      child: BillStatusItem(
-                        content: 'Ban 2',
-                        number: FakeData.bill.collectValue,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BillDetailScreen(),
-                          ),
-                        );
-                      },
+                    TableButton(
+                      tableNumber: 20,
+                      badgeNumber: FakeData.bill.collectValue,
                     ),
                     SizedBox(
                       height: 5,
                     ),
-                    CupertinoButton(
-                      child: BillStatusItem(
-                        content: 'Ban 3',
-                        number: FakeData.bill.collectValue,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BillDetailScreen(),
-                          ),
-                        );
-                      },
+                    TableButton(
+                      tableNumber: 3,
+                      badgeNumber: FakeData.bill.collectValue,
                     ),
                     SizedBox(
                       height: 5,
                     ),
-                    CupertinoButton(
-                      child: BillStatusItem(
-                        content: 'Ban 4',
-                        number: FakeData.bill.collectValue,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BillDetailScreen(),
-                          ),
-                        );
-                      },
+                    TableButton(
+                      tableNumber: 4,
+                      badgeNumber: FakeData.bill.collectValue,
                     ),
                     SizedBox(
                       height: 5,
