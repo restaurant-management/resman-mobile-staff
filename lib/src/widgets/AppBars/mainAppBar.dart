@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  MainAppBar({Key key})
-      : preferredSize = Size.fromHeight(56.0),
+  final PreferredSizeWidget bottom;
+  MainAppBar({Key key, this.bottom})
+      : preferredSize = Size.fromHeight(56.0 + (bottom?.preferredSize?.height ?? 0.0)),
         super(key: key);
 
   @override
@@ -14,6 +15,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return AppBar(
+      bottom: bottom,
       backgroundColor: Colors.white,
       elevation: 5,
       centerTitle: true,

@@ -7,7 +7,8 @@ import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 
-import '../../../FakeData.dart';
+import '../../../../FakeData.dart';
+
 
 class BillListItem extends StatefulWidget {
   final BillDishModel billDish;
@@ -148,7 +149,7 @@ class _BillListItemState extends State<BillListItem> {
   }
   Widget _buildButton(BuildContext context, BillModel bill) {
 
-    return _buildButtonWidget('Xác nhận chuẩn bị xong', increaseWidthBy: 90,
+    return _buildButtonWidget('Xác nhận chuẩn bị', increaseWidthBy: 90,
         onPressed: () {
         });
   }

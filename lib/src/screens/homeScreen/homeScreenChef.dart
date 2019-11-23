@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/billListItem.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
-import 'package:resman_mobile_staff/src/widgets/billBar/billListItem.dart';
-import 'package:resman_mobile_staff/src/widgets/billBar/billStatusItem.dart';
+import 'package:resman_mobile_staff/src/widgets/customAppBar.dart';
+import 'package:resman_mobile_staff/src/widgets/customTabIndicator.dart';
 import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
 
 import '../../blocs/authenticationBloc/bloc.dart';
@@ -16,10 +17,13 @@ class HomeScreenChef extends StatefulWidget {
   }
 }
 
-class _HomeScreenChefState extends State<HomeScreenChef> {
+class _HomeScreenChefState extends State<HomeScreenChef>
+    with SingleTickerProviderStateMixin
+{
   AuthenticationBloc authenticationBloc;
   ScrollController scrollController;
-
+  final tabList = ['Hóa đơn', 'Hóa đơn đang chuẩn bị'];
+  TabController _tabController;
   void onpress() {
     print("Button Pressed!");
   }
@@ -29,95 +33,65 @@ class _HomeScreenChefState extends State<HomeScreenChef> {
     super.initState();
     scrollController = new ScrollController();
     scrollController.addListener(() => setState(() {}));
+    _tabController = TabController(vsync: this, length: tabList.length);
   }
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DrawerScaffold(
-      appBar: MainAppBar(),
-      body: CustomScrollView(
-        controller: scrollController,
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 200,
-            floating: true,
-            pinned: true,
-            snap: true,
-            leading: Container(),
-            actions: <Widget>[Container()],
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              title: _buildList(),
+          appBar: MainAppBar(
+            bottom: CustomTabBar(
+              controller: _tabController,
+              decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(
+                      color: colorScheme.onSecondary,
+                      width: 0.5,
+                      style: BorderStyle.solid,
+                    ),
+                    bottom: BorderSide(
+                      color: colorScheme.onSecondary,
+                      width: 0.5,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                  color: colorScheme.surface),
+              labelColor: colorScheme.onSurface,
+              indicator: PointTabIndicator(
+                  color: colorScheme.primary, insets: EdgeInsets.only(bottom: 4)),
+              labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              unselectedLabelStyle: TextStyle(fontSize: 15),
+              tabs: tabList.map((item) {
+                return CustomTab(
+                  text: item,
+                );
+              }).toList(),
             ),
           ),
-          SliverFillRemaining(
-            child: ListView.separated(
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: 5,
-                );
-              },
-              scrollDirection: Axis.vertical,
-              itemCount: 7,
-              itemBuilder: (BuildContext context, int index) {
-                return BillListItem(
-                  billDish: FakeData.billDish,
-                  count: 10,
-                  onPressed: this.onpress,
-                  icon: Icons.email,
-                );
-              },
-            ),
+          body: TabBarView(
+            controller: _tabController,
+            children: <Widget>[
+              ListView.separated(
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    height: 5,
+                  );
+                },
+                scrollDirection: Axis.vertical,
+                itemCount: 7,
+                itemBuilder: (BuildContext context, int index) {
+                  return BillListItem(
+                    billDish: FakeData.billDish,
+                    count: 10,
+                    onPressed: this.onpress,
+                    icon: Icons.email,
+                  );
+                },
+              ),
+              Container(),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildList() {
-    Widget listWidget = ListView(
-      scrollDirection: Axis.horizontal,
-      children: <Widget>[
-        SizedBox(
-          height: 10,
-        ),
-        CupertinoButton(
-          child: BillStatusItem(
-            content: 'Hoa don dang chuan bi',
-            number: FakeData.bill.collectValue,
-          ),
-          onPressed: () {},
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        CupertinoButton(
-          child: BillStatusItem(
-            content: 'Hoa don chuan bi xong',
-            number: FakeData.bill.collectValue,
-          ),
-          onPressed: () {},
-        ),
-        SizedBox(
-          height: 10,
-        ),
-      ],
-    );
-
-    double scale = 1;
-    if (scrollController.hasClients) {
-      if (scrollController.offset != 0) scale = 1;
-      if (scale < 0) {
-        scale = 0;
-      }
-    } else {
-      scale = 1;
-    }
-
-    return new Transform(
-      transform: new Matrix4.identity()..scale(scale, scale),
-      alignment: Alignment.center,
-      child: listWidget,
     );
   }
 
