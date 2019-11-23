@@ -59,6 +59,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       height: 5,
                     ),
                     TableButton(
+                      isDone: false,
                       tableNumber: 1,
                       badgeNumber: FakeData.bill.collectValue,
                     ),
@@ -66,6 +67,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       height: 5,
                     ),
                     TableButton(
+                      isDone: true,
                       tableNumber: 20,
                       badgeNumber: FakeData.bill.collectValue,
                     ),
@@ -73,6 +75,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       height: 5,
                     ),
                     TableButton(
+                      isDone: false,
                       tableNumber: 3,
                       badgeNumber: FakeData.bill.collectValue,
                     ),
@@ -80,6 +83,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       height: 5,
                     ),
                     TableButton(
+                      isDone: false,
                       tableNumber: 4,
                       badgeNumber: FakeData.bill.collectValue,
                     ),
