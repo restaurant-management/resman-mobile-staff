@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
@@ -48,54 +49,26 @@ class DishItemChef extends StatelessWidget {
                   ),
                 ),
               ),
+              Text(
+                'SL: ' + billDishModel.quantity.toString(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                  color: primaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
               Text('${billDishModel.note.toString()}'),
+
             ],
           ),
           Column(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  SizedBox(
-                    height: 25,
-                    width: 30,
-                    child: Center(
-                      child: Text(
-                        'SL: ',
-                        style: TextStyle(color: primaryColor),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                    width: 50,
-                    child: Row(
-                      children: <Widget>[
-                        Text(billDishModel.quantity.toString()),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 25,
-                width: 80,
-                child: FlatButton(
-                  color: Colors.white,
-                  splashColor: primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Icon(
-                    Icons.check,
-                    color: primaryColor,
-                  ), onPressed: () {},
-                ),
-              ),
+              CupertinoButton(child: Icon(Icons.check), onPressed: null)
             ],
           )
         ],

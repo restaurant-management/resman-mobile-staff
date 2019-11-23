@@ -32,7 +32,7 @@ class _BillListItemState extends State<BillListItem> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => BillDetailScreenChef(
+                builder: (context) => BillDetailScreen(
                 )));
       },
       child: Card(
