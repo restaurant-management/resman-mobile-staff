@@ -69,13 +69,13 @@ class _SummaryBillState extends State<SummaryBill> {
           ),
           actions: <Widget>[
             new FlatButton(
-              child: new Text("Skip"),
+              child: new Text("Đóng"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             new FlatButton(
-              child: new Text("Confirm"),
+              child: new Text("Xác nhận"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
