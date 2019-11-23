@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
+import 'package:resman_mobile_staff/src/utils/textStyle.dart';
 
 class SummaryBill extends StatelessWidget {
   final List<BillDishModel> billDetails;
@@ -12,48 +13,50 @@ class SummaryBill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+    final colorScheme = Theme.of(context).colorScheme;
     var sum = 0;
     for (int i = 0; i < billDetails.length; i++) {
       sum += billDetails[i].quantity * billDetails[i].price;
     }
     return Card(
-      margin: EdgeInsets.all(0),
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Text(
-                  'Tổng tiền',
-                  style: TextStyle(
-                      color: primaryColor, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text('$sum VNĐ')
-              ],
-            ),
-            SizedBox(
-              height: 30,
-              width: 1,
-              child: Container(
-                color: primaryColor,
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 5,
               ),
-            ),
-            InkWell(
-              splashColor: primaryColor,
-              onTap: () {},
-              child: Text(
-                'Mã giảm giá?',
-                style: TextStyle(color: Colors.black),
+              Text(
+                'Tổng tiền: ',
+                style: TextStyles.body1.merge(
+                  TextStyle(color: primaryColor, fontSize: 20),
+                ),
               ),
-            )
-          ],
-        ),
+            ],
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            textDirection: TextDirection.rtl,
+            children: <Widget>[
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                '$sum VNĐ',
+                style: TextStyles.body1.merge(
+                  TextStyle(color: colorScheme.surface, fontSize: 20),
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

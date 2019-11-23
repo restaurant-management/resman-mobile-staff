@@ -36,7 +36,7 @@ class _BillDetailScreenState extends State<BillDetailScreen> {
             billDetails: FakeData.billDishes,
           ),
       bottomNavigationBar: SizedBox(
-          height: 56,
+          height: 61,
           child: SummaryBill(
             billDetails: FakeData.billDishes,
           )),
