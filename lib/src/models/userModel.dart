@@ -11,6 +11,7 @@ class UserModel extends Equatable {
   String _email;
   DateTime _birthday;
   String _phoneNumber;
+  String _address;
   List<RoleModel> _roles;
   int _point;
 
@@ -30,6 +31,8 @@ class UserModel extends Equatable {
 
   String get phoneNumber => _phoneNumber;
 
+  String get address => _address;
+
   List<RoleModel> get roles => _roles;
 
   int get point => _point;
@@ -42,6 +45,7 @@ class UserModel extends Equatable {
     _avatar = parsedJson['avatar'];
     _email = parsedJson['email'];
     _phoneNumber = parsedJson['phoneNumber'];
+    _address = parsedJson['address'];
     _birthday = parsedJson['birthday'] != null
         ? DateFormat('yyyy-MM-dd').parse(parsedJson['birthday'])
         : null;

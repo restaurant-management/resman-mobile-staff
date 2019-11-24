@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ImportFab extends StatefulWidget {
+class MapFab extends StatefulWidget {
   @override
-  _ImportFabState createState() => _ImportFabState();
+  _MapFabState createState() => _MapFabState();
 }
 
-class _ImportFabState extends State<ImportFab>
-    with SingleTickerProviderStateMixin {
+class _MapFabState extends State<MapFab> with SingleTickerProviderStateMixin {
   bool _isOpened = false;
   AnimationController _animationController;
   Animation<double> _translateButton;
@@ -16,10 +15,10 @@ class _ImportFabState extends State<ImportFab>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-          ..addListener(() {
-            setState(() {});
-          });
+    AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+      ..addListener(() {
+        setState(() {});
+      });
     _translateButton = Tween<double>(
       begin: _fabHeight,
       end: -14.0,
@@ -51,7 +50,7 @@ class _ImportFabState extends State<ImportFab>
     });
   }
 
-  Widget makeImportBill(BuildContext context) {
+  Widget takePhoto(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -65,13 +64,10 @@ class _ImportFabState extends State<ImportFab>
                   width: 0.5,
                   style: BorderStyle.solid,
                 ),
-                color: colorScheme.primaryVariant),
+                color: Color.fromRGBO(255, 255, 255, 0.97)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-              child: Text(
-                'Tạo hóa đơn nhập',
-                style: TextStyle(color: colorScheme.onPrimary),
-              ),
+              child: Text('Take photo from camera and share'),
             ),
           ),
           opacity: _isOpened ? 1 : 0,
@@ -81,17 +77,17 @@ class _ImportFabState extends State<ImportFab>
           width: 4,
         ),
         FloatingActionButton(
-          heroTag: 'importBill',
+          heroTag: 'sub',
           child: Icon(
-            Icons.save_alt,
-            color: Theme.of(context).colorScheme.onSurface,
+            Icons.camera_alt,
+            color: Theme.of(context).colorScheme.surface,
           ),
-          backgroundColor: Theme.of(context).colorScheme.primaryVariant,
+          backgroundColor: Color(0xff56CCF2),
           onPressed: animate,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(90),
             side: BorderSide(
-              color: Theme.of(context).colorScheme.primaryVariant,
+              color: Theme.of(context).colorScheme.onSecondary,
               width: 0.5,
               style: BorderStyle.solid,
             ),
@@ -102,7 +98,7 @@ class _ImportFabState extends State<ImportFab>
     );
   }
 
-  Widget makeDailyReport(BuildContext context) {
+  Widget fromGallery(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -116,13 +112,10 @@ class _ImportFabState extends State<ImportFab>
                   width: 0.5,
                   style: BorderStyle.solid,
                 ),
-                color:  colorScheme.secondaryVariant),
+                color: Color.fromRGBO(255, 255, 255, 0.97)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-              child: Text(
-                'Tạo báo cáo hằng ngày',
-                style: TextStyle(color: colorScheme.onSecondary),
-              ),
+              child: Text('Share photos from gallery'),
             ),
           ),
           opacity: _isOpened ? 1 : 0,
@@ -132,12 +125,11 @@ class _ImportFabState extends State<ImportFab>
           width: 4,
         ),
         FloatingActionButton(
-          heroTag: 'dailyReport',
+          heroTag: 'sub2',
           child: Icon(
-            Icons.receipt,
-            size: 20,
+            Icons.check,
           ),
-          backgroundColor: Theme.of(context).colorScheme.secondaryVariant,
+          backgroundColor: Color(0xff6FCF97),
           onPressed: animate,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(90),
@@ -157,8 +149,8 @@ class _ImportFabState extends State<ImportFab>
     return FloatingActionButton(
       heroTag: 'main',
       child: Icon(
-        _isOpened ? Icons.close : Icons.add,
-        color: Theme.of(context).colorScheme.onPrimary,
+        _isOpened ? Icons.close : Icons.camera_alt,
+        color: Theme.of(context).colorScheme.surface,
       ),
       backgroundColor: Color.fromRGBO(44, 101, 250, 0.97),
       onPressed: animate,
@@ -181,12 +173,12 @@ class _ImportFabState extends State<ImportFab>
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         Transform(
-          child: makeImportBill(context),
+          child: takePhoto(context),
           transform:
-              Matrix4.translationValues(0, _translateButton.value * 2, 0),
+          Matrix4.translationValues(0, _translateButton.value * 2, 0),
         ),
         Transform(
-          child: makeDailyReport(context),
+          child: fromGallery(context),
           transform: Matrix4.translationValues(0, _translateButton.value, 0),
         ),
         toggle(context)
