@@ -14,7 +14,7 @@ class FakeData {
   static UserModel user = UserModel.fromJson(userJson);
 
   static const jsonParsed =
-      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
+      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
   static const billJson =
       '{"billId":1,"createBy":"","preparedBy":"","collectBy":"","customerId":"","tableNumber":"","createAt":"1969-07-20 20:18:04Z","prepareAt":"1969-07-20 20:18:04Z","collectAt":"","collectValue":10}';
 
@@ -28,7 +28,7 @@ class FakeData {
   static BillModel bill = BillModel.fromJson(jsonDecode(billJson));
 
   static Map<String, dynamic> dailyDishString = jsonDecode(
-      '{"day":"1969-07-20 20:18:04Z","session": "morning","storeId": 1,"confirmBy": 1,"confirmAt": "1969-07-20 20:18:04Z","dishes": {"dishId": 1,"name": "Ca kho","description": "acascc","images": ["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}');
+      '{"day":"1969-07-20 20:18:04Z","session": "morning","storeId": 1,"confirmBy": 1,"confirmAt": "1969-07-20 20:18:04Z","dishes": {"dishId": 1,"name": "Ca kho", "defaultPrice":100000,"description": "acascc","images": ["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}');
   static DailyDishModel dailyDish = DailyDishModel.fromJson(dailyDishString);
   static List<DailyDishModel> listDailyDish = [
     dailyDish,

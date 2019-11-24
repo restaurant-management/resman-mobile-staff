@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (state is AuthenticationAuthenticated) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (BuildContext context) => HomeScreenWareManager(),
+              builder: (BuildContext context) => HomeScreenStaff(),
             ),
           );
         }

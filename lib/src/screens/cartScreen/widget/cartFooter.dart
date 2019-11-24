@@ -85,7 +85,8 @@ class _CartFooterState extends State<CartFooter> {
               child: new Text("Xác nhận"),
               onPressed: () {
                 Navigator.of(context).pop();
-                _showSelectCustomer();
+//                _showSelectCustomer();
+                _showCreateSuccess();
               },
             ),
           ],
@@ -94,33 +95,34 @@ class _CartFooterState extends State<CartFooter> {
     );
   }
 
-  void _showSelectCustomer() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Text("Chọn khách hàng"),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("Đóng"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            new FlatButton(
-              child: new Text("Quét mã QR"),
-              onPressed: () async {
-//                Future<String> futureString = new QRCodeReader().scan();
-                Navigator.of(context).pop();
-                  _showCreateSuccess();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+//  void _showSelectCustomer() {
+//    showDialog(
+//      context: context,
+//      builder: (BuildContext context) {
+//        // return object of type Dialog
+//        return AlertDialog(
+//          title: Text("Chọn khách hàng"),
+//          actions: <Widget>[
+//            new FlatButton(
+//              child: new Text("Bỏ qua"),
+//              onPressed: () {
+//                Navigator.of(context).pop();
+//                _showCreateSuccess();
+//              },
+//            ),
+//            new FlatButton(
+//              child: new Text("Quét mã QR"),
+//              onPressed: () async {
+////                Future<String> futureString = new QRCodeReader().scan();
+//                Navigator.of(context).pop();
+//                _showCreateSuccess();
+//              },
+//            ),
+//          ],
+//        );
+//      },
+//    );
+//  }
 
   void _showCreateSuccess() {
     showDialog(

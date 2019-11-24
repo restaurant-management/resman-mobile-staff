@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 //import 'package:restaurant_management_mobile/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dishModel.dart';
+import 'package:resman_mobile_staff/src/screens/dishDetailScreen/dishDetailScreen.dart';
 
 class DishItemCard extends StatelessWidget {
   final DailyDishModel dailyDish;
@@ -19,9 +20,10 @@ class DishItemCard extends StatelessWidget {
     final Color primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(),
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => DishDetailScreen(dailyDish: dailyDish,),
+          ),
         );
       },
       child: Card(

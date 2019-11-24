@@ -3,6 +3,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
+import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/billDetailScreenStaff.dart';
 
 class TableButton extends StatefulWidget {
   final int tableNumber;
@@ -24,7 +25,7 @@ class _TableButtonState extends State<TableButton> {
 
     return Badge(
       badgeContent: widget.isDone
-          ? Icon(Icons.check)
+          ? Icon(Icons.check, size: 15,)
           : Text(widget.badgeNumber.toString()),
       animationType: BadgeAnimationType.scale,
       badgeColor: widget.isDone ? colorScheme.background : colorScheme.error,
@@ -87,7 +88,7 @@ class _TableButtonState extends State<TableButton> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BillDetailScreenChef(),
+        builder: (context) => BillDetailScreenStaff(),
       ),
     );
   }
@@ -132,7 +133,8 @@ class _TableButtonState extends State<TableButton> {
             width: 500,
             child: Form(
               key: _formKey,
-              child: Column(
+              child: Wrap(
+                runSpacing: 10,
                 children: <Widget>[
                   SizedBox(
                     height: 5,
