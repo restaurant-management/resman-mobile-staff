@@ -5,6 +5,7 @@ import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dishModel.dart';
+import 'package:resman_mobile_staff/src/models/stockModel.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 
 class FakeData {
@@ -54,5 +55,14 @@ class FakeData {
     dish,
     dish,
     dish
+  ];
+
+  static Map<String, dynamic> stockJson = jsonDecode('{"name":"Gà châu Âu ","unit":"con","price":200000,"remain":20,"images":["https://i.ytimg.com/vi/Hq2pavmew58/maxresdefault.jpg"]}');
+  static StockModel stockModel = StockModel.fromJson(stockJson);
+  static List<StockModel> listStock = [
+    stockModel,
+    stockModel,
+    stockModel,
+    stockModel,
   ];
 }

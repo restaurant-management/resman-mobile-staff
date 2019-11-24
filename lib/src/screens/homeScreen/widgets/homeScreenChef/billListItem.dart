@@ -7,7 +7,7 @@ import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 
-import '../../../../FakeData.dart';
+import '../../../../../FakeData.dart';
 
 
 class BillListItem extends StatefulWidget {

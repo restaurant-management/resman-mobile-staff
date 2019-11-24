@@ -10,22 +10,16 @@ import '../editProfileScreen/editProfileScreen.dart';
 import 'profileScreen.dart';
 
 class ProfileDrawer extends StatefulWidget {
-
-  const ProfileDrawer({Key key})
-        :super(key: key);
+  const ProfileDrawer({Key key}) : super(key: key);
 
   @override
   _ProfileDrawerState createState() => _ProfileDrawerState();
 }
 
 class _ProfileDrawerState extends State<ProfileDrawer> {
-
   @override
   Widget build(BuildContext context) {
-    
-    return Drawer(
-        child: _buildContent(FakeData.user, FakeData.user.roles)
-      );
+    return Drawer(child: _buildContent(FakeData.user, FakeData.user.roles));
   }
 
   Widget _buildContent(UserModel user, List<RoleModel> allPermissions) {
@@ -53,14 +47,14 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                     child: ClipOval(
                       child: user.avatar != null
                           ? FadeInImage.assetNetwork(
-                        placeholder: 'assets/images/default-avatar.jpg',
-                        fit: BoxFit.cover,
-                        image: user.avatar,
-                      )
+                              placeholder: 'assets/images/default-avatar.jpg',
+                              fit: BoxFit.cover,
+                              image: user.avatar,
+                            )
                           : Image.asset(
-                        'assets/images/default-avatar.jpg',
-                        fit: BoxFit.cover,
-                      ),
+                              'assets/images/default-avatar.jpg',
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                 ),
@@ -81,18 +75,6 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
         ),
         ListTile(
           leading: Icon(
-            Icons.assignment,
-            color: Colors.blue,
-          ),
-          title: Text(
-            'Danh sách hoá đơn',
-            style: TextStyle(color: Colors.blue, fontSize: 16),
-          ),
-          onTap: () {
-          },
-        ),
-        ListTile(
-          leading: Icon(
             Icons.description,
             color: Colors.pinkAccent,
           ),
@@ -100,8 +82,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             'Hoá đơn của tôi',
             style: TextStyle(color: Colors.pinkAccent, fontSize: 16),
           ),
-          onTap: () {
-          },
+          onTap: () => Scaffold.of(context).openDrawer(),
         ),
         ListTile(
           leading: Icon(
@@ -142,8 +123,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => EditPasswordScreen(
-                      currentUser: user,
-                    )));
+                          currentUser: user,
+                        )));
           },
         ),
         ListTile(
@@ -155,8 +136,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             'Đăng xuất',
             style: TextStyle(color: Colors.deepOrange, fontSize: 16),
           ),
-          onTap: () {
-          },
+          onTap: () {},
         )
       ],
     );

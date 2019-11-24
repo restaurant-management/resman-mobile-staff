@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
-import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
-import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/tableButton.dart';
+import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenStaff/tableButton.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
-import 'package:resman_mobile_staff/src/widgets/billBar/billStatusItem.dart';
 import 'package:resman_mobile_staff/src/widgets/cartButton/secondaryCartButton.dart';
 import 'package:resman_mobile_staff/src/widgets/dishList/dailyDishesList.dart';
 import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
@@ -42,7 +40,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
         headerSliverBuilder: (_, __) => [
           SliverAppBar(
             leading: Container(),
-            pinned: true,
+            pinned: false,
             floating: false,
             snap: false,
 //            title: Center(child: Text('Danh sách hóa đơn')),

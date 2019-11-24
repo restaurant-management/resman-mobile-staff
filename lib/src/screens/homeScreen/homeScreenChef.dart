@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
-import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/billListItem.dart';
+import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/customAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/customTabIndicator.dart';

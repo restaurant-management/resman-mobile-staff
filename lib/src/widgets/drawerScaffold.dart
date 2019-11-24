@@ -7,9 +7,6 @@ import 'package:resman_mobile_staff/src/screens/profileScreen/profileDrawer.dart
 
 import '../blocs/authenticationBloc/bloc.dart';
 
-//import '../screens/cartScreen/cartDrawer.dart';
-//import '../screens/profileScreen/ProfileDrawer.dart';
-
 class DrawerScaffold extends StatefulWidget {
   final Widget body;
   final PreferredSizeWidget appBar;
