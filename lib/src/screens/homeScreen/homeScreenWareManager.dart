@@ -6,7 +6,6 @@ import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenWar
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
 import 'package:resman_mobile_staff/src/widgets/importStock/importFab.dart';
-import 'package:resman_mobile_staff/src/widgets/mapFab.dart';
 
 class HomeScreenWareManager extends StatefulWidget {
   @override
@@ -19,10 +18,11 @@ class _HomeScreenWareManagerState extends State<HomeScreenWareManager> {
     return DrawerScaffold(
       appBar: MainAppBar(),
       floatingActionButton: ImportFab(),
-//      floatingActionButton: FloatingActionButton(onPressed: () {
-//        // Add your onPressed code here!
-//      }),
-      body: StockList(stockList: FakeData.listStock),
+      body: StockList(
+        stockList: FakeData.listStock,
+        headerContent: 'Số hàng còn lại trong kho',
+        headerHeight: 30,
+      ),
     );
   }
 }

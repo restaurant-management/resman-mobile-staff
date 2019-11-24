@@ -4,18 +4,20 @@ import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/stockModel.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenWareManager/stockItem.dart';
-
+import 'package:resman_mobile_staff/src/utils/textStyle.dart';
 
 class StockList extends StatefulWidget {
+  final String headerContent;
   final double headerHeight;
   final double footerHeight;
   final List<StockModel> stockList;
 
   const StockList(
       {Key key,
-        this.headerHeight,
-        this.footerHeight,
-        @required this.stockList})
+      this.headerHeight,
+      this.footerHeight,
+      @required this.stockList,
+      this.headerContent})
       : assert(stockList != null),
         super(key: key);
 
@@ -41,8 +43,23 @@ class _StockListState extends State<StockList> {
               children: <Widget>[
                 headerHeight != null
                     ? SizedBox(
-                  height: headerHeight,
-                )
+                        height: headerHeight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              widget.headerContent,
+                              style: TextStyles.h4Headline.merge(
+                                TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.onBackground,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
                     : Container(),
                 StockItem(
                   stockModel: items[index],
@@ -57,8 +74,8 @@ class _StockListState extends State<StockList> {
                 ),
                 footerHeight != null
                     ? SizedBox(
-                  height: footerHeight + 8,
-                )
+                        height: footerHeight + 8,
+                      )
                     : Container(),
               ],
             );
