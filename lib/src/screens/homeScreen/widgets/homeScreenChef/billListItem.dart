@@ -150,8 +150,7 @@ class _BillListItemState extends State<BillListItem> {
   Widget _buildButton(BuildContext context, BillModel bill) {
 
     return _buildButtonWidget('Xác nhận chuẩn bị', increaseWidthBy: 90,
-        onPressed: () {
-        });
+        onPressed: widget.onPressed);
   }
 
   Widget _buildButtonWidget(String text,

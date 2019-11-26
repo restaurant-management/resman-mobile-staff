@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/models/billDishModel.dart';
+import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
@@ -25,6 +27,8 @@ class _HomeScreenChefState extends State<HomeScreenChef>
   ScrollController scrollController;
   final tabList = ['Hóa đơn', 'Đang chuẩn bị'];
   TabController _tabController;
+  List<BillDishModel> unStageBill = FakeData.billDishes;
+  List<BillDishModel> stageBill = new List<BillDishModel>();
   void onpress() {
     print("Button Pressed!");
   }
@@ -80,18 +84,38 @@ class _HomeScreenChefState extends State<HomeScreenChef>
                   );
                 },
                 scrollDirection: Axis.vertical,
-                itemCount: 7,
+                itemCount: unStageBill.length,
                 itemBuilder: (BuildContext context, int index) {
                   return BillListItem(
-                    billDish: FakeData.billDish,
+                    billDish: unStageBill[index],
                     count: 10,
-                    onPressed: this.onpress,
+                    onPressed:() => setState(() => stageBill.add(unStageBill[index])),
                     icon: Icons.email,
                   );
                 },
               ),
-              DishListChef(
-                billDetails: FakeData.billDishes,
+              ListView.separated(
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    height: 5,
+                  );
+                },
+                scrollDirection: Axis.vertical,
+                itemCount: stageBill.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return BillListItem(
+                    billDish: stageBill[index],
+                    count: 10,
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => BillDetailScreenChef(),
+                        ),
+                      );
+                    },
+                    icon: Icons.email,
+                  );
+                },
               ),
             ],
           ),

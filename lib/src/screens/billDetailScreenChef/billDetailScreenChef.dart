@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
+import 'package:resman_mobile_staff/src/widgets/AppBars/backAppBar.dart';
 
 import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
@@ -27,8 +28,9 @@ class _BillDetailScreenChefState extends State<BillDetailScreenChef> {
     //Fake data
 
     return DrawerScaffold(
-      appBar: MainAppBar(),
-//      floatingActionButton: SecondaryCartButton(),
+      appBar: BackAppBar(
+        showShoppingCart: false,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body:
       DishListChef(

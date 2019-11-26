@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 
-class DishItemChef extends StatelessWidget {
+class DishItemChef extends StatefulWidget {
   final BillDishModel billDishModel;
 
   const DishItemChef({Key key, @required this.billDishModel})
@@ -12,7 +12,14 @@ class DishItemChef extends StatelessWidget {
         super(key: key);
 
   @override
+  _DishItemChefState createState() => _DishItemChefState();
+}
+
+class _DishItemChefState extends State<DishItemChef> {
+  bool isChecked = false;
+  @override
   Widget build(BuildContext context) {
+
     final primaryColor = Theme.of(context).primaryColor;
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -26,49 +33,56 @@ class DishItemChef extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20), topLeft: Radius.circular(20)),
             child: Image.network(
-              billDishModel.dish.images[0],
+              widget.billDishModel.dish.images[0],
               fit: BoxFit.cover,
               width: 80,
               height: 80,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.3,
-                child: Text(
-                  billDishModel.dish.name,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+          SizedBox(
+            width: 5,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: Text(
+                    widget.billDishModel.dish.name,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                'SL: ' + billDishModel.quantity.toString(),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: TextStyle(
-                  color: primaryColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text('${billDishModel.note.toString()}'),
-
-            ],
+//                Text(
+//                  'SL: ' + widget.billDishModel.quantity.toString(),
+//                  overflow: TextOverflow.ellipsis,
+//                  maxLines: 1,
+//                  style: TextStyle(
+//                    color: primaryColor,
+//                    fontSize: 16,
+//                    fontWeight: FontWeight.bold,
+//                  ),
+//                ),
+                Text('${widget.billDishModel.note.toString()}'),
+              ],
+            ),
           ),
           Column(
             children: <Widget>[
-              CupertinoButton(child: Icon(Icons.check), onPressed: null)
+              CupertinoButton(
+                  child: Icon(
+                    Icons.check,
+                    color: isChecked ? Colors.green : Colors.grey,
+                  ),
+                  onPressed: () => setState(() => isChecked = !isChecked),
+              ),
             ],
           )
         ],

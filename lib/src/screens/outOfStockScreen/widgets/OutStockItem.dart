@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
@@ -34,13 +35,13 @@ class _OutStockItemState extends State<OutStockItem> {
           title: Text('Báo hết món'),
           content: Text('Món ' + cartDish.dishId.toString() + ' đã hết?'),
           actions: <Widget>[
-            new FlatButton(
+            new CupertinoButton(
               child: new Text("Close"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            new FlatButton(
+            new CupertinoButton(
               child: new Text("Yes"),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -76,14 +77,9 @@ class _OutStockItemState extends State<OutStockItem> {
           SizedBox(
             height: 60,
             width: 60,
-            child: FlatButton(
+            child: CupertinoButton(
               color: Colors.white,
-              splashColor: primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-              ),
+              padding: const EdgeInsets.all(0),
               child: Icon(
                 Icons.cancel,
                 color: primaryColor,

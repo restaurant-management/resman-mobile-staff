@@ -29,12 +29,6 @@ class OutOfStockDrawer extends StatelessWidget {
               height: headerHeight,
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: OutStockFooter(
-              height: footerHeight,
-            ),
-          )
         ]),
       ),
     );
