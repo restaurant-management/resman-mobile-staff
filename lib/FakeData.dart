@@ -18,6 +18,12 @@ class FakeData {
   static const billJson =
       '{"billId":1,"createBy":"","preparedBy":"","collectBy":"","customerId":"","tableNumber":"","createAt":"1969-07-20 20:18:04Z","prepareAt":"1969-07-20 20:18:04Z","collectAt":"","collectValue":10}';
 
+  static const jsonParsed1 =
+      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
+
+  static const jsonParsed2 =
+      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
+
   static BillDishModel billDish =
       BillDishModel.fromJson(jsonDecode(jsonParsed));
   static List<BillDishModel> billDishes = [

@@ -36,13 +36,19 @@ class _OutStockItemState extends State<OutStockItem> {
           content: Text('Món ' + cartDish.dishId.toString() + ' đã hết?'),
           actions: <Widget>[
             new CupertinoButton(
-              child: new Text("Close"),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).colorScheme.secondary,
+              child: new Text("Close", style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             new CupertinoButton(
-              child: new Text("Yes"),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).primaryColor,
+              child: new Text("Yes", style: TextStyle(color: Theme.of(context).colorScheme.onPrimary,),),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -74,6 +80,33 @@ class _OutStockItemState extends State<OutStockItem> {
                 width: 80,
                 height: 80,
               )),
+          SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: Text(
+                    "widget.dai.dish.name",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  '{widget.billDishModel.note.toString()}',
+                  maxLines: 1,
+                ),
+              ],
+            ),
+          ),
           SizedBox(
             height: 60,
             width: 60,

@@ -58,6 +58,31 @@ class _CartItemState extends State<CartItem> {
                 width: 80,
                 height: 80,
               )),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: Text(
+                    FakeData.dailyDish.dish.name,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Text('${FakeData.dailyDish.dish.defaultPrice.toString()}'),
+              ],
+            ),
+          ),
           Column(
             children: <Widget>[
               SizedBox(

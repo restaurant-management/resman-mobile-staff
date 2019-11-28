@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
-import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/billDetailScreenStaff.dart';
 
 class TableButton extends StatefulWidget {
@@ -25,10 +23,17 @@ class _TableButtonState extends State<TableButton> {
 
     return Badge(
       badgeContent: widget.isDone
-          ? Icon(Icons.check, size: 15,)
-          : Text(widget.badgeNumber.toString()),
+          ? Icon(
+              Icons.check,
+              size: 15,
+              color: Colors.white,
+            )
+          : Text(widget.badgeNumber.toString(),
+              style: TextStyle(
+                color: Colors.white,
+              )),
       animationType: BadgeAnimationType.scale,
-      badgeColor: widget.isDone ? colorScheme.background : colorScheme.error,
+      badgeColor: widget.isDone ? colorScheme.onSurface : colorScheme.error,
       position: BadgePosition.topRight(top: 10, right: 10),
       child: CupertinoButton(
         child: Container(
@@ -37,7 +42,7 @@ class _TableButtonState extends State<TableButton> {
           width: 80,
           decoration: BoxDecoration(
             color: Colors.transparent,
-            border: Border.all(width: 2, color: colorTheme.accentColor),
+            border: Border.all(width: 2, color: colorTheme.primaryColor),
             borderRadius: const BorderRadius.all(const Radius.circular(10)),
           ),
           child: Center(
@@ -54,7 +59,7 @@ class _TableButtonState extends State<TableButton> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: colorScheme.onBackground,
                           fontSize: 16.0),
                     ),
                   ],
@@ -68,7 +73,7 @@ class _TableButtonState extends State<TableButton> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: colorScheme.onBackground,
                           fontSize: 48.0),
                     ),
                   ],
@@ -102,15 +107,28 @@ class _TableButtonState extends State<TableButton> {
           title: Text("Thanh toán hóa đơn"),
           content: Text("Tổng tiền là 100000VND?"),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text("Giá trị khác"),
+            new CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).colorScheme.onSurface,
+              child: new Text(
+                "Giá trị khác",
+                style: TextStyle(color: Theme.of(context).colorScheme.surface),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
-                _showChangeToltalDialog();
+                _showChangeTotalDialog();
               },
             ),
-            new FlatButton(
-              child: new Text("Xác nhận"),
+            new CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).primaryColor,
+              child: new Text(
+                "Xác nhận",
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -121,7 +139,7 @@ class _TableButtonState extends State<TableButton> {
     );
   }
 
-  void _showChangeToltalDialog() {
+  void _showChangeTotalDialog() {
     final _formKey = GlobalKey<FormState>();
     showDialog(
       context: context,
@@ -140,28 +158,28 @@ class _TableButtonState extends State<TableButton> {
                     height: 5,
                   ),
                   TextFormField(
+                    initialValue: "100000",
                     style: TextStyle(color: Theme.of(context).primaryColor),
                     decoration: InputDecoration(
                       labelText: "Tổng tiền",
                       labelStyle: TextStyle(
                         color: Theme.of(context).primaryColor,
                       ),
-                      hintText: "200.000VND",
                       hintStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.background,
+                        color: Theme.of(context).colorScheme.onBackground,
                       ),
                       fillColor: Colors.grey,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 10.0),
                       enabledBorder: new OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
+                        borderRadius: new BorderRadius.circular(10.0),
                         borderSide: new BorderSide(
-                          color: Theme.of(context).primaryColor
-                        ),
+                            color: Theme.of(context).primaryColor),
                       ),
                     ),
                     keyboardType: TextInputType.number,
                     validator: (val) {
-                      if ( val.isEmpty || int.parse(val) < 1000) {
+                      if (val.isEmpty || int.parse(val) < 1000) {
                         return "Giá tiền phải lớn hơn 1000";
                       } else {
                         return null;
@@ -172,6 +190,7 @@ class _TableButtonState extends State<TableButton> {
                     height: 20,
                   ),
                   TextFormField(
+
                     keyboardType: TextInputType.multiline,
                     maxLines: 3,
                     decoration: InputDecoration(
@@ -179,12 +198,12 @@ class _TableButtonState extends State<TableButton> {
                       labelStyle: TextStyle(
                         color: Theme.of(context).primaryColor,
                       ),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 10.0),
                       enabledBorder: new OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(25.0),
+                        borderRadius: new BorderRadius.circular(10.0),
                         borderSide: new BorderSide(
-                            color: Theme.of(context).primaryColor
-                        ),
+                            color: Theme.of(context).primaryColor),
                       ),
                     ),
                   ),
@@ -193,8 +212,16 @@ class _TableButtonState extends State<TableButton> {
             ),
           ),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text("Xác nhận"),
+            new CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).primaryColor,
+              child: new Text(
+                "Xác nhận",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   Navigator.of(context).pop();

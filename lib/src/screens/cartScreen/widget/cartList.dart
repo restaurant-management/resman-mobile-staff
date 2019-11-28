@@ -30,58 +30,6 @@ class _CartListState extends State<CartList> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-//        ListView.builder(
-//            scrollDirection: Axis.vertical,
-//            itemCount: items.length,
-//            itemBuilder: (context, index) {
-//              final item = items[index].dishId.toString();
-//              if (index == 0)
-//                return Column(
-//                  children: <Widget>[
-//                    headerHeight != null
-//                        ? SizedBox(
-//                            height: headerHeight,
-//                          )
-//                        : Container(),
-//                    Dismissible(
-//                      key: Key(item),
-//                      onDismissed: (direct) {
-//                        onDismissed(items[index].dishId);
-//                      },
-//                      child: CartItem(
-//                        cartDish: items[index],
-//                      ),
-//                    ),
-//                  ],
-//                );
-//              else if (index == items.length - 1)
-//                return Column(
-//                  children: <Widget>[
-//                    Dismissible(
-//                      key: Key(item),
-//                      onDismissed: (direct) {
-//                        onDismissed(items[index].dishId);
-//                      },
-//                      child: CartItem(
-//                        cartDish: items[index],
-//                      ),
-//                    ),
-//                    footerHeight != null
-//                        ? SizedBox(
-//                            height: footerHeight + 8,
-//                          )
-//                        : Container(),
-//                  ],
-//                );
-//              return Dismissible(
-//                  key: Key(item),
-//                  onDismissed: (direct) {
-//                    onDismissed(items[index].dishId);
-//                  },
-//                  child: CartItem(
-//                    cartDish: items[index],
-//                  ));
-//            }),
         ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: items.length,

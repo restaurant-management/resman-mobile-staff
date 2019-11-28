@@ -12,8 +12,8 @@ class DishListStaff extends StatefulWidget {
 
   const DishListStaff(
       {Key key,
-        this.headerHeight,
-        this.footerHeight,
+        this.headerHeight = 10,
+        this.footerHeight = 10,
         @required this.billDetails})
       : assert(billDetails != null),
         super(key: key);

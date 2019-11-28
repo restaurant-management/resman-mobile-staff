@@ -30,7 +30,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final primaryColor = Theme.of(context).primaryColor;
+    final colors = Theme.of(context);
     return Scaffold(
       body: DefaultTabController(
         length: 2,
@@ -65,7 +65,8 @@ class ProfileScreenState extends State<ProfileScreen> {
               floating: true,
               pinned: true,
               title: OutlineText(
-                color: primaryColor,
+                color: Colors.transparent,
+                textColor: colors.colorScheme.onPrimary,
                 text: user.fullName ?? user.username,
               ),
               centerTitle: true,
@@ -92,7 +93,7 @@ class ProfileScreenState extends State<ProfileScreen> {
             SliverPersistentHeader(
               delegate: _SliverAppBarDelegate(
                 TabBar(
-                  labelColor: primaryColor,
+                  labelColor: colors.primaryColor,
                   unselectedLabelColor: Colors.black26,
                   tabs: [
                     Tab(
@@ -100,8 +101,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                       text: "Thông tin",
                     ),
                     Tab(
-                      icon: Icon(Icons.favorite),
-                      text: "Món yêu thích",
+                      icon: Icon(Icons.pin_drop),
+                      text: "Mã giảm giá",
                     ),
                   ],
                 ),

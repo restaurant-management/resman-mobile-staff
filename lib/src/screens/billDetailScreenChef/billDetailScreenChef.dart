@@ -29,6 +29,7 @@ class _BillDetailScreenChefState extends State<BillDetailScreenChef> {
 
     return DrawerScaffold(
       appBar: BackAppBar(
+        tittle: "Danh sách món",
         showShoppingCart: false,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

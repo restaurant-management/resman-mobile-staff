@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -61,21 +62,34 @@ class _SummaryBillState extends State<SummaryBill> {
           title: Text("Mã giảm giá"),
           content: TextField(
             decoration: InputDecoration(
-                hintStyle: TextStyle(
-                    color: Colors.grey
-                ),
-                hintText: "Nhập mã giảm giá..."
-            ),
+                hintStyle: TextStyle(color: Colors.grey),
+                hintText: "Nhập mã giảm giá..."),
           ),
+
           actions: <Widget>[
-            new FlatButton(
-              child: new Text("Đóng"),
+            CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).colorScheme.error,
+              child: new Text(
+                "Đóng",
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onError),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
-            new FlatButton(
-              child: new Text("Xác nhận"),
+            CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).primaryColor,
+              child: new Text(
+                "Xác nhận",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

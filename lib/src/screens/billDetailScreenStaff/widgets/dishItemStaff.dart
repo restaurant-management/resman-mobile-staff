@@ -6,8 +6,10 @@ import 'package:resman_mobile_staff/src/models/billModel.dart';
 
 class DishItemStaff extends StatelessWidget {
   final BillDishModel billDishModel;
+  final double cardHeight;
 
-  const DishItemStaff({Key key, @required this.billDishModel})
+  const DishItemStaff(
+      {Key key, @required this.billDishModel, this.cardHeight = 80})
       : assert(billDishModel != null),
         super(key: key);
 
@@ -28,42 +30,45 @@ class DishItemStaff extends StatelessWidget {
             child: Image.network(
               billDishModel.dish.images[0],
               fit: BoxFit.cover,
-              width: 80,
-              height: 80,
+              width: cardHeight,
+              height: cardHeight,
             ),
           ),
           SizedBox(
             width: 10,
           ),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  child: Text(
-                    billDishModel.dish.name,
+            child: SizedBox(
+              height: cardHeight * 0.8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    child: Text(
+                      billDishModel.dish.name,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'Số lượng: ' + billDishModel.quantity.toString(),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
                       color: primaryColor,
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                Text(
-                  'Số lượng: ' + billDishModel.quantity.toString(),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 16,
-                  ),
-                ),
-                Text('${billDishModel.note.toString()}'),
-              ],
+                  Text('${billDishModel.note.toString()}'),
+                ],
+              ),
             ),
           ),
           SizedBox(
@@ -92,7 +97,7 @@ class DishItemStaff extends StatelessWidget {
             child: Icon(
               Icons.check,
               size: btnSize * 0.8,
-              color: colors.colorScheme.onSurface,
+              color: colors.colorScheme.onPrimary,
             ),
             color: Colors.greenAccent,
           ),
@@ -111,9 +116,9 @@ class DishItemStaff extends StatelessWidget {
             onPressed: () {},
             child: Icon(
               Icons.arrow_forward,
-              color: colors.colorScheme.onSurface,
+              color: colors.colorScheme.onPrimary,
             ),
-            color: colors.primaryColor,
+            color: colors.colorScheme.secondary,
           ),
         ),
       );
@@ -124,14 +129,14 @@ class DishItemStaff extends StatelessWidget {
         width: btnSize,
         height: btnSize,
         child: CupertinoButton(
-          padding: const EdgeInsets.all(0),
+          padding: EdgeInsets.zero,
           borderRadius: new BorderRadius.circular(30.0),
           onPressed: () {},
           child: Icon(
             Icons.more_horiz,
-            color: colors.colorScheme.onSurface,
+            color: colors.colorScheme.onPrimary,
           ),
-          color: Colors.grey,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
       ),
     );

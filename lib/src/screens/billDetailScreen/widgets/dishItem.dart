@@ -31,28 +31,33 @@ class DishItem extends StatelessWidget {
               height: 80,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.3,
-                child: Text(
-                  billDishModel.dish.name,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: Text(
+                    billDishModel.dish.name,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text('${billDishModel.note.toString()}'), 
-            ],
+                SizedBox(
+                  height: 10,
+                ),
+                Text('${billDishModel.note.toString()}'),
+              ],
+            ),
           ),
           Column(
             children: <Widget>[
@@ -61,9 +66,9 @@ class DishItem extends StatelessWidget {
                 width: 80,
                 child: Center(
                     child: Text(
-                      'Số lượng',
-                      style: TextStyle(color: primaryColor),
-                    )),
+                  'Số lượng',
+                  style: TextStyle(color: primaryColor),
+                )),
               ),
               SizedBox(
                   height: 30,

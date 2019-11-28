@@ -40,7 +40,7 @@ class _DishItemChefState extends State<DishItemChef> {
             ),
           ),
           SizedBox(
-            width: 5,
+            width: 10,
           ),
           Expanded(
             child: Column(
@@ -60,16 +60,6 @@ class _DishItemChefState extends State<DishItemChef> {
                     ),
                   ),
                 ),
-//                Text(
-//                  'SL: ' + widget.billDishModel.quantity.toString(),
-//                  overflow: TextOverflow.ellipsis,
-//                  maxLines: 1,
-//                  style: TextStyle(
-//                    color: primaryColor,
-//                    fontSize: 16,
-//                    fontWeight: FontWeight.bold,
-//                  ),
-//                ),
                 Text('${widget.billDishModel.note.toString()}'),
               ],
             ),

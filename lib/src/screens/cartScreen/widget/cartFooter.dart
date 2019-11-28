@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
@@ -75,14 +76,15 @@ class _CartFooterState extends State<CartFooter> {
                 hintText: "Nhập số bàn..."),
           ),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text("Đóng"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            new FlatButton(
-              child: new Text("Xác nhận"),
+            new CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).primaryColor,
+              child: new Text(
+                "Xác nhận",
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
 //                _showSelectCustomer();
@@ -132,8 +134,15 @@ class _CartFooterState extends State<CartFooter> {
         return AlertDialog(
           title: Text("Tạo hóa đơn thành công"),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text("Đóng"),
+            new CupertinoButton(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minSize: 20,
+              color: Theme.of(context).primaryColor,
+              child: new Text(
+                "Đóng",
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

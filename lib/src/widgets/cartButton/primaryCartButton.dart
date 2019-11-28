@@ -23,7 +23,7 @@ class _PrimaryCartButtonState extends State<PrimaryCartButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Scaffold.of(context).openDrawer();
+        Scaffold.of(context).openEndDrawer();
       },
       child: Stack(children: <Widget>[
         IconButton(
@@ -31,7 +31,7 @@ class _PrimaryCartButtonState extends State<PrimaryCartButton> {
             Icons.shopping_cart,
             color: widget.color != null
                 ? widget.color
-                : Theme.of(context).primaryColor,
+                : Theme.of(context).colorScheme.onPrimary,
           ),
         ),
         Positioned(

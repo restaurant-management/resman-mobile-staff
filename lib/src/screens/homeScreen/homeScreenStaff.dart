@@ -32,6 +32,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context);
     return DrawerScaffold(
       appBar: MainAppBar(),
       floatingActionButton: SecondaryCartButton(),
@@ -48,6 +49,11 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
             expandedHeight: 200,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
+              background: Container(
+                decoration: BoxDecoration(
+                  color: colors.colorScheme.surface,
+                ),
+              ),
               title: Container(
                 margin: const EdgeInsets.only(top: 70.0),
                 child: ListView(
