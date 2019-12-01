@@ -1,17 +1,17 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/currentUserBloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/currentUserBloc/event.dart';
+import 'package:resman_mobile_staff/src/responsitories/responsitory.dart';
 
-//import '../../repositories/repository.dart';
-//import '../currentUserBloc/bloc.dart';
-//import '../currentUserBloc/event.dart';
 import 'event.dart';
 import 'state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-//  final Repository _repository = Repository.instance;
-//  final CurrentUserBloc _currentUserBloc = CurrentUserBloc();
+  final Repository _repository = Repository.instance;
+  final CurrentUserBloc _currentUserBloc = CurrentUserBloc();
 
   AuthenticationBloc._internal();
 
@@ -28,9 +28,9 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapEventToState(
       AuthenticationEvent event) async* {
     if (event is AppStarted) {
-      final bool hasToken = true;
+      final bool hasToken = await _repository.hasToken();
       if (hasToken) {
-//        _currentUserBloc.dispatch(FetchCurrentUserProfile());
+        _currentUserBloc.dispatch(FetchCurrentUserProfile());
         yield AuthenticationAuthenticated();
       } else {
         yield AuthenticationUnauthenticated();
@@ -39,14 +39,14 @@ class AuthenticationBloc
 
     if (event is LoggedIn) {
       yield AuthenticationLoading();
-//      await _repository.persistToken(event.token, event.usernameOrEmail);
-//      _currentUserBloc.dispatch(FetchCurrentUserProfile());
+      await _repository.persistToken(event.token, event.usernameOrEmail);
+      _currentUserBloc.dispatch(FetchCurrentUserProfile());
       yield AuthenticationAuthenticated();
     }
 
     if (event is LoggedOut) {
       yield AuthenticationLoading();
-//      await _repository.deleteToken();
+      await _repository.deleteToken();
       yield AuthenticationUnauthenticated();
     }
   }

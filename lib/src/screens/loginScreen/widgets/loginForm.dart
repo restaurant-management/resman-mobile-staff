@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 import '../../../blocs/authenticationBloc/bloc.dart';
 import '../../../blocs/loginBloc/bloc.dart';
@@ -76,16 +77,12 @@ class _LoginFormState extends State<LoginForm> {
             child: Container(
               decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  gradient: new LinearGradient(
-                    colors: <Color>[
-                      const Color.fromRGBO(88, 39, 176, 0.5),
-                      const Color.fromRGBO(156, 39, 176, 0.6),
-                      const Color.fromRGBO(0, 0, 0, 0.7),
-                    ],
-                    stops: [0.1, 0.5, 1.0],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  )),
+                  gradient: GradientColor.of(
+                    context,
+                    alphaTopLeft: 125,
+                    alphaBottomRight: 175,
+                    alphaCenter: 180,
+                  ).secondaryLinearGradient),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
@@ -108,6 +105,7 @@ class _LoginFormState extends State<LoginForm> {
                         icon: Icons.person_outline,
                         keyboardType: TextInputType.emailAddress,
                         obscure: false,
+                        // ignore: missing_return
                         validator: (value) {
                           if (value.isEmpty)
                             return 'Vui lòng nhập thông tin vào trường này!';
@@ -119,6 +117,7 @@ class _LoginFormState extends State<LoginForm> {
                         hint: 'Mật khẩu',
                         icon: Icons.lock_outline,
                         obscure: true,
+                        // ignore: missing_return
                         validator: (value) {
                           if (value.isEmpty)
                             return 'Vui lòng nhập thông tin vào trường này!';
@@ -140,18 +139,6 @@ class _LoginFormState extends State<LoginForm> {
                             _loginButton.currentState.loadingComplete();
                           }
                         },
-                      ),
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                      InkWell(
-                        child: Text(
-                          'Đăng ký',
-                          style: TextStyle(
-                              color: Colors.white,
-                              decoration: TextDecoration.underline),
-                        ),
-                        onTap: widget.onTap,
                       ),
                     ],
                   ),

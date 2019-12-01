@@ -1,23 +1,18 @@
-import 'dart:convert';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
-import 'package:resman_mobile_staff/src/widgets/cartButton/secondaryCartButton.dart';
-import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
-import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
+import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
-import 'package:resman_mobile_staff/src/models/billModel.dart';
-import 'package:resman_mobile_staff/src/widgets/billBar/billListItem.dart';
-import 'package:resman_mobile_staff/src/widgets/billBar/billStatusItem.dart';
+import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
+import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
+import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
+import 'package:resman_mobile_staff/src/screens/outOfStockScreen/outOfStockDrawer.dart';
+import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
+import 'package:resman_mobile_staff/src/widgets/customAppBar.dart';
+import 'package:resman_mobile_staff/src/widgets/customTabIndicator.dart';
+import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
 
 import '../../blocs/authenticationBloc/bloc.dart';
-import '../../blocs/authenticationBloc/event.dart';
-import '../../blocs/authenticationBloc/state.dart';
-import '../../widgets/animationLogo.dart';
-import '../dishesTodayScreen/dishesTodayScreen.dart';
-import '../loginScreen/loginScreen.dart';
 
 class HomeScreenChef extends StatefulWidget {
   @override
@@ -26,15 +21,14 @@ class HomeScreenChef extends StatefulWidget {
   }
 }
 
-class _HomeScreenChefState extends State<HomeScreenChef> {
-  String jsonParsed =
-      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","delivaryAt":"1969-07-20 20:18:04Z","quantily":5,"price":10000,"dish":{"dishId":10,"name":"Chao ga","description":"abcsaca","defaultPrice":20000,"images":[]}}';
-  String billJson =
-      '{"billId":1,"createBy;":{},"preparedBy;":{},"collectBy;":{},"customerId;":{},"tableNumber;":{},"createAt;":{},"prepareAt;":{},"collectAt;":{},"collectValue":10}';
+class _HomeScreenChefState extends State<HomeScreenChef>
+    with SingleTickerProviderStateMixin {
   AuthenticationBloc authenticationBloc;
-
-  BillDishModel billDish;
-  BillModel bill;
+  ScrollController scrollController;
+  final tabList = ['Hóa đơn', 'Đang chuẩn bị'];
+  TabController _tabController;
+  List<BillDishModel> unStageBill = FakeData.billDishes;
+  List<BillDishModel> stageBill = new List<BillDishModel>();
 
   void onpress() {
     print("Button Pressed!");
@@ -43,67 +37,97 @@ class _HomeScreenChefState extends State<HomeScreenChef> {
   @override
   void initState() {
     super.initState();
-    billDish = BillDishModel.fromJson(jsonDecode(jsonParsed));
-    bill = BillModel.fromJson(jsonDecode(billJson));
+    scrollController = new ScrollController();
+    scrollController.addListener(() => setState(() {}));
+    _tabController = TabController(vsync: this, length: tabList.length);
   }
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DrawerScaffold(
-        appBar: MainAppBar(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-                flex: 1,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 10,
-                      ),
-                      BillStatusItem(
-                        bill: bill,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      BillStatusItem(
-                        bill: bill,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      BillStatusItem(
-                        bill: bill,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                )),
-            Expanded(
-                flex: 4,
-                child: Scrollbar(
-                    child: ListView.separated(
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 5,
-                    );
-                  },
-                  scrollDirection: Axis.vertical,
-                  itemCount: 7,
-                  itemBuilder: (BuildContext context, int index) {
-                    return BillListItem(
-                      billDish: billDish,
-                      count: 10,
-                      onpressed: this.onpress,
-                      icon: Icons.email,
-                    );
-                  },
-                ))),
-          ],
-        ));
+      endDrawer: OutOfStockDrawer(),
+      appBar: MainAppBar(
+        bottom: CustomTabBar(
+          controller: _tabController,
+          decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: colorScheme.onSecondary,
+                  width: 0.5,
+                  style: BorderStyle.solid,
+                ),
+                bottom: BorderSide(
+                  color: colorScheme.onSecondary,
+                  width: 0.5,
+                  style: BorderStyle.solid,
+                ),
+              ),
+              color: colorScheme.onPrimary),
+          labelColor: colorScheme.onBackground,
+          indicator: PointTabIndicator(
+              color: colorScheme.primary, insets: EdgeInsets.only(bottom: 4)),
+          labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          unselectedLabelStyle: TextStyle(fontSize: 15),
+          tabs: tabList.map((item) {
+            return CustomTab(
+              text: item,
+            );
+          }).toList(),
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          ListView.separated(
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 5,
+              );
+            },
+            scrollDirection: Axis.vertical,
+            itemCount: unStageBill.length,
+            itemBuilder: (BuildContext context, int index) {
+              return BillListItem(
+                billDish: unStageBill[index],
+                count: 10,
+                onPressed: () =>
+                    setState(() => stageBill.add(unStageBill[index])),
+                icon: Icons.email,
+              );
+            },
+          ),
+          ListView.separated(
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 5,
+              );
+            },
+            scrollDirection: Axis.vertical,
+            itemCount: stageBill.length,
+            itemBuilder: (BuildContext context, int index) {
+              return BillListItem(
+                billDish: stageBill[index],
+                count: 10,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => BillDetailScreenChef(),
+                    ),
+                  );
+                },
+                icon: Icons.email,
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }

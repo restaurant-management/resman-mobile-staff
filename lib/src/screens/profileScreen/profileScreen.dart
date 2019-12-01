@@ -1,9 +1,9 @@
 // https://www.developerlibs.com/2018/08/flutter-collapsing-toolbar-layout.html
-import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 
 import '../../utils/outlineText.dart';
@@ -25,15 +25,12 @@ class ProfileScreenState extends State<ProfileScreen> {
   ScrollController scrollController;
 
   // UserModel get user => widget.user;
-  UserModel user;
+  UserModel user = FakeData.user;
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> userJson = jsonDecode(
-        '{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "123","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","address": "abc","roles":[{"slug":"update-paid-bill-status","name":"staff","description":"abczyx","level":3,"permission":["update-paid-bill-status"]}]}');
-    user = UserModel.fromJson(userJson);
 
-    final primaryColor = Theme.of(context).primaryColor;
+    final colors = Theme.of(context);
     return Scaffold(
       body: DefaultTabController(
         length: 2,
@@ -68,7 +65,8 @@ class ProfileScreenState extends State<ProfileScreen> {
               floating: true,
               pinned: true,
               title: OutlineText(
-                color: primaryColor,
+                color: Colors.transparent,
+                textColor: colors.colorScheme.onPrimary,
                 text: user.fullName ?? user.username,
               ),
               centerTitle: true,
@@ -95,16 +93,16 @@ class ProfileScreenState extends State<ProfileScreen> {
             SliverPersistentHeader(
               delegate: _SliverAppBarDelegate(
                 TabBar(
-                  labelColor: primaryColor,
-                  unselectedLabelColor: Colors.black26,
+                  labelColor: colors.primaryColor,
+                  unselectedLabelColor: colors.colorScheme.secondary,
                   tabs: [
                     Tab(
                       icon: Icon(Icons.assignment_ind),
                       text: "Thông tin",
                     ),
                     Tab(
-                      icon: Icon(Icons.favorite),
-                      text: "Món yêu thích",
+                      icon: Icon(Icons.pin_drop),
+                      text: "Mã giảm giá",
                     ),
                   ],
                 ),
@@ -181,7 +179,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     scrollController = new ScrollController();
-    scrollController.addListener(() => setState(() {}));
+        scrollController.addListener(() => setState(() {}));
   }
 }
 

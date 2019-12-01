@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
+import 'package:resman_mobile_staff/src/screens/outOfStockScreen/outOfStockDrawer.dart';
+import 'package:resman_mobile_staff/src/screens/profileScreen/profileDrawer.dart';
 
 import '../blocs/authenticationBloc/bloc.dart';
-
-//import '../screens/cartScreen/cartDrawer.dart';
-//import '../screens/profileScreen/ProfileDrawer.dart';
 
 class DrawerScaffold extends StatefulWidget {
   final Widget body;
@@ -13,6 +13,7 @@ class DrawerScaffold extends StatefulWidget {
   final Widget bottomNavigationBar;
   final Widget floatingActionButton;
   final FloatingActionButtonLocation floatingActionButtonLocation;
+  final Widget endDrawer;
 
   final AuthenticationBloc _authenticationBloc = AuthenticationBloc();
 
@@ -22,7 +23,8 @@ class DrawerScaffold extends StatefulWidget {
       this.appBar,
       this.bottomNavigationBar,
       this.floatingActionButton,
-      this.floatingActionButtonLocation})
+      this.floatingActionButtonLocation,
+      this.endDrawer})
       : super(key: key);
 
   @override
@@ -43,11 +45,10 @@ class _DrawerScaffoldState extends State<DrawerScaffold> {
           floatingActionButton: widget.floatingActionButton,
           floatingActionButtonLocation: widget.floatingActionButtonLocation,
           backgroundColor: Theme.of(context).colorScheme.background,
-//          endDrawer: ProfileDrawer(
-//            authenticationBloc: authenticationBloc,
-//          ),
-//          drawer: CartDrawer(),
-//          bottomNavigationBar: widget.bottomNavigationBar,
+          endDrawer: widget.endDrawer,
+          drawer: ProfileDrawer(),
+//          drawer: OutOfStockDrawer(),
+          bottomNavigationBar: widget.bottomNavigationBar,
         );
       },
     );

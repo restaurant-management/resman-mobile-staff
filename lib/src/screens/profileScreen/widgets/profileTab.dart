@@ -29,6 +29,10 @@ class ProfileTab extends StatelessWidget {
               ? DateFormat('dd/MM/yyyy').format(user.birthday)
               : 'Chưa cập nhật'),
         ),
+        ListTile(
+          leading: Icon(Icons.directions),
+          title: Text(user.address),
+        ),
       ],
     );
   }

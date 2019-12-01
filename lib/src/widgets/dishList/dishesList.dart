@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
+import 'package:resman_mobile_staff/src/models/dishModel.dart';
 import 'package:resman_mobile_staff/src/widgets/dishList/dishItemCard.dart';
+import 'package:resman_mobile_staff/src/widgets/dishList/dishListItem.dart';
 
 class DishesList extends StatefulWidget {
-  final List<DailyDishModel> listDailyDish;
+  final List<DishModal> dishList;
+  final String note;
 
-  const DishesList({Key key, @required this.listDailyDish})
-      : assert(listDailyDish != null),
+  const DishesList({Key key, @required this.dishList, @required this.note})
+      : assert(dishList != null),
         super(key: key);
 
   @override
@@ -15,7 +18,7 @@ class DishesList extends StatefulWidget {
 }
 
 class _DishesListState extends State<DishesList> {
-  List<DailyDishModel> get listDailyDish => widget.listDailyDish;
+  List<DishModal> get listDailyDish => widget.dishList;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class _DishesListState extends State<DishesList> {
         ));
   }
 
-  List<Widget> _buildRow(List<DailyDishModel> listDailyDish) {
+  List<Widget> _buildRow(List<DishModal> listDailyDish) {
     List<Widget> rows = [];
     for (int i = 0; i < listDailyDish.length; i += 2) {
       rows.add(SizedBox(
@@ -37,12 +40,11 @@ class _DishesListState extends State<DishesList> {
       rows.add(Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          DishItemCard(
-            dailyDish: listDailyDish[i],
-          ),
+          DishListItem(dish: listDailyDish[i], note: widget.note),
           i + 1 < listDailyDish.length
-              ? DishItemCard(
-                  dailyDish: listDailyDish[i + 1],
+              ? DishListItem(
+                  dish: listDailyDish[i + 1],
+                  note: widget.note,
                 )
               : Container(
                   width: MediaQuery.of(context).size.width / 2.2,
