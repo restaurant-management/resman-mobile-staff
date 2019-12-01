@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/screens/outOfStockScreen/outOfStockDrawer.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/cartButton/secondaryCartButton.dart';
@@ -29,6 +31,7 @@ class _PreparedBillScreenState extends State<PreparedBillScreen> {
     //Fake data
 
     return DrawerScaffold(
+      endDrawer: OutOfStockDrawer(),
       appBar: MainAppBar(),
       floatingActionButton: SecondaryCartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -48,16 +51,8 @@ class _PreparedBillScreenState extends State<PreparedBillScreen> {
           alignment: Alignment.bottomCenter,
           child: Container(
             decoration: new BoxDecoration(
-                gradient: new LinearGradient(
-              colors: <Color>[
-                const Color.fromRGBO(88, 39, 176, 0.7),
-                const Color.fromRGBO(88, 39, 176, 0.3),
-                const Color.fromRGBO(88, 39, 176, 0.0),
-              ],
-              stops: [0.1, 0.7, 1.0],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-            )),
+              gradient: GradientColor.of(context).drawerHeader,
+            ),
             height: 60.0,
           ),
         )

@@ -94,7 +94,7 @@ class ProfileScreenState extends State<ProfileScreen> {
               delegate: _SliverAppBarDelegate(
                 TabBar(
                   labelColor: colors.primaryColor,
-                  unselectedLabelColor: Colors.black26,
+                  unselectedLabelColor: colors.colorScheme.secondary,
                   tabs: [
                     Tab(
                       icon: Icon(Icons.assignment_ind),
@@ -179,7 +179,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     scrollController = new ScrollController();
-    scrollController.addListener(() => setState(() {}));
+        scrollController.addListener(() => setState(() {}));
   }
 }
 

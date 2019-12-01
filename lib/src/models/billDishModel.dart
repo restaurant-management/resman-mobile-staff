@@ -27,8 +27,8 @@ class BillDishModel extends Equatable {
   BillDishModel.fromJson(Map<String, dynamic> json) {
     _billHistoryId = json["billHistoryId"];
     _note = json["note"];
-    _preparedAt = DateTime.parse(json["preparedAt"]);
-    _deliveryAt = DateTime.parse(json["deliveryAt"]);
+    _preparedAt = DateTime.tryParse(json["preparedAt"]);
+    _deliveryAt = DateTime.tryParse(json["deliveryAt"]);
     _quantity = json["quantity"];
     _price = json["price"];
     _dish = DishModal.fromJson(json["dish"]);

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenStaff/tableButton.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/cartButton/secondaryCartButton.dart';
@@ -34,6 +35,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
   Widget build(BuildContext context) {
     final colors = Theme.of(context);
     return DrawerScaffold(
+      endDrawer: CartDrawer(),
       appBar: MainAppBar(),
       floatingActionButton: SecondaryCartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

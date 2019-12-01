@@ -6,6 +6,7 @@ import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
+import 'package:resman_mobile_staff/src/screens/outOfStockScreen/outOfStockDrawer.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/customAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/customTabIndicator.dart';
@@ -21,14 +22,14 @@ class HomeScreenChef extends StatefulWidget {
 }
 
 class _HomeScreenChefState extends State<HomeScreenChef>
-    with SingleTickerProviderStateMixin
-{
+    with SingleTickerProviderStateMixin {
   AuthenticationBloc authenticationBloc;
   ScrollController scrollController;
   final tabList = ['Hóa đơn', 'Đang chuẩn bị'];
   TabController _tabController;
   List<BillDishModel> unStageBill = FakeData.billDishes;
   List<BillDishModel> stageBill = new List<BillDishModel>();
+
   void onpress() {
     print("Button Pressed!");
   }
@@ -45,80 +46,82 @@ class _HomeScreenChefState extends State<HomeScreenChef>
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return DrawerScaffold(
-          appBar: MainAppBar(
-            bottom: CustomTabBar(
-              controller: _tabController,
-              decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: colorScheme.onSecondary,
-                      width: 0.5,
-                      style: BorderStyle.solid,
-                    ),
-                    bottom: BorderSide(
-                      color: colorScheme.onSecondary,
-                      width: 0.5,
-                      style: BorderStyle.solid,
-                    ),
-                  ),
-                  color: colorScheme.onPrimary),
-              labelColor: colorScheme.onBackground,
-              indicator: PointTabIndicator(
-                  color: colorScheme.primary, insets: EdgeInsets.only(bottom: 4)),
-              labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              unselectedLabelStyle: TextStyle(fontSize: 15),
-              tabs: tabList.map((item) {
-                return CustomTab(
-                  text: item,
-                );
-              }).toList(),
-            ),
-          ),
-          body: TabBarView(
-            controller: _tabController,
-            children: <Widget>[
-              ListView.separated(
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 5,
-                  );
-                },
-                scrollDirection: Axis.vertical,
-                itemCount: unStageBill.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return BillListItem(
-                    billDish: unStageBill[index],
-                    count: 10,
-                    onPressed:() => setState(() => stageBill.add(unStageBill[index])),
-                    icon: Icons.email,
-                  );
-                },
+      endDrawer: OutOfStockDrawer(),
+      appBar: MainAppBar(
+        bottom: CustomTabBar(
+          controller: _tabController,
+          decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: colorScheme.onSecondary,
+                  width: 0.5,
+                  style: BorderStyle.solid,
+                ),
+                bottom: BorderSide(
+                  color: colorScheme.onSecondary,
+                  width: 0.5,
+                  style: BorderStyle.solid,
+                ),
               ),
-              ListView.separated(
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 5,
-                  );
-                },
-                scrollDirection: Axis.vertical,
-                itemCount: stageBill.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return BillListItem(
-                    billDish: stageBill[index],
-                    count: 10,
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => BillDetailScreenChef(),
-                        ),
-                      );
-                    },
-                    icon: Icons.email,
-                  );
-                },
-              ),
-            ],
+              color: colorScheme.onPrimary),
+          labelColor: colorScheme.onBackground,
+          indicator: PointTabIndicator(
+              color: colorScheme.primary, insets: EdgeInsets.only(bottom: 4)),
+          labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          unselectedLabelStyle: TextStyle(fontSize: 15),
+          tabs: tabList.map((item) {
+            return CustomTab(
+              text: item,
+            );
+          }).toList(),
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          ListView.separated(
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 5,
+              );
+            },
+            scrollDirection: Axis.vertical,
+            itemCount: unStageBill.length,
+            itemBuilder: (BuildContext context, int index) {
+              return BillListItem(
+                billDish: unStageBill[index],
+                count: 10,
+                onPressed: () =>
+                    setState(() => stageBill.add(unStageBill[index])),
+                icon: Icons.email,
+              );
+            },
           ),
+          ListView.separated(
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 5,
+              );
+            },
+            scrollDirection: Axis.vertical,
+            itemCount: stageBill.length,
+            itemBuilder: (BuildContext context, int index) {
+              return BillListItem(
+                billDish: stageBill[index],
+                count: 10,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => BillDetailScreenChef(),
+                    ),
+                  );
+                },
+                icon: Icons.email,
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 

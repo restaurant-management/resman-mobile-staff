@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 import 'sumaryBill.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';
 
@@ -41,19 +42,7 @@ class _CartFooterState extends State<CartFooter> {
                 increaseWidthBy: 100,
                 increaseHeightBy: MediaQuery.of(context).size.height * 0.01,
                 child: Text('Tạo hoá đơn'),
-                gradient: LinearGradient(
-                  colors: <Color>[
-                    !_isCreating
-                        ? const Color.fromRGBO(88, 39, 176, 1)
-                        : const Color.fromRGBO(0, 0, 0, 0.5),
-                    !_isCreating
-                        ? const Color.fromRGBO(0, 39, 176, 1)
-                        : const Color.fromRGBO(0, 0, 0, 0.5),
-                  ],
-                  stops: [0.1, 1.0],
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft,
-                ),
+                gradient: GradientColor.of(context).primaryLinearGradient,
                 callback: _showSelectTableNumber,
               ),
             )

@@ -1,19 +1,20 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 
-//import '../../repositories/repository.dart';
-//import '../authenticationBloc/bloc.dart';
-//import '../authenticationBloc/event.dart';
+import '../../responsitories/responsitory.dart';
+import '../authenticationBloc/bloc.dart';
+import '../authenticationBloc/event.dart';
 import 'event.dart';
 import 'state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  //final Repository _repository = Repository.instance;
-  //final AuthenticationBloc authenticationBloc;
+  final Repository _repository = Repository.instance;
+  final AuthenticationBloc authenticationBloc;
 
-  //LoginBloc({@required this.authenticationBloc})
-  //    : assert(authenticationBloc != null);
+  LoginBloc({@required this.authenticationBloc})
+      : assert(authenticationBloc != null);
 
   @override
   LoginState get initialState => LoginInitial();
@@ -23,13 +24,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is LoginButtonPressed) {
       yield LoginLoading();
 
-//      try {
-//        final token = await _repository.authenticate(
-//            usernameOrEmail: event.usernameOrEmail, password: event.password);
-//        authenticationBloc.dispatch(LoggedIn(event.usernameOrEmail, token));
-//      } catch (e) {
-//        yield LoginFailure(error: e.toString());
-//      }
+      try {
+        final token = await _repository.authenticate(
+            usernameOrEmail: event.usernameOrEmail,
+//          usernameOrEmail: "2",
+          password: event.password,
+        );
+        authenticationBloc.dispatch(LoggedIn(event.usernameOrEmail, token));
+      } catch (e) {
+        yield LoginFailure(error: e.toString());
+      }
     }
 
     if (event is InitializeLoginForm) {

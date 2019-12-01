@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 class CartHeader extends StatelessWidget {
   final double height;
@@ -12,16 +13,8 @@ class CartHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-        colors: <Color>[
-          const Color.fromRGBO(88, 39, 176, 1),
-          const Color.fromRGBO(88, 39, 176, 0.5),
-          const Color.fromRGBO(255, 255, 255, 0.0),
-        ],
-        stops: [0.1, 0.5, 1.0],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      )),
+        gradient: GradientColor.of(context).drawerHeader,
+      ),
       height: height,
       child: Row(
         mainAxisSize: MainAxisSize.max,

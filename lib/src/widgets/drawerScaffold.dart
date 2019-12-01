@@ -13,6 +13,7 @@ class DrawerScaffold extends StatefulWidget {
   final Widget bottomNavigationBar;
   final Widget floatingActionButton;
   final FloatingActionButtonLocation floatingActionButtonLocation;
+  final Widget endDrawer;
 
   final AuthenticationBloc _authenticationBloc = AuthenticationBloc();
 
@@ -22,7 +23,8 @@ class DrawerScaffold extends StatefulWidget {
       this.appBar,
       this.bottomNavigationBar,
       this.floatingActionButton,
-      this.floatingActionButtonLocation})
+      this.floatingActionButtonLocation,
+      this.endDrawer})
       : super(key: key);
 
   @override
@@ -43,7 +45,7 @@ class _DrawerScaffoldState extends State<DrawerScaffold> {
           floatingActionButton: widget.floatingActionButton,
           floatingActionButtonLocation: widget.floatingActionButtonLocation,
           backgroundColor: Theme.of(context).colorScheme.background,
-          endDrawer: CartDrawer(),
+          endDrawer: widget.endDrawer,
           drawer: ProfileDrawer(),
 //          drawer: OutOfStockDrawer(),
           bottomNavigationBar: widget.bottomNavigationBar,

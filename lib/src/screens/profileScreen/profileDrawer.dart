@@ -26,8 +26,14 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
     return ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountEmail: Text(user.email),
-          accountName: Text(user.fullName ?? user.username),
+          accountEmail: Text(
+            user.email,
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          ),
+          accountName: Text(
+            user.fullName ?? user.username,
+            style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          ),
           currentAccountPicture: GestureDetector(
             onTap: () {},
             child: Container(

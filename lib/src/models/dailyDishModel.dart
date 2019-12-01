@@ -26,11 +26,11 @@ class DailyDishModel extends Equatable {
   DateTime get confirmAt => _confirmAt;
 
   DailyDishModel.fromJson(Map<String, dynamic> parsedJson) {
-    _day = DateTime.parse(parsedJson['day']);
+    _day = DateTime.tryParse(parsedJson['day']);
     _session = DaySession(parsedJson['session']);
     _storeId = parsedJson['storeId'];
     _confirmBy = parsedJson['confirmBy'];
-    _confirmAt = DateTime.parse(parsedJson['confirmAt']);
+    _confirmAt = DateTime.tryParse(parsedJson['confirmAt']);
     print(parsedJson['dishes']);
     _dish = DishModal.fromJson(parsedJson['dishes']);
   }

@@ -13,23 +13,26 @@ class FakeData {
       '{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","address": "147 Đường 61 Phường A Quận B Tp.C","email": "abc@mail.com","password": "123","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","roles":[{"slug":"update-paid-bill-status","name":"staff","description":"abczyx","level":3,"permission":["update-paid-bill-status"]}]}');
   static UserModel user = UserModel.fromJson(userJson);
 
-  static const jsonParsed =
-      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
   static const billJson =
       '{"billId":1,"createBy":"","preparedBy":"","collectBy":"","customerId":"","tableNumber":"","createAt":"1969-07-20 20:18:04Z","prepareAt":"1969-07-20 20:18:04Z","collectAt":"","collectValue":10}';
 
+  static const jsonParsed =
+      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"","deliveryAt":"","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
   static const jsonParsed1 =
-      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
-
+      '{"billHistoryId":2,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
   static const jsonParsed2 =
-      '{"billHistoryId":1,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
+      '{"billHistoryId":3,"note":"Khong bo hanh","preparedAt":"1969-07-20 20:18:04Z","deliveryAt":"1969-07-20 20:18:04Z","quantity":5,"price":10000,"dish":{"dishId":10,"name":"Chao gaChao gaChao gaChao gaChao gaChao ga","description":"abcsaca","defaultPrice":20000,"images":["https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2018/08/24/e46c807ef357438e9d1f7f53682cc2e6_Elements_Hokkaido+Kozatsu+Beef.jpg"]}}';
 
   static BillDishModel billDish =
       BillDishModel.fromJson(jsonDecode(jsonParsed));
+  static BillDishModel billDish1 =
+  BillDishModel.fromJson(jsonDecode(jsonParsed1));
+  static BillDishModel billDish2 =
+  BillDishModel.fromJson(jsonDecode(jsonParsed2));
   static List<BillDishModel> billDishes = [
     billDish,
-    billDish,
-    billDish,
+    billDish1,
+    billDish2,
   ];
   static BillModel bill = BillModel.fromJson(jsonDecode(billJson));
 
