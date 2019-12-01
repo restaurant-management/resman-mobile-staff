@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../responsitories/responsitory.dart';
+import '../../respositories/responsitory.dart';
 import '../authenticationBloc/bloc.dart';
 import '../authenticationBloc/event.dart';
 import 'event.dart';

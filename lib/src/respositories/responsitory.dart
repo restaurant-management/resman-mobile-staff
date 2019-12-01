@@ -74,4 +74,18 @@ class Repository {
     }
     print(_currentUser);
   }
+
+  Future<void> fetchDailyDishes() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final usernameOrEmail = prefs.getString(EnvVariables.PrepsUsernameOrEmail);
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+    if (validateEmail(usernameOrEmail)) {
+      _currentUser =
+      await _userProvider.getProfileByEmail(usernameOrEmail, token);
+    } else {
+      _currentUser =
+      await _userProvider.getProfileByUsername(usernameOrEmail, token);
+    }
+    print(_currentUser);
+  }
 }

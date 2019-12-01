@@ -17,11 +17,11 @@ class ProfileTab extends StatelessWidget {
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.contact_mail),
-          title: Text(user.fullName ?? user.username),
+          title: Text(user.fullName ?? user.username ?? "Không có tên"),
         ),
         ListTile(
           leading: Icon(Icons.mail),
-          title: Text(user.email),
+          title: Text(user.email ?? "Không có email"),
         ),
         ListTile(
           leading: Icon(Icons.calendar_today),
@@ -31,7 +31,7 @@ class ProfileTab extends StatelessWidget {
         ),
         ListTile(
           leading: Icon(Icons.directions),
-          title: Text(user.address),
+          title: Text(user.address ?? 'Chưa cập nhật'),
         ),
       ],
     );

@@ -24,12 +24,10 @@ class ProfileScreen extends StatefulWidget {
 class ProfileScreenState extends State<ProfileScreen> {
   ScrollController scrollController;
 
-  // UserModel get user => widget.user;
-  UserModel user = FakeData.user;
+   UserModel get user => widget.user;
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context);
     return Scaffold(
       body: DefaultTabController(
@@ -67,7 +65,7 @@ class ProfileScreenState extends State<ProfileScreen> {
               title: OutlineText(
                 color: Colors.transparent,
                 textColor: colors.colorScheme.onPrimary,
-                text: user.fullName ?? user.username,
+                text: user.fullName ?? user.username ?? "Không có tên",
               ),
               centerTitle: true,
               flexibleSpace: FlexibleSpaceBar(
@@ -179,7 +177,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     scrollController = new ScrollController();
-        scrollController.addListener(() => setState(() {}));
+    scrollController.addListener(() => setState(() {}));
   }
 }
 

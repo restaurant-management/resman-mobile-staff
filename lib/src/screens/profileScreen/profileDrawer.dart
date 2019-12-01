@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/roleModel.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
+import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 
 import '../editProfileScreen/editPasswordScreen.dart';
 import '../editProfileScreen/editProfileScreen.dart';
@@ -17,21 +18,23 @@ class ProfileDrawer extends StatefulWidget {
 }
 
 class _ProfileDrawerState extends State<ProfileDrawer> {
+  Repository _repository = new Repository();
   @override
   Widget build(BuildContext context) {
-    return Drawer(child: _buildContent(FakeData.user, FakeData.user.roles));
+    return Drawer(child: _buildContent(_repository.currentUser, _repository.currentUser.roles));
   }
 
   Widget _buildContent(UserModel user, List<RoleModel> allPermissions) {
+    if(user == null) user = new UserModel.empty();
     return ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
           accountEmail: Text(
-            user.email,
+            user.email ?? "Không có email",
             style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           ),
           accountName: Text(
-            user.fullName ?? user.username,
+            user.fullName ?? user.username ?? "Không có tên",
             style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           ),
           currentAccountPicture: GestureDetector(
