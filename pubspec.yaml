@@ -54,6 +54,7 @@ flutter:
         - asset: assets/fonts/iciel-rukola.otf
   assets:
     - assets/images/
+    - assets/icons/
     - .env
 
   # To add assets to your application, add an assets section, like this:

@@ -59,7 +59,7 @@ class DishItemCard extends StatelessWidget {
                   SizedBox(
                     width: contextSize.width / 2.4,
                     child: Text(
-                      dailyDish.dish.name,
+                      dailyDish.dish.name ?? "Chưa cập nhật",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -81,7 +81,7 @@ class DishItemCard extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            '${dailyDish.dish.defaultPrice} VNĐ',
+                            '${dailyDish.dish.defaultPrice ?? 0} VNĐ',
                             style: TextStyle(
                               color: Colors.grey,
                             ),
@@ -123,7 +123,7 @@ class DishItemCard extends StatelessWidget {
                       width: 8,
                     ),
                     Text(
-                      buttonText != null ? buttonText : 'Thêm',
+                      buttonText ?? 'Thêm',
                       style: TextStyle(color: primaryColor),
                     ),
                   ],

@@ -1,38 +1,29 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-//import 'package:restaurant_management_mobile/src/blocs/currentUserBloc/bloc.dart';
-//import 'package:restaurant_management_mobile/src/blocs/currentUserBloc/state.dart';
-//import 'package:restaurant_management_mobile/src/blocs/editProfileBloc/bloc.dart';
-//import 'package:restaurant_management_mobile/src/blocs/editProfileBloc/event.dart';
-//import 'package:restaurant_management_mobile/src/blocs/editProfileBloc/state.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
+import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 
 import '../../widgets/AppBars/backAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
 
 class EditProfileScreen extends StatelessWidget {
+  Repository _repository = new Repository();
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> userJson = jsonDecode(
-        '{"userId": 1,"uuid": "1","userName": "ThanhDuy","fullName": "Phan Thanh Duy","email": "abc@mail.com","password": "","avatar": "https://avatars0.githubusercontent.com/u/36978155?s=460&v=4","birthday": "1969-07-20 20:18:04Z","phoneNumber": "120382103821098","address": "abc","roles":[]}');
-    UserModel user = UserModel.fromJson(userJson);
-
     return DrawerScaffold(
         appBar: BackAppBar(
           showShoppingCart: false,
         ),
         body: EditProfileForm(
-          currentUser: user,
+          currentUser: _repository.currentUser,
         ));
   }
 }

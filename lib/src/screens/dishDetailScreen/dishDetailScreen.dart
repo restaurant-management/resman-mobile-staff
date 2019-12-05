@@ -92,7 +92,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
-                      _dish.name,
+                      _dish.name ?? "Chưa cập nhật",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                       style: Theme.of(context).textTheme.headline,
@@ -122,7 +122,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
               child: Row(
                 children: <Widget>[
                   Text(
-                    '${_dish.defaultPrice} VNĐ',
+                    '${_dish.defaultPrice ?? 0} VNĐ',
                     style: TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
@@ -141,7 +141,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
             ExpandedDetail(
               title: 'Chi tiết',
               child: Text(
-                _dish.description,
+                _dish.description ?? "Chưa cập nhật",
                 style: TextStyle(color: Colors.black),
               ),
               expand: true,

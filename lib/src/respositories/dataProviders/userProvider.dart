@@ -53,7 +53,7 @@ class UserProvider {
       'Authorization': token
     };
     final response =
-    await client.get('$apiUrl/api/users/$username', headers: headers);
+    await client.get('$apiUrl/api/users/$username?withRoles=true', headers: headers);
     if (response.statusCode == 200) {
       return UserModel.fromJson(jsonDecode(response.body));
     } else {

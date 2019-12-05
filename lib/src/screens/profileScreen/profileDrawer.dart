@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/blocs/authenticationBloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/authenticationBloc/event.dart';
 import 'package:resman_mobile_staff/src/models/roleModel.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
@@ -11,7 +12,8 @@ import '../editProfileScreen/editProfileScreen.dart';
 import 'profileScreen.dart';
 
 class ProfileDrawer extends StatefulWidget {
-  const ProfileDrawer({Key key}) : super(key: key);
+  final AuthenticationBloc authenticationBloc;
+  const ProfileDrawer({Key key, @required this.authenticationBloc}) : super(key: key);
 
   @override
   _ProfileDrawerState createState() => _ProfileDrawerState();
@@ -145,7 +147,9 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             'Đăng xuất',
             style: TextStyle(color: Colors.deepOrange, fontSize: 16),
           ),
-          onTap: () {},
+          onTap: () {
+            widget.authenticationBloc.dispatch(LoggedOut());
+          },
         )
       ],
     );

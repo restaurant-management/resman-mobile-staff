@@ -92,7 +92,7 @@ class ProfileScreenState extends State<ProfileScreen> {
               delegate: _SliverAppBarDelegate(
                 TabBar(
                   labelColor: colors.primaryColor,
-                  unselectedLabelColor: colors.colorScheme.secondary,
+                  unselectedLabelColor: colors.colorScheme.primaryVariant,
                   tabs: [
                     Tab(
                       icon: Icon(Icons.assignment_ind),

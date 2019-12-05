@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
+import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
+import 'package:resman_mobile_staff/src/respositories/dataProviders/dailyDishesProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/userModel.dart';
 import '../utils/validateEmail.dart';
@@ -26,10 +28,13 @@ class Repository {
   Repository._internal();
 
   final UserProvider _userProvider = UserProvider();
+  final DailyDishProvider _dailyDishProvider = DailyDishProvider();
 
   UserModel _currentUser;
+  List<DailyDishModel> _dailyDish;
 
   UserModel get currentUser => _currentUser;
+  List<DailyDishModel> get dailyDish => _dailyDish;
 
   Future<String> authenticate(
       {@required String usernameOrEmail, @required String password}) async {
@@ -76,16 +81,7 @@ class Repository {
   }
 
   Future<void> fetchDailyDishes() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final usernameOrEmail = prefs.getString(EnvVariables.PrepsUsernameOrEmail);
-    final token = prefs.getString(EnvVariables.PrepsTokenKey);
-    if (validateEmail(usernameOrEmail)) {
-      _currentUser =
-      await _userProvider.getProfileByEmail(usernameOrEmail, token);
-    } else {
-      _currentUser =
-      await _userProvider.getProfileByUsername(usernameOrEmail, token);
-    }
-    print(_currentUser);
+    _dailyDish = await _dailyDishProvider.getAll();
+    print(_dailyDish);
   }
 }
