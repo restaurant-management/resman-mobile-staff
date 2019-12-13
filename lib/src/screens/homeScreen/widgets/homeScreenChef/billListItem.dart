@@ -5,18 +5,17 @@ import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
-import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 
 import '../../../../../FakeData.dart';
 
 
 class BillListItem extends StatefulWidget {
-  final BillDishModel billDish;
+  final BillModel bill;
   final int count;
   final Function onPressed;
   final IconData icon;
 
-  BillListItem({Key key, this.billDish, this.count, this.onPressed, this.icon})
+  BillListItem({Key key, this.bill, this.count, this.onPressed, this.icon})
       : super(key: key);
 
   _BillListItemState createState() => _BillListItemState();
@@ -109,7 +108,7 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(bill.collectValue.toString())
+                        Text("10")
                       ],
                     ),
                   ),

@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 import '../../widgets/AppBars/backAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
@@ -246,19 +247,7 @@ class EditProfileState extends State<EditProfileForm> {
                           GradientButton(
                             increaseWidthBy: 50,
                             child: Text('Lưu'),
-                            gradient: LinearGradient(
-                              colors: <Color>[
-                                !isSaving
-                                    ? Color.fromRGBO(88, 39, 176, 1)
-                                    : Color.fromRGBO(0, 0, 0, 0.3),
-                                !isSaving
-                                    ? Color.fromRGBO(0, 39, 176, 1)
-                                    : Color.fromRGBO(0, 0, 0, 0.3),
-                              ],
-                              stops: [0.1, 1.0],
-                              begin: Alignment.bottomRight,
-                              end: Alignment.topLeft,
-                            ),
+                            gradient: GradientColor.of(context).primaryLinearGradient
                           ),
                         ],
                       ),

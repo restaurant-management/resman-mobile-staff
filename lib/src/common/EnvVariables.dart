@@ -12,4 +12,5 @@ class EnvVariables{
   static const  String StaffRole = 'staff';
   static const String ChefRole = 'chef';
   static const String WareManagerRole = 'ware-manager';
+
 }

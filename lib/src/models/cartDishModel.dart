@@ -3,7 +3,7 @@ import 'dailyDishModel.dart';
 class CartDishModel {
   int _dishId;
   int _quantity;
-  String _price;
+  int _price;
 
   int get dishId => _dishId;
 
@@ -13,7 +13,7 @@ class CartDishModel {
     _quantity = q < 1 ? 1 : q;
   }
 
-  String get price => _price;
+  int get price => _price;
 
   CartDishModel.fromJson(Map<String, dynamic> parseJson) {
     _dishId = parseJson['dishId'];

@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
+import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenStaff/tableButton.dart';
+import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/cartButton/secondaryCartButton.dart';
 import 'package:resman_mobile_staff/src/widgets/dishList/dailyDishesList.dart';
@@ -26,6 +29,8 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
   AuthenticationBloc authenticationBloc;
   ScrollController scrollController;
 
+  List<BillDishModel> currentBill;
+
   bool isFetched = false;
   bool isFail = false;
 
@@ -36,12 +41,18 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
   @override
   void initState() {
     super.initState();
+    currentBill = new List<BillDishModel>();
     _repository
         .fetchDailyDishes()
-        .then((_) => setState(() => this.isFetched = true));
-//        .catchError((Exception ex) {
-//      setState(() => this.isFail = true);
-//      });
+        .then((_) => setState(() => this.isFetched = true))
+        .catchError((e) {
+      setState(() => this.isFail = true);
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => LoginScreen(),
+        ),
+      );
+    });
   }
 
   @override
@@ -56,8 +67,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
         floatingActionButton: SecondaryCartButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: NestedScrollView(
-          headerSliverBuilder: (_, __) =>
-          [
+          headerSliverBuilder: (_, __) => [
             SliverAppBar(
               leading: Container(),
               pinned: false,
@@ -84,7 +94,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       TableButton(
                         isDone: false,
                         tableNumber: 1,
-                        badgeNumber: FakeData.bill.collectValue,
+                        badgeNumber: 0,
                       ),
                       SizedBox(
                         height: 5,
@@ -92,7 +102,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       TableButton(
                         isDone: true,
                         tableNumber: 20,
-                        badgeNumber: FakeData.bill.collectValue,
+                        badgeNumber: 0,
                       ),
                       SizedBox(
                         height: 5,
@@ -100,7 +110,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       TableButton(
                         isDone: false,
                         tableNumber: 3,
-                        badgeNumber: FakeData.bill.collectValue,
+                        badgeNumber: 0,
                       ),
                       SizedBox(
                         height: 5,
@@ -108,7 +118,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       TableButton(
                         isDone: false,
                         tableNumber: 4,
-                        badgeNumber: FakeData.bill.collectValue,
+                        badgeNumber: 0,
                       ),
                       SizedBox(
                         height: 5,

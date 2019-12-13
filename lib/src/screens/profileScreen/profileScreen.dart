@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 import '../../utils/outlineText.dart';
 import '../editProfileScreen/editProfileScreen.dart';
@@ -24,7 +25,7 @@ class ProfileScreen extends StatefulWidget {
 class ProfileScreenState extends State<ProfileScreen> {
   ScrollController scrollController;
 
-   UserModel get user => widget.user;
+  UserModel get user => widget.user;
 
   @override
   Widget build(BuildContext context) {
@@ -68,21 +69,26 @@ class ProfileScreenState extends State<ProfileScreen> {
                 text: user.fullName ?? user.username ?? "Không có tên",
               ),
               centerTitle: true,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: _buildAvatar(),
-                background: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/login-background.jpg'),
-                      fit: BoxFit.cover,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: GradientColor.of(context).primaryLinearGradient,
+                ),
+                child: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: _buildAvatar(),
+                  background: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/login-background.jpg'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  child: new BackdropFilter(
-                    filter: new ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-                    child: new Container(
-                      decoration: new BoxDecoration(
-                          color: Colors.white.withOpacity(0.0)),
+                    child: new BackdropFilter(
+                      filter: new ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+                      child: new Container(
+                        decoration: new BoxDecoration(
+                            color: Colors.white.withOpacity(0.0)),
+                      ),
                     ),
                   ),
                 ),

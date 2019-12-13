@@ -1,13 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/state.dart';
+import 'package:resman_mobile_staff/src/models/billModel.dart';
 
 class SummaryBill extends StatefulWidget {
+  final BillModel currentBill;
+
+  const SummaryBill({Key key, @required this.currentBill}) : super(key: key);
+
   @override
   _SummaryBillState createState() => _SummaryBillState();
 }
 
 class _SummaryBillState extends State<SummaryBill> {
+  final CartBloc _cartBloc = CartBloc();
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
@@ -29,7 +39,20 @@ class _SummaryBillState extends State<SummaryBill> {
                 SizedBox(
                   height: 5,
                 ),
-                Text('100 000 VNĐ')
+                BlocBuilder(
+                  bloc: _cartBloc,
+                  builder: (BuildContext context, state) {
+                    if (state is CartBlocSaved || state is CartBlocFetched) {
+                      var listDishes = _cartBloc.currentCart.listDishes;
+                      int sum = 0;
+                      for (int i = 0; i < listDishes.length; i++) {
+                        sum += listDishes[i].quantity * listDishes[i].price;
+                      }
+                      return Text('$sum VNĐ');
+                    }
+                    return Text('Đang tải...');
+                  },
+                ),
               ],
             ),
             SizedBox(
@@ -98,5 +121,14 @@ class _SummaryBillState extends State<SummaryBill> {
         );
       },
     );
+  }
+
+  int _calculateSummaryBill()
+  {
+    int total = 0;
+    widget.currentBill.dishes.forEach( (item) {
+      total = total + item.quantity*(item.price ?? item.dish.defaultPrice);
+    });
+    return total;
   }
 }

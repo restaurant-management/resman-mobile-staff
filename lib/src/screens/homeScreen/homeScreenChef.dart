@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
+import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
@@ -27,8 +28,8 @@ class _HomeScreenChefState extends State<HomeScreenChef>
   ScrollController scrollController;
   final tabList = ['Hóa đơn', 'Đang chuẩn bị'];
   TabController _tabController;
-  List<BillDishModel> unStageBill = FakeData.billDishes;
-  List<BillDishModel> stageBill = new List<BillDishModel>();
+  List<BillModel> unStageBill  = new List<BillModel>();
+  List<BillModel> stageBill = new List<BillModel>();
 
   void onpress() {
     print("Button Pressed!");
@@ -40,6 +41,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
     scrollController = new ScrollController();
     scrollController.addListener(() => setState(() {}));
     _tabController = TabController(vsync: this, length: tabList.length);
+    unStageBill.add(FakeData.bill);
   }
 
   @override
@@ -89,7 +91,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
             itemCount: unStageBill.length,
             itemBuilder: (BuildContext context, int index) {
               return BillListItem(
-                billDish: unStageBill[index],
+                bill: unStageBill[index],
                 count: 10,
                 onPressed: () =>
                     setState(() => stageBill.add(unStageBill[index])),
@@ -107,7 +109,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
             itemCount: stageBill.length,
             itemBuilder: (BuildContext context, int index) {
               return BillListItem(
-                billDish: stageBill[index],
+                bill: stageBill[index],
                 count: 10,
                 onPressed: () {
                   Navigator.of(context).push(

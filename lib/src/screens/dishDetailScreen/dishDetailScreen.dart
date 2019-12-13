@@ -122,7 +122,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
               child: Row(
                 children: <Widget>[
                   Text(
-                    '${_dish.defaultPrice ?? 0} VNĐ',
+                    '${_dish.defaultPrice ?? 0}',
                     style: TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,

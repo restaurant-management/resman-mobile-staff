@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 
 class DishModal extends Equatable {
   int _dishId;
   String _name;
   String _description;
   List<String> _images;
-  String _defaultPrice;
+  int _defaultPrice;
 
   int get dishId => _dishId;
 
@@ -15,7 +16,7 @@ class DishModal extends Equatable {
 
   List<String> get images => _images;
 
-  String get defaultPrice => _defaultPrice;
+  int get defaultPrice => _defaultPrice;
 
   DishModal.fromJson(Map<String, dynamic> parsedJson) {
     _dishId = parsedJson['id'];
@@ -26,10 +27,6 @@ class DishModal extends Equatable {
         .toList();
     _defaultPrice = parsedJson['defaultPrice'];
   }
-
-//  static List<DishModal> fromDishesJsonString(String jsonString) {
-//
-//  }
 
   @override
 //  String toString() => '{dishId: $_dishId, name: $_name}';

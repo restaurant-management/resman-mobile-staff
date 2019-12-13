@@ -93,7 +93,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             'Hoá đơn của tôi',
             style: TextStyle(color: Colors.pinkAccent, fontSize: 16),
           ),
-          onTap: () => Scaffold.of(context).openDrawer(),
+          onTap: () => Scaffold.of(context).openEndDrawer(),
         ),
         ListTile(
           leading: Icon(
@@ -104,7 +104,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             'Báo hết hàng',
             style: TextStyle(color: Colors.orange, fontSize: 16),
           ),
-          onTap: () => Scaffold.of(context).openDrawer(),
+          onTap: () => Scaffold.of(context).openEndDrawer(),
         ),
         ListTile(
           leading: Icon(

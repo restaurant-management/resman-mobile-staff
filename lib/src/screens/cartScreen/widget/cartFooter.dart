@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 import 'sumaryBill.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';
@@ -28,6 +29,7 @@ class _CartFooterState extends State<CartFooter> {
 
   @override
   Widget build(BuildContext context) {
+    Repository _repository = new Repository();
     return Container(
       height: widget.height,
       color: Theme.of(context).colorScheme.background,
@@ -35,7 +37,7 @@ class _CartFooterState extends State<CartFooter> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SummaryBill(),
+            SummaryBill(currentBill: _repository.currentBill,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GradientButton(
