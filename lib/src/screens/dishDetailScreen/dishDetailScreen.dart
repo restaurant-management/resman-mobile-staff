@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_images_slider/flutter_images_slider.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dishModel.dart';
+import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
 
 import '../../widgets/AppBars/backAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
@@ -55,6 +56,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return DrawerScaffold(
       appBar: BackAppBar(),
+      endDrawer: CartDrawer(),
       bottomNavigationBar: widget.dailyDish != null
           ? AddCartButton(
         dailyDish: widget.dailyDish,

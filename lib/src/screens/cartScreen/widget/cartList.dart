@@ -59,8 +59,8 @@ class _CartListState extends State<CartList> {
                           children: <Widget>[
                             headerHeight != null
                                 ? SizedBox(
-                              height: headerHeight,
-                            )
+                                    height: headerHeight,
+                                  )
                                 : Container(),
                             Dismissible(
                               key: Key(item),
@@ -87,8 +87,8 @@ class _CartListState extends State<CartList> {
                             ),
                             footerHeight != null
                                 ? SizedBox(
-                              height: footerHeight + 8,
-                            )
+                                    height: footerHeight + 8,
+                                  )
                                 : Container(),
                           ],
                         );
@@ -132,8 +132,8 @@ class _CartListState extends State<CartList> {
                     children: <Widget>[
                       headerHeight != null
                           ? SizedBox(
-                        height: headerHeight,
-                      )
+                              height: headerHeight,
+                            )
                           : Container(),
                       Dismissible(
                         key: Key(item),
@@ -160,8 +160,8 @@ class _CartListState extends State<CartList> {
                       ),
                       footerHeight != null
                           ? SizedBox(
-                        height: footerHeight + 8,
-                      )
+                              height: footerHeight + 8,
+                            )
                           : Container(),
                     ],
                   );

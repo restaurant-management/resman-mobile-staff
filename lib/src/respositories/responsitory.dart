@@ -152,22 +152,23 @@ class Repository {
   // Cart repository
   Future<void> saveCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(EnvVariables.PrepsCart, jsonEncode(_currentCart.toJson()));
+    await prefs.setString(
+        EnvVariables.PrepsCart, jsonEncode(_currentCart.toJson()));
   }
 
   CartDishModel addDishIntoCart(DailyDishModel dish) {
     int quantity = 1;
+    var cartDish = CartDishModel.fromDailyDish(dish, quantity: quantity);
 
     // Remove dish if it existed, then add a same new one with quantity increase one.
     int index = _currentCart.listDishes
         .indexWhere((_cartDish) => _cartDish.dishId == dish.dish.dishId);
     if (index >= 0) {
       quantity = _currentCart.listDishes[index].quantity + 1;
-      _currentCart.listDishes.removeAt(index);
+      _currentCart.listDishes[index].quantity = quantity;
+    } else {
+      _currentCart.listDishes.add(cartDish);
     }
-
-    var cartDish = CartDishModel.fromDailyDish(dish, quantity: quantity);
-    _currentCart.listDishes.add(cartDish);
     return cartDish;
   }
 
@@ -182,8 +183,6 @@ class Repository {
         .firstWhere((e) => e.dishId == dishId, orElse: () => null);
     if (cartDish != null) {
       cartDish.quantity = quantity;
-      _currentCart.listDishes.removeWhere((e) => e.dishId == dishId);
-      _currentCart.listDishes.add(cartDish);
     }
   }
 
@@ -196,7 +195,8 @@ class Repository {
   Future<void> clearCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _currentCart = CartModel.empty();
-    await prefs.setString(EnvVariables.PrepsCart, jsonEncode(_currentCart.toJson()));
+    await prefs.setString(
+        EnvVariables.PrepsCart, jsonEncode(_currentCart.toJson()));
   }
 
   /// Bill
