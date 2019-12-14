@@ -77,6 +77,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
               actions: <Widget>[Container()],
               expandedHeight: 200,
               flexibleSpace: FlexibleSpaceBar(
+                titlePadding: const EdgeInsets.only(left: 62, right: 62),
                 centerTitle: true,
                 background: Container(
                   decoration: BoxDecoration(
@@ -94,7 +95,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       TableButton(
                         isDone: false,
                         tableNumber: 1,
-                        badgeNumber: 0,
+                        badgeNumber: 10,
                       ),
                       SizedBox(
                         height: 5,
@@ -102,7 +103,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       TableButton(
                         isDone: true,
                         tableNumber: 20,
-                        badgeNumber: 0,
+                        badgeNumber: 1,
                       ),
                       SizedBox(
                         height: 5,
@@ -110,7 +111,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                       TableButton(
                         isDone: false,
                         tableNumber: 3,
-                        badgeNumber: 0,
+                        badgeNumber: 1,
                       ),
                       SizedBox(
                         height: 5,

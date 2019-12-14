@@ -47,9 +47,16 @@ class _PrimaryCartButtonState extends State<PrimaryCartButton> {
           Scaffold.of(context).openEndDrawer();
         },
         child: Badge(
-          badgeContent: Text(
-            _count.toString(),
-            style: TextStyle(color: Colors.white),
+          badgeContent: SizedBox(
+            width: 12,
+            height: 12,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                _count.toString(),
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
           ),
           position: BadgePosition.topRight(top: 5.0, right: 5.0),
           child: IconButton(

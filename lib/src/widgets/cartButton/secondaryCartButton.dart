@@ -42,9 +42,16 @@ class _SecondaryCartButtonState extends State<SecondaryCartButton> {
         },
         child: Badge(
           position: BadgePosition.topRight(top: 7.0, right: 7.0),
-          badgeContent: Text(
-            _count.toString(),
-            style: TextStyle(color: Colors.white),
+          badgeContent: SizedBox(
+            width: 10,
+            height: 10,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                _count.toString(),
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
           ),
           child: FloatingActionButton(
             elevation: 10,
