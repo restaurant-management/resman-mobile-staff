@@ -15,7 +15,6 @@ import 'dataProviders/userProvider.dart';
 
 class Repository {
   static Repository _singleton;
-
   static Repository get instance {
     if (_singleton == null) {
       print('Initialize Repository ...');
@@ -149,7 +148,7 @@ class Repository {
 
   /// Bill
   /// Return bill model.
-  Future<BillModel> createBill(List<CartDishModel> cartDishes) async {
+  Future<BillModel> createBill(List<CartDishModel> cartDishes, int tableNumber, {String discountCode, String voucherCode}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
     List<int> dishIds = List<int>();
@@ -162,12 +161,17 @@ class Repository {
       dishQuantities.add(dish.quantity);
     });
 
-    return await _billProvider.createBill(_currentUser.stores[0].id,token, 1, dishIds, dishNotes, dishQuantities, "Khong bo hanh");
+    return await _billProvider.createBill(_currentUser.stores[0].id,token, tableNumber, dishIds, dishNotes, dishQuantities, "Khong bo hanh");
   }
 
   Future<List<BillModel>> getAllBill() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
     return await _billProvider.getAll(token);
+  }
+
+  Future<List<BillModel>> updateDiscountCode(String discountCode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
   }
 }

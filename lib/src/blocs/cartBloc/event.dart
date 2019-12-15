@@ -66,6 +66,11 @@ class ChangeDistQuantityInCart extends CartBlocEvent {
 }
 
 class CreateBillFromCart extends CartBlocEvent {
+  final int tableNumber;
+  final String discountCode;
+  final String voucherCode;
+
+  CreateBillFromCart(this.tableNumber, {this.voucherCode, this.discountCode});
   @override
   String toString() => 'CreateBillFromCart';
 

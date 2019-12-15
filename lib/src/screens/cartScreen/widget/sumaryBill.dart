@@ -5,11 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/state.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
+import 'package:resman_mobile_staff/src/models/cartModel.dart';
 
 class SummaryBill extends StatefulWidget {
-  final BillModel currentBill;
+  final CartModel currentCart;
 
-  const SummaryBill({Key key, @required this.currentBill}) : super(key: key);
+  const SummaryBill({Key key, @required this.currentCart}) : super(key: key);
 
   @override
   _SummaryBillState createState() => _SummaryBillState();
@@ -126,8 +127,8 @@ class _SummaryBillState extends State<SummaryBill> {
   int _calculateSummaryBill()
   {
     int total = 0;
-    widget.currentBill.dishes.forEach( (item) {
-      total = total + item.quantity*(item.price ?? item.dish.defaultPrice);
+    widget.currentCart.listDishes.forEach( (item) {
+      total = total + item.quantity*(item.price);
     });
     return total;
   }

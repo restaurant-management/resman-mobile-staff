@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
@@ -22,8 +23,9 @@ class CartFooter extends StatefulWidget {
 }
 
 class _CartFooterState extends State<CartFooter> {
-  bool _isCreating = false;
-CartBloc _cartBloc = CartBloc();
+  final tableNumberController = TextEditingController();
+  CartBloc _cartBloc = CartBloc();
+
   @override
   void dispose() {
     super.dispose();
@@ -39,7 +41,9 @@ CartBloc _cartBloc = CartBloc();
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SummaryBill(currentBill: _repository.currentBill,),
+            SummaryBill(
+              currentCart: _repository.currentCart,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GradientButton(
@@ -64,6 +68,11 @@ CartBloc _cartBloc = CartBloc();
         return AlertDialog(
           title: Text("Chọn số bàn"),
           content: TextField(
+            controller: tableNumberController,
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              WhitelistingTextInputFormatter.digitsOnly
+            ],
             decoration: InputDecoration(
                 hintStyle: TextStyle(color: Colors.grey),
                 hintText: "Nhập số bàn..."),
@@ -81,7 +90,8 @@ CartBloc _cartBloc = CartBloc();
               onPressed: () {
                 Navigator.of(context).pop();
 //                _showSelectCustomer();
-                  _cartBloc.dispatch(CreateBillFromCart());
+                int tableNumber = int.parse(tableNumberController.value?.text ?? 0);
+                _cartBloc.dispatch(CreateBillFromCart(tableNumber));
                 _showCreateSuccess();
               },
             ),
