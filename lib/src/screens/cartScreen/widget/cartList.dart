@@ -182,11 +182,18 @@ class _CartListState extends State<CartList> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: new Text("Bạn không thể tạo hoá đơn!"),
+                title: new Text("Không thể tạo hoá đơn!"),
                 content: new Text("Hãy liên hệ với nhân viên, để đặt món."),
                 actions: <Widget>[
-                  new FlatButton(
-                    child: new Text("Oke"),
+                  new CupertinoButton(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    minSize: 20,
+                    color: Theme.of(context).primaryColor,
+                    child: new Text(
+                      "Oke",
+                      style:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },

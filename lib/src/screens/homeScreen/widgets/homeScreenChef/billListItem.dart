@@ -59,7 +59,7 @@ class _BillListItemState extends State<BillListItem> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: Text(
-                        'Mã: ${bill.billId}',
+                        'Mã: ${bill.id}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

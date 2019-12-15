@@ -4,7 +4,6 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 
-
 import '../../models/userModel.dart';
 
 class UserProvider {
@@ -52,8 +51,9 @@ class UserProvider {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': token
     };
-    final response =
-    await client.get('$apiUrl/api/users/$username?withRoles=true', headers: headers);
+    final response = await client.get(
+        '$apiUrl/api/users/$username?withRoles=true&&withStores=true&withWarehouse=false',
+        headers: headers);
     if (response.statusCode == 200) {
       return UserModel.fromJson(jsonDecode(response.body));
     } else {
@@ -74,7 +74,7 @@ class UserProvider {
       'Authorization': token
     };
     final response =
-    await client.get('$apiUrl/api/users/email/34', headers: headers);
+        await client.get('$apiUrl/api/users/email/34', headers: headers);
     if (response.statusCode == 200) {
       return UserModel.fromJson(jsonDecode(response.body));
     } else {
@@ -96,13 +96,15 @@ class UserProvider {
       'Authorization': token
     };
     Map<String, String> body = {};
-    if(birthday != null) body.addAll({'birthday': DateFormat('yyyy-MM-dd').format(birthday).toString()});
-    if(email != null) body.addAll({'email': email});
-    if(fullName != null) body.addAll({'fullName': fullName});
-    if(avatar != null) body.addAll({'avatar': avatar});
+    if (birthday != null)
+      body.addAll(
+          {'birthday': DateFormat('yyyy-MM-dd').format(birthday).toString()});
+    if (email != null) body.addAll({'email': email});
+    if (fullName != null) body.addAll({'fullName': fullName});
+    if (avatar != null) body.addAll({'avatar': avatar});
 
-    final response = await client
-        .put('$apiUrl/api/users/$username', headers: headers, body: body);
+    final response = await client.put('$apiUrl/api/users/$username',
+        headers: headers, body: body);
     if (response.statusCode == 200) {
       return UserModel.fromJson(jsonDecode(response.body));
     } else {

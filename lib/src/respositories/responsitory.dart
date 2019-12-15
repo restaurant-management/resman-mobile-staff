@@ -6,6 +6,7 @@ import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
 import 'package:resman_mobile_staff/src/models/cartModel.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
+import 'package:resman_mobile_staff/src/respositories/dataProviders/billProvider.dart';
 import 'package:resman_mobile_staff/src/respositories/dataProviders/dailyDishesProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/userModel.dart';
@@ -31,6 +32,7 @@ class Repository {
 
   final UserProvider _userProvider = UserProvider();
   final DailyDishProvider _dailyDishProvider = DailyDishProvider();
+  final BillProvider _billProvider = BillProvider();
 
   UserModel _currentUser;
   List<DailyDishModel> _dailyDish;
@@ -95,61 +97,7 @@ class Repository {
     print(_dailyDish);
   }
 
-//  BillModel addDishIntoCart(DailyDishModel dish, String note) {
-//    int quantity = 1;
-//
-//    // Remove dish if it existed, then add a same new one with quantity increase one.
-//    int index = currentBill.dishes
-//        .indexWhere((_cartDish) => _cartDish.dish.dishId == dish.dish.dishId);
-//    if (index >= 0) {
-//      quantity = currentBill.dishes[index].quantity + 1;
-//      currentBill.dishes.removeAt(index);
-//    }
-//    currentBill.dishes.add(BillDishModel.fromDailyDish(dish, note, quantity));
-//    return currentBill;
-//  }
-//
-//  BillModel increaseCurrentBill(int dishId) {
-//    int quantity = 1;
-//
-//    int index = currentBill.dishes
-//        .indexWhere((_cartDish) => _cartDish.dish.dishId == dishId);
-//    if (index >= 0) {
-//      quantity =  currentBill.dishes[index].quantity + 1;
-//      BillDishModel billDishModel = currentBill.dishes[index];
-//      billDishModel.quantity = quantity;
-//      currentBill.dishes.removeAt(index);
-//      currentBill.dishes.add(billDishModel);
-//    }
-//    return currentBill;
-//  }
-//
-//  BillModel decreaseCurrentBill(int dishId) {
-//    int quantity = 1;
-//
-//    int index = currentBill.dishes
-//        .indexWhere((_cartDish) => _cartDish.dish.dishId == dishId);
-//    if (index >= 0) {
-//      quantity =  currentBill.dishes[index].quantity - 1;
-//      if (quantity < 1) quantity = 1;
-//      BillDishModel billDishModel = currentBill.dishes[index];
-//      billDishModel.quantity = quantity;
-//      currentBill.dishes.removeAt(index);
-//      currentBill.dishes.add(billDishModel);
-//    }
-//    return currentBill;
-//  }
-//
-//  BillModel removeCurrentBill(int dishId) {
-//    int index = currentBill.dishes
-//        .indexWhere((_cartDish) => _cartDish.dish.dishId == dishId);
-//    if (index >= 0) {
-//      currentBill.dishes.removeAt(index);
-//    }
-//    return currentBill;
-//  }
-
-  // Cart repository
+  /// Cart repository
   Future<void> saveCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(
@@ -201,10 +149,25 @@ class Repository {
 
   /// Bill
   /// Return bill model.
-  Future<BillModel> createBill(
-      List<int> dishIds, List<int> quantities, List<int> prices) async {
+  Future<BillModel> createBill(List<CartDishModel> cartDishes) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
-//    return await _billProvider.createBill(token, dishIds, quantities, prices);
+    List<int> dishIds = List<int>();
+    List<String> dishNotes = List<String>();
+    List<int> dishQuantities = List<int>();
+
+    cartDishes.forEach((dish) {
+      dishIds.add(dish.dishId);
+      dishNotes.add(dish.note ?? "");
+      dishQuantities.add(dish.quantity);
+    });
+
+    return await _billProvider.createBill(_currentUser.stores[0].id,token, 1, dishIds, dishNotes, dishQuantities, "Khong bo hanh");
+  }
+
+  Future<List<BillModel>> getAllBill() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+    return await _billProvider.getAll(token);
   }
 }

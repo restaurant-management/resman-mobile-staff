@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 import 'sumaryBill.dart';
@@ -21,7 +23,7 @@ class CartFooter extends StatefulWidget {
 
 class _CartFooterState extends State<CartFooter> {
   bool _isCreating = false;
-
+CartBloc _cartBloc = CartBloc();
   @override
   void dispose() {
     super.dispose();
@@ -79,6 +81,7 @@ class _CartFooterState extends State<CartFooter> {
               onPressed: () {
                 Navigator.of(context).pop();
 //                _showSelectCustomer();
+                  _cartBloc.dispatch(CreateBillFromCart());
                 _showCreateSuccess();
               },
             ),
@@ -88,34 +91,34 @@ class _CartFooterState extends State<CartFooter> {
     );
   }
 
-//  void _showSelectCustomer() {
-//    showDialog(
-//      context: context,
-//      builder: (BuildContext context) {
-//        // return object of type Dialog
-//        return AlertDialog(
-//          title: Text("Chọn khách hàng"),
-//          actions: <Widget>[
-//            new FlatButton(
-//              child: new Text("Bỏ qua"),
-//              onPressed: () {
-//                Navigator.of(context).pop();
-//                _showCreateSuccess();
-//              },
-//            ),
-//            new FlatButton(
-//              child: new Text("Quét mã QR"),
-//              onPressed: () async {
-////                Future<String> futureString = new QRCodeReader().scan();
-//                Navigator.of(context).pop();
-//                _showCreateSuccess();
-//              },
-//            ),
-//          ],
-//        );
-//      },
-//    );
-//  }
+  void _showSelectCustomer() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text("Chọn khách hàng"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Bỏ qua"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _showCreateSuccess();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Quét mã QR"),
+              onPressed: () async {
+//                Future<String> futureString = new QRCodeReader().scan();
+                Navigator.of(context).pop();
+                _showCreateSuccess();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   void _showCreateSuccess() {
     showDialog(

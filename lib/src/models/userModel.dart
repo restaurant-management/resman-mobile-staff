@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
+import 'package:resman_mobile_staff/src/models/storeModel.dart';
 import 'roleModel.dart';
 
 class UserModel extends Equatable {
   int _userId;
+  List<StoreModel> _stores;
   String _uuid;
   String _username;
   String _fullName;
@@ -16,6 +18,8 @@ class UserModel extends Equatable {
   int _point;
 
   int get userId => _userId;
+
+  List<StoreModel> get stores => _stores;
 
   String get uuid => _uuid;
 
@@ -38,7 +42,6 @@ class UserModel extends Equatable {
   int get point => _point;
 
   UserModel.fromJson(Map<String, dynamic> parsedJson) {
-    _userId = parsedJson["userId"];
     _uuid = parsedJson['uuid'];
     _username = parsedJson['userName'];
     _fullName = parsedJson['fullName'];
@@ -53,6 +56,8 @@ class UserModel extends Equatable {
     // Parse complex json
      var listRole = parsedJson['roles'] as List;
      _roles = listRole.map((i) => RoleModel.fromJson(i)).toList();
+    var listStore = parsedJson['stores'] as List;
+    _stores = listStore.map((i) => StoreModel.fromJson(i)).toList();
   }
 
   UserModel.empty() {

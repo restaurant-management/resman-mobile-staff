@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/state.dart';
-import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartModel.dart';
 import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
@@ -73,10 +72,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
       try {
         if (currentCart.listDishes.length == 0)
           throw Exception('Chưa có món ăn!');
-        var bill = await _repository.createBill(
-            currentCart.listDishes.map((e) => e.dishId).toList(),
-            currentCart.listDishes.map((e) => e.quantity).toList(),
-            currentCart.listDishes.map((e) => e.price).toList());
+        var bill = await _repository.createBill(currentCart.listDishes);
         await _repository.clearCart();
         yield CartBlocCreatedBill(bill);
       } catch (e) {
