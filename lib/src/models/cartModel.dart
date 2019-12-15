@@ -1,6 +1,16 @@
+import 'package:resman_mobile_staff/src/models/discountCodeModel.dart';
+
 import 'cartDishModel.dart';
 
 class CartModel {
+  DiscountCodeModel _discountCode;
+
+  DiscountCodeModel get discountCode => _discountCode;
+
+  set discountCode(DiscountCodeModel value) {
+    _discountCode = value;
+  }
+
   List<CartDishModel> _listDishes;
 
   List<CartDishModel> get listDishes => _listDishes;

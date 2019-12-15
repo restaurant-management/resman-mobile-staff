@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/cartItemBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartItemBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/cartItemBloc/state.dart';
-import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 
 class CartItem extends StatefulWidget {
   final CartDishModel cartDish;

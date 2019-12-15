@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
+import 'package:resman_mobile_staff/src/models/discountCodeModel.dart';
 
 class BillProvider {
   static String apiUrl = EnvVariables.apiUrl;
@@ -246,6 +247,27 @@ class BillProvider {
       }
       if (message != null && message.isNotEmpty) throw Exception(message);
       throw Exception('Có lỗi xảy ra khi cập nhật hoàn thành hoá đơn.');
+    }
+  }
+
+  Future<DiscountCodeModel> validDiscountCode(String token, String discountValue) async {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': token
+    };
+    final response =
+    await client.put('/api/discount_codes/$discountValue', headers: headers);
+    if (response.statusCode == 200) {
+      return DiscountCodeModel.fromJson(jsonDecode(response.body));
+    } else {
+      String message;
+      try {
+        message = jsonDecode(response.body)['message'];
+      } catch (e) {
+        print('Error: $e');
+      }
+      if (message != null && message.isNotEmpty) throw Exception(message);
+      throw Exception('Có lỗi xảy ra khi xác thực hóa đơn.');
     }
   }
 }

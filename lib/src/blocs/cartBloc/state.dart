@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
+import 'package:resman_mobile_staff/src/models/discountCodeModel.dart';
 
 abstract class CartBlocState extends Equatable {
   CartBlocState([List props = const []]) : super();
@@ -32,6 +33,20 @@ class CartBlocAddedDish extends CartBlocState {
   @override
   String toString() =>
       'CartBlocAddedDish (dishId: ${dish.dishId}, quantity: ${dish.quantity}, price: ${dish.price})';
+
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+}
+
+class CartBlocAddedDiscount extends CartBlocState {
+  final DiscountCodeModel discount;
+
+  CartBlocAddedDiscount(this.discount) : super([discount]);
+
+  @override
+  String toString() =>
+      'CartBlocAddedDiscount (discountCode: ${discount.code}, value: ${discount.discount})';
 
   @override
   // TODO: implement props

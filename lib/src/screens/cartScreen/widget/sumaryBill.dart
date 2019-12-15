@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/state.dart';
-import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartModel.dart';
 
 class SummaryBill extends StatefulWidget {
@@ -80,56 +81,78 @@ class _SummaryBillState extends State<SummaryBill> {
   void _showSelectTableNumber() {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Text("Mã giảm giá"),
-          content: TextField(
-            decoration: InputDecoration(
-                hintStyle: TextStyle(color: Colors.grey),
-                hintText: "Nhập mã giảm giá..."),
-          ),
-
-          actions: <Widget>[
-            CupertinoButton(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              minSize: 20,
-              color: Theme.of(context).colorScheme.error,
-              child: new Text(
-                "Đóng",
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onError),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoButton(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              minSize: 20,
-              color: Theme.of(context).primaryColor,
-              child: new Text(
-                "Xác nhận",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
+      builder: (_) {
+        return DiscountInputDialog();
       },
     );
   }
+}
 
-  int _calculateSummaryBill()
-  {
-    int total = 0;
-    widget.currentCart.listDishes.forEach( (item) {
-      total = total + item.quantity*(item.price);
-    });
-    return total;
+class DiscountInputDialog extends StatefulWidget{
+  @override
+  _DiscountInputDialogState createState() => _DiscountInputDialogState();
+}
+
+class _DiscountInputDialogState extends State<DiscountInputDialog> {
+  bool isDiscountCodeValid = true;
+  var discountCodeController = TextEditingController();
+  final CartBloc _cartBloc = CartBloc();
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return AlertDialog(
+      title: Text("Mã giảm giá"),
+      content: TextField(
+        controller: discountCodeController,
+        inputFormatters: <TextInputFormatter>[
+          BlacklistingTextInputFormatter.singleLineFormatter,
+        ],
+        decoration: InputDecoration(
+          hintStyle: TextStyle(color: Colors.grey),
+          hintText: "Nhập mã giảm giá...",
+          errorText:
+          isDiscountCodeValid ? null : "Vui lòng nhập mã giảm giá",
+        ),
+      ),
+      actions: <Widget>[
+        CupertinoButton(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          minSize: 20,
+          color: Theme.of(context).colorScheme.error,
+          child: new Text(
+            "Đóng",
+            style: TextStyle(color: Theme.of(context).colorScheme.onError),
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        CupertinoButton(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          minSize: 20,
+          color: Theme.of(context).primaryColor,
+          child: new Text(
+            "Xác nhận",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+          ),
+          onPressed: () {
+            if (discountCodeController.text.isEmpty) {
+              setState(() {
+                isDiscountCodeValid = false;
+              });
+            } else {
+              setState(() {
+                isDiscountCodeValid = true;
+              });
+              _cartBloc
+                  .dispatch(AddDiscountCode(discountCodeController.text));
+              Navigator.of(context).pop();
+            }
+          },
+        ),
+      ],
+    );
   }
 }

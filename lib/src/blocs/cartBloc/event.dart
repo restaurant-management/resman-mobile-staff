@@ -65,6 +65,18 @@ class ChangeDistQuantityInCart extends CartBlocEvent {
   List<Object> get props => null;
 }
 
+class AddDiscountCode extends CartBlocEvent {
+  final String discountCode;
+
+  AddDiscountCode(this.discountCode);
+  @override
+  String toString() => 'CreateBillFromCart';
+
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+}
+
 class CreateBillFromCart extends CartBlocEvent {
   final int tableNumber;
   final String discountCode;

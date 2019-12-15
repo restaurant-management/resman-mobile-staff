@@ -6,6 +6,7 @@ import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
 import 'package:resman_mobile_staff/src/models/cartModel.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
+import 'package:resman_mobile_staff/src/models/discountCodeModel.dart';
 import 'package:resman_mobile_staff/src/respositories/dataProviders/billProvider.dart';
 import 'package:resman_mobile_staff/src/respositories/dataProviders/dailyDishesProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -131,6 +132,14 @@ class Repository {
     if (cartDish != null) {
       cartDish.quantity = quantity;
     }
+  }
+
+  Future<DiscountCodeModel> addDiscountCode(String discountValue) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+    DiscountCodeModel discount = await _billProvider.validDiscountCode(token, discountValue);
+    _currentCart.discountCode = discount;
+    return discount;
   }
 
   Future<void> getCart() async {

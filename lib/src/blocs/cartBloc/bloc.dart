@@ -55,6 +55,12 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
       dispatch(SaveCartBloc());
     }
 
+    if (event is AddDiscountCode) {
+      var discount = await _repository.addDiscountCode(event.discountCode);
+      yield CartBlocAddedDiscount(discount);
+      dispatch(SaveCartBloc());
+    }
+
     if (event is RemoveDishFromCart) {
       _repository.removeDishFromCart(event.dishId);
       yield CartBlocRemovedDish(event.dishId);
