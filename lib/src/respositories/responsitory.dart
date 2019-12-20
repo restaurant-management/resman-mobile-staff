@@ -16,6 +16,7 @@ import 'dataProviders/userProvider.dart';
 
 class Repository {
   static Repository _singleton;
+
   static Repository get instance {
     if (_singleton == null) {
       print('Initialize Repository ...');
@@ -134,10 +135,24 @@ class Repository {
     }
   }
 
+  void addDishNote(int dishId, String note) {
+    // Remove dish if it existed, then add a same new one with new quantity.
+    CartDishModel cartDish = _currentCart.listDishes
+        .firstWhere((e) => e.dishId == dishId, orElse: () => null);
+    if (cartDish != null) {
+      cartDish.note = note;
+    }
+  }
+
+  void addBillNote(String note) {
+    _currentCart.note = note;
+  }
+
   Future<DiscountCodeModel> addDiscountCode(String discountValue) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
-    DiscountCodeModel discount = await _billProvider.validDiscountCode(token, discountValue);
+    DiscountCodeModel discount =
+        await _billProvider.validDiscountCode(token, discountValue);
     _currentCart.discountCode = discount;
     return discount;
   }
@@ -157,20 +172,21 @@ class Repository {
 
   /// Bill
   /// Return bill model.
-  Future<BillModel> createBill(List<CartDishModel> cartDishes, int tableNumber, {String discountCode, String voucherCode}) async {
+  Future<BillModel> createBill(int tableNumber) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
     List<int> dishIds = List<int>();
     List<String> dishNotes = List<String>();
     List<int> dishQuantities = List<int>();
 
-    cartDishes.forEach((dish) {
+    currentCart.listDishes.forEach((dish) {
       dishIds.add(dish.dishId);
       dishNotes.add(dish.note ?? "");
       dishQuantities.add(dish.quantity);
     });
 
-    return await _billProvider.createBill(_currentUser.stores[0].id,token, tableNumber, dishIds, dishNotes, dishQuantities, "Khong bo hanh");
+    return await _billProvider.createBill(_currentUser.stores[0].id, token,
+        tableNumber, dishIds, dishNotes, dishQuantities, note: currentCart.note, discountCode: currentCart.discountCode.code);
   }
 
   Future<List<BillModel>> getAllBill() async {

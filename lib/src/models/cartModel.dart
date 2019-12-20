@@ -4,6 +4,13 @@ import 'cartDishModel.dart';
 
 class CartModel {
   DiscountCodeModel _discountCode;
+  String _note;
+
+  String get note => _note;
+
+  set note(String value) {
+    _note = value;
+  }
 
   DiscountCodeModel get discountCode => _discountCode;
 

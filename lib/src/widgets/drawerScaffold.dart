@@ -46,7 +46,7 @@ class _DrawerScaffoldState extends State<DrawerScaffold> {
           floatingActionButtonLocation: widget.floatingActionButtonLocation,
           backgroundColor: Theme.of(context).colorScheme.background,
           endDrawer: widget.endDrawer,
-          drawer: ProfileDrawer(),
+          drawer: ProfileDrawer(authenticationBloc: authenticationBloc),
 //          drawer: OutOfStockDrawer(),
           bottomNavigationBar: widget.bottomNavigationBar,
         );

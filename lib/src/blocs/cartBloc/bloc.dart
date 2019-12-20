@@ -56,9 +56,17 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
     }
 
     if (event is AddDiscountCode) {
-      var discount = await _repository.addDiscountCode(event.discountCode);
-      yield CartBlocAddedDiscount(discount);
-      dispatch(SaveCartBloc());
+      try {
+        yield CartBlocAddingDiscount();
+        var discount = await _repository.addDiscountCode(event.discountCode);
+        yield CartBlocAddedDiscount(discount);
+        dispatch(SaveCartBloc());
+      }
+      catch(e)
+      {
+        yield CartBlocAddedDiscountFailure(e.toString());
+      }
+
     }
 
     if (event is RemoveDishFromCart) {
@@ -78,7 +86,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
       try {
         if (currentCart.listDishes.length == 0)
           throw Exception('Chưa có món ăn!');
-        var bill = await _repository.createBill(currentCart.listDishes, event.tableNumber);
+        var bill = await _repository.createBill(event.tableNumber);
         await _repository.clearCart();
         yield CartBlocCreatedBill(bill);
       } catch (e) {

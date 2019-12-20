@@ -12,19 +12,24 @@ class DiscountCodeModel extends Equatable {
   DateTime _endAt;
   double _minBillPrice;
   double _maxPriceDiscount;
-  int _discount;
+  double _discount;
 
   DiscountCodeModel.fromJson(Map<String, dynamic> jsonParsed) {
     _code = jsonParsed["code"];
     _isActive = jsonParsed["isActive"];
+    print(jsonParsed["description"]);
     _description = jsonParsed["description"];
-    _startAt =
-        jsonParsed["startAt"] ? DateTime.tryParse(jsonParsed["startAt"]) : null;
-    _endAt =
-        jsonParsed["endAt"] ? DateTime.tryParse(jsonParsed["endAt"]) : null;
-    _minBillPrice = jsonParsed["minBillPrice"];
-    _maxPriceDiscount = jsonParsed["maxPriceDiscount"];
-    _discount = jsonParsed["discount"];
+    _startAt = (jsonParsed["startAt"] != null &&
+            jsonParsed["startAt"].toString().isNotEmpty)
+        ? DateTime.tryParse(jsonParsed["startAt"])
+        : null;
+    _endAt = (jsonParsed["endAt"] != null &&
+            jsonParsed["endAt"].toString().isNotEmpty)
+        ? DateTime.tryParse(jsonParsed["endAt"])
+        : null;
+    _minBillPrice = double.tryParse(jsonParsed["minBillPrice"].toString());
+    _maxPriceDiscount = double.tryParse(jsonParsed["maxPriceDiscount"].toString());
+    _discount = double.tryParse(jsonParsed["discount"].toString());
   }
 
   @override
@@ -33,7 +38,7 @@ class DiscountCodeModel extends Equatable {
 
   String get code => _code;
 
-  bool get isValid => _isActive;
+  bool get isActive => _isActive;
 
   String get name => _name;
 
@@ -47,5 +52,5 @@ class DiscountCodeModel extends Equatable {
 
   double get maxPriceDiscount => _maxPriceDiscount;
 
-  int get discount => _discount;
+  double get discount => _discount;
 }

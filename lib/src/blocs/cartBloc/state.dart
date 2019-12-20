@@ -53,6 +53,30 @@ class CartBlocAddedDiscount extends CartBlocState {
   List<Object> get props => null;
 }
 
+class CartBlocAddingDiscount extends CartBlocState {
+
+  @override
+  String toString() =>
+      'CartBlocAddingDiscount...)';
+
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+}
+
+class CartBlocAddedDiscountFailure extends CartBlocState {
+  final String error;
+
+  CartBlocAddedDiscountFailure(this.error) : super([error]);
+
+  @override
+  String toString() => 'CartBlocAddedDiscountFailure (error: $error)';
+
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+}
+
 class CartBlocRemovedDish extends CartBlocState {
   final int dishId;
 

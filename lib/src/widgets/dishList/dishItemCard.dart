@@ -21,8 +21,6 @@ class DishItemCard extends StatefulWidget {
 
 class _DishItemCardState extends State<DishItemCard> {
   Repository _repository = new Repository();
-  String note;
-  final noteTextFieldController = TextEditingController();
 
   @override
   void initState() {
@@ -33,7 +31,6 @@ class _DishItemCardState extends State<DishItemCard> {
   @override
   void dispose() {
     // TODO: implement dispose
-    noteTextFieldController.dispose();
     super.dispose();
   }
 
@@ -137,7 +134,6 @@ class _DishItemCardState extends State<DishItemCard> {
                       bottomRight: Radius.circular(20)),
                 ),
                 onPressed: () {
-                  _showNote();
                   CartBloc().dispatch(AddDishIntoCart(widget.dailyDish));
                 },
                 child: Row(
@@ -161,54 +157,6 @@ class _DishItemCardState extends State<DishItemCard> {
           ],
         ),
       ),
-    );
-  }
-
-  void _showNote() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Text("Ghi chú"),
-          content: TextField(
-            controller: noteTextFieldController,
-            decoration: InputDecoration(
-                hintStyle: TextStyle(color: Colors.grey),
-                hintText: "Nhập ghi chú..."),
-          ),
-          actions: <Widget>[
-            new CupertinoButton(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              minSize: 20,
-              color: Theme.of(context).primaryColor,
-              child: new Text(
-                "Bỏ qua",
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              ),
-              onPressed: () {
-                note = noteTextFieldController.text ?? "";
-                Navigator.of(context).pop();
-              },
-            ),
-            new CupertinoButton(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              minSize: 20,
-              color: Theme.of(context).primaryColor,
-              child: new Text(
-                "Xác nhận",
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-              ),
-              onPressed: () {
-                note = "";
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

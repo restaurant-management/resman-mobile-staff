@@ -12,6 +12,10 @@ class CartDishModel {
 
   int get quantity => _quantity;
 
+  set note(String value) {
+    _note = value;
+  }
+
   set quantity(int q) {
     _quantity = q < 1 ? 1 : q;
   }

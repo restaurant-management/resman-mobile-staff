@@ -17,7 +17,8 @@ class BillProvider {
       'Authorization': token
     };
     var day = DateFormat('yyyy-MM-dd').format(DateTime.now());
-    final response = await client.get('$apiUrl/api/bills?day=$day', headers: headers);
+    final response =
+        await client.get('$apiUrl/api/bills?day=$day', headers: headers);
     if (response.statusCode == 200) {
       List<BillModel> result = [];
       List<dynamic> list = jsonDecode(response.body);
@@ -44,7 +45,7 @@ class BillProvider {
       'Authorization': token
     };
     final response =
-    await client.get('$apiUrl/api/bills/user/$username', headers: headers);
+        await client.get('$apiUrl/api/bills/user/$username', headers: headers);
     if (response.statusCode == 200) {
       List<BillModel> result = [];
       List<dynamic> list = jsonDecode(response.body);
@@ -65,8 +66,13 @@ class BillProvider {
     }
   }
 
-  Future<BillModel> createBill(int storeId,String token, int tableNumber, List<int> dishIds, List<String> dishNotes,
-      List<int> dishQuantities, String note, {String voucherCode, String discountCode, String customerUuid, double rating}) async {
+  Future<BillModel> createBill(int storeId, String token, int tableNumber,
+      List<int> dishIds, List<String> dishNotes, List<int> dishQuantities,
+      {String note,
+      String voucherCode,
+      String discountCode,
+      String customerUuid,
+      double rating}) async {
     Map<String, String> headers = {
       'Content-Type': 'application/json',
       'Authorization': token
@@ -86,8 +92,8 @@ class BillProvider {
 
     var body = jsonEncode(data);
 
-    final response =
-    await client.post('$apiUrl/api/bills/restrict', body: body, headers: headers);
+    final response = await client.post('$apiUrl/api/bills/restrict',
+        body: body, headers: headers);
     if (response.statusCode != 200) {
       String message;
       try {
@@ -108,7 +114,7 @@ class BillProvider {
       'Authorization': token
     };
     final response =
-    await client.post('$apiUrl/api/bills/$billId', headers: headers);
+        await client.post('$apiUrl/api/bills/$billId', headers: headers);
     if (response.statusCode == 200) {
       return BillModel.fromJson(jsonDecode(response.body));
     } else {
@@ -129,7 +135,7 @@ class BillProvider {
       'Authorization': token
     };
     final response =
-    await client.put('$apiUrl/api/bills/$billId/paid', headers: headers);
+        await client.put('$apiUrl/api/bills/$billId/paid', headers: headers);
     if (response.statusCode == 200) {
       return BillModel.fromJson(jsonDecode(response.body));
     } else {
@@ -250,13 +256,14 @@ class BillProvider {
     }
   }
 
-  Future<DiscountCodeModel> validDiscountCode(String token, String discountValue) async {
+  Future<DiscountCodeModel> validDiscountCode(
+      String token, String discountValue) async {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': token
     };
-    final response =
-    await client.put('/api/discount_codes/$discountValue', headers: headers);
+    final response = await client
+        .get('$apiUrl/api/discount_codes/$discountValue', headers: headers);
     if (response.statusCode == 200) {
       return DiscountCodeModel.fromJson(jsonDecode(response.body));
     } else {
