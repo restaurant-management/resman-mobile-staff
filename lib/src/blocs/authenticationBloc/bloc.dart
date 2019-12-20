@@ -30,7 +30,7 @@ class AuthenticationBloc
     if (event is AppStarted) {
       final bool hasToken = await _repository.hasToken();
       if (hasToken) {
-        _currentUserBloc.dispatch(FetchCurrentUserProfile());
+        _currentUserBloc.add(FetchCurrentUserProfile());
         yield AuthenticationAuthenticated();
       } else {
         yield AuthenticationUnauthenticated();
@@ -40,13 +40,14 @@ class AuthenticationBloc
     if (event is LoggedIn) {
       yield AuthenticationLoading();
       await _repository.persistToken(event.token, event.usernameOrEmail);
-      _currentUserBloc.dispatch(FetchCurrentUserProfile());
+      _currentUserBloc.add(FetchCurrentUserProfile());
       yield AuthenticationAuthenticated();
     }
 
     if (event is LoggedOut) {
       yield AuthenticationLoading();
       await _repository.deleteToken();
+      _currentUserBloc.add(LogOut());
       yield AuthenticationUnauthenticated();
     }
   }

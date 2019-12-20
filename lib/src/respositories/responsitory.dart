@@ -79,6 +79,13 @@ class Repository {
     await _userProvider.register(username, email, password);
   }
 
+  Future changeUserPassword(String oldPassword, String newPassword) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+    await _userProvider.changePassword(
+        token, oldPassword, newPassword);
+  }
+
   Future<void> fetchCurrentUserProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final usernameOrEmail = prefs.getString(EnvVariables.PrepsUsernameOrEmail);

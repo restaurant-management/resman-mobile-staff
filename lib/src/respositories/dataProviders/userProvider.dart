@@ -25,8 +25,8 @@ class UserProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Đăng nhập thất bại.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Đăng nhập thất bại.');
     }
   }
 
@@ -41,8 +41,8 @@ class UserProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Đăng ký thất bại.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Đăng ký thất bại.');
     }
   }
 
@@ -63,8 +63,8 @@ class UserProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Đăng nhập thất bại.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Đăng nhập thất bại.');
     }
   }
 
@@ -84,8 +84,8 @@ class UserProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Đăng nhập thất bại.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Đăng nhập thất bại.');
     }
   }
 
@@ -114,56 +114,44 @@ class UserProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Sửa thông tin thất bại.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Sửa thông tin thất bại.');
     }
   }
 
-  Future changePassword(String token, String username, String oldPassword,
-      String newPassword) async {
+  Future changePassword(
+      String token, String oldPassword, String newPassword) async {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': token
     };
-    final response = await client.put('$apiUrl/api/users/$username/password',
-        headers: headers,
-        body: {'oldPassword': oldPassword, 'newPassword': newPassword});
+    String query =
+        'mutation {   changePasswordAsUser(newPassword: "$newPassword", oldPassword: "$oldPassword") }';
+    Map<String, String> body = {};
+    body.addAll({'query': query});
+    final response = await client.post(
+      EnvVariables.graphServer,
+      headers: headers,
+      body: body,
+    );
 
     if (response.statusCode != 200) {
       String message;
       try {
-        message = jsonDecode(response.body)['message'];
+        message = jsonDecode(response.body);
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Sửa mật khẩu thất bại.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Sửa mật khẩu thất bại.');
+    } else {
+      var data = jsonDecode(response.body)["data"];
+      var errors = jsonDecode(response.body)["errors"];
+      if (errors != null) {
+        throw (errors[0]['message'] ?? 'Sửa mật khẩu thất bại.');
+      } else {
+        print(data.toString());
+      }
     }
   }
-
-//  Future<List<Permission>> getAllUserPermissions(String username,
-//      {String token = ''}) async {
-//    Map<String, String> headers = {
-//      'Content-Type': 'application/x-www-form-urlencoded',
-//      'Authorization': token
-//    };
-//    final response = await client.get('$apiUrl/api/users/$username/permissions',
-//        headers: headers);
-
-//    if (response.statusCode == 200) {
-//      var jsonPermissions = jsonDecode(response.body);
-//      print(jsonPermissions);
-//      return Permission.fromListString(
-//          jsonPermissions.map<String>((e) => e.toString()).toList());
-//    } else {
-//      String message;
-//      try {
-//        message = jsonDecode(response.body)['message'];
-//      } catch (e) {
-//        print('Error: $e');
-//      }
-//      if (message != null && message.isNotEmpty) throw Exception(message);
-//      throw Exception('Lấy danh sách tất cả quyền thất bại.');
-//    }
-//  }
 }

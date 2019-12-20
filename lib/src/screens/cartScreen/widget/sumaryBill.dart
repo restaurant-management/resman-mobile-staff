@@ -147,7 +147,7 @@ class _SummaryBillState extends State<SummaryBill> {
               );
             },
           );
-          _cartBloc.dispatch(SaveCartBloc());
+          _cartBloc.add(SaveCartBloc());
         }
       },
     );
@@ -221,7 +221,7 @@ class _DiscountInputDialogState extends State<DiscountInputDialog> {
               setState(() {
                 isDiscountCodeValid = true;
               });
-              _cartBloc.dispatch(AddDiscountCode(discountCodeController.text));
+              _cartBloc.add(AddDiscountCode(discountCodeController.text));
               Navigator.of(context).pop();
             }
           },

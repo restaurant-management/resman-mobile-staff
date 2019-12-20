@@ -23,27 +23,27 @@ class BillItemBloc extends Bloc<BillItemEvent, BillItemState> {
         if (event is PayBill) {
           yield BillItemUpdatingStatus(event.bill);
 //          await _repository.updatePaidBillStatus(event.bill.billId);
-          event.billBloc.dispatch(FetchAllBill());
+          event.billBloc.add(FetchAllBill());
         }
         if (event is PrepareBill) {
           yield BillItemUpdatingStatus(event.bill);
 //          await _repository.updatePreparingBillStatus(event.bill.billId);
-          event.billBloc.dispatch(FetchAllBill());
+          event.billBloc.add(FetchAllBill());
         }
         if (event is FinishPrepareBill) {
           yield BillItemUpdatingStatus(event.bill);
 //          await _repository.updatePrepareDoneBillStatus(event.bill.billId);
-          event.billBloc.dispatch(FetchAllBill());
+          event.billBloc.add(FetchAllBill());
         }
         if (event is DeliveryBill) {
           yield BillItemUpdatingStatus(event.bill);
 //          await _repository.updateDeliveringBillStatus(event.bill.billId);
-          event.billBloc.dispatch(FetchAllBill());
+          event.billBloc.add(FetchAllBill());
         }
         if (event is FinishDeliveryBill) {
           yield BillItemUpdatingStatus(event.bill);
 //          await _repository.updateCompleteBillStatus(event.bill.billId);
-          event.billBloc.dispatch(FetchAllBill());
+          event.billBloc.add(FetchAllBill());
         }
         yield BillItemUpdatedStatus();
       }

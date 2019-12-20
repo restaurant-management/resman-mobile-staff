@@ -98,7 +98,7 @@ class _CartFooterState extends State<CartFooter> {
                 int tableNumber =
                     int.parse(tableNumberController.value?.text ?? 0);
                 try {
-                  _cartBloc.dispatch(CreateBillFromCart(tableNumber));
+                  _cartBloc.add(CreateBillFromCart(tableNumber));
                   _showCreateSuccess();
                 }catch(e)
                 {

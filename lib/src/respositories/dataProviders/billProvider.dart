@@ -34,8 +34,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi tải danh sách hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi tải danh sách hoá đơn.');
     }
   }
 
@@ -61,8 +61,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi tải danh sách hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi tải danh sách hoá đơn.');
     }
   }
 
@@ -101,8 +101,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Tạo hoá đơn thất bại.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Tạo hoá đơn thất bại.');
     } else {
       return BillModel.fromJson(jsonDecode(response.body));
     }
@@ -124,8 +124,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi tải hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi tải hoá đơn.');
     }
   }
 
@@ -145,8 +145,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi cập nhật thanh toán hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi cập nhật thanh toán hoá đơn.');
     }
   }
 
@@ -166,8 +166,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi cập nhật đang chuẩn bị hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi cập nhật đang chuẩn bị hoá đơn.');
     }
   }
 
@@ -188,8 +188,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi cập nhật đã chuẩn bị xong hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi cập nhật đã chuẩn bị xong hoá đơn.');
     }
   }
 
@@ -209,8 +209,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi cập nhật đang giao hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi cập nhật đang giao hoá đơn.');
     }
   }
 
@@ -230,8 +230,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi cập nhật đang ship hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi cập nhật đang ship hoá đơn.');
     }
   }
 
@@ -251,8 +251,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi cập nhật hoàn thành hoá đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi cập nhật hoàn thành hoá đơn.');
     }
   }
 
@@ -273,8 +273,8 @@ class BillProvider {
       } catch (e) {
         print('Error: $e');
       }
-      if (message != null && message.isNotEmpty) throw Exception(message);
-      throw Exception('Có lỗi xảy ra khi xác thực hóa đơn.');
+      if (message != null && message.isNotEmpty) throw (message);
+      throw ('Có lỗi xảy ra khi xác thực hóa đơn.');
     }
   }
 }

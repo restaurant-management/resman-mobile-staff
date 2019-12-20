@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/state.dart';
-import 'package:resman_mobile_staff/src/models/roleModel.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';
@@ -29,12 +28,10 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-        child: _buildContent(
-            _repository.currentUser, _repository.currentUser.roles));
+    return Drawer(child: _buildContent(_repository.currentUser));
   }
 
-  Widget _buildContent(UserModel user, List<RoleModel> allPermissions) {
+  Widget _buildContent(UserModel user) {
     if (user == null) user = new UserModel.empty();
     return BlocListener(
       bloc: widget.authenticationBloc,
@@ -169,7 +166,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               style: TextStyle(color: Colors.deepOrange, fontSize: 16),
             ),
             onTap: () {
-              widget.authenticationBloc.dispatch(LoggedOut());
+              widget.authenticationBloc.add(LoggedOut());
             },
           )
         ],

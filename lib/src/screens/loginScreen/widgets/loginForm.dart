@@ -44,13 +44,13 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void initState() {
     _autoValidate = false;
-    _loginBloc.dispatch(InitializeLoginForm());
+    _loginBloc.add(InitializeLoginForm());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginEvent, LoginState>(
+    return BlocListener(
       bloc: _loginBloc,
       listener: (
         BuildContext context,
@@ -129,7 +129,7 @@ class _LoginFormState extends State<LoginForm> {
                         text: "Đăng nhập",
                         onPressed: () {
                           if (_validateInputs()) {
-                            _loginBloc.dispatch(
+                            _loginBloc.add(
                               LoginButtonPressed(
                                 usernameOrEmail: _usernameController.text,
                                 password: _passwordController.text,

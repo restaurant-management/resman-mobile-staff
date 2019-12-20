@@ -134,7 +134,7 @@ class _DishItemCardState extends State<DishItemCard> {
                       bottomRight: Radius.circular(20)),
                 ),
                 onPressed: () {
-                  CartBloc().dispatch(AddDishIntoCart(widget.dailyDish));
+                  CartBloc().add(AddDishIntoCart(widget.dailyDish));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

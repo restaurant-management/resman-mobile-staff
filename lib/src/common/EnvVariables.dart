@@ -7,6 +7,7 @@ class EnvVariables{
 
   //Url
   static String apiUrl = DotEnv().env['API_URL'];
+  static String graphServer = DotEnv().env['GRAPH_URL'];
 
   // Role
   static const  String StaffRole = 'staff';

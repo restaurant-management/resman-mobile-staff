@@ -41,7 +41,7 @@ class _CartListState extends State<CartList> {
         bloc: _cartBloc,
         builder: (BuildContext context, state) {
           if (state is CartBlocInitialize) {
-            _cartBloc.dispatch(FetchCartBloc());
+            _cartBloc.add(FetchCartBloc());
             return LoadingIndicator();
           }
           if (state is CartBlocFetching || state is CartBlocCreatingBill)
@@ -202,13 +202,13 @@ class _CartListState extends State<CartList> {
               );
             },
           );
-          _cartBloc.dispatch(FetchCartBloc());
+          _cartBloc.add(FetchCartBloc());
         }
       },
     );
   }
 
   void onDismissed(int dishId) {
-    _cartBloc.dispatch(RemoveDishFromCart(dishId));
+    _cartBloc.add(RemoveDishFromCart(dishId));
   }
 }

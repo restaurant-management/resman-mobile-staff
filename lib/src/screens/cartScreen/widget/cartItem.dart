@@ -49,21 +49,21 @@ class _CartItemState extends State<CartItem> {
     setState(() {
       _count = _count + 1;
     });
-    _cartBloc.dispatch(ChangeDistQuantityInCart(cartDish.dishId, _count));
+    _cartBloc.add(ChangeDistQuantityInCart(cartDish.dishId, _count));
   }
 
   void _decrease() {
     setState(() {
       _count = _count == 1 ? _count : _count - 1;
     });
-    _cartBloc.dispatch(ChangeDistQuantityInCart(cartDish.dishId, _count));
+    _cartBloc.add(ChangeDistQuantityInCart(cartDish.dishId, _count));
   }
 
   @override
   Widget build(BuildContext context) {
-    _cartItemBloc.state.listen((state) {
+    _cartItemBloc.listen((state) {
       if (state is CartItemInitialize) {
-        _cartItemBloc.dispatch(FetchCartItemDetail(cartDish));
+        _cartItemBloc.add(FetchCartItemDetail(cartDish));
       }
     });
     final primaryColor = Theme.of(context).primaryColor;
@@ -91,7 +91,7 @@ class _CartItemState extends State<CartItem> {
                       height: 80,
                     );
                   else if (state is CartItemToFetchDetailNotSellToDay) {
-                    _cartBloc.dispatch(RemoveDishFromCart(cartDish.dishId));
+                    _cartBloc.add(RemoveDishFromCart(cartDish.dishId));
                   }
                   return Image.asset(
                     'assets/images/placeholder.png',
@@ -130,7 +130,7 @@ class _CartItemState extends State<CartItem> {
                     ],
                   );
                 } else if (state is CartItemToFetchDetailNotSellToDay) {
-                  _cartBloc.dispatch(RemoveDishFromCart(cartDish.dishId));
+                  _cartBloc.add(RemoveDishFromCart(cartDish.dishId));
                 }
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,

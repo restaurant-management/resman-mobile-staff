@@ -21,8 +21,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   equatable: ^0.6.0
-  bloc: ^0.13.0
-  flutter_bloc: ^0.13.0
+  bloc: ^2.0.0
+  flutter_bloc: ^2.1.1
   pull_to_refresh: ^1.4.3
   intl: ^0.15.8
   gradient_widgets: ^0.4.1

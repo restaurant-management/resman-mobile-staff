@@ -24,7 +24,7 @@ class _AddCartButtonState extends State<AddCartButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        CartBloc().dispatch(AddDishIntoCart(widget.dailyDish));
+        CartBloc().add(AddDishIntoCart(widget.dailyDish));
       },
       child: Container(
         height: 50,

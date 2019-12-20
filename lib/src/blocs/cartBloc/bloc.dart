@@ -12,7 +12,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
   static CartBloc get instance {
     if (_singleton == null) {
       _singleton = CartBloc._internal();
-      _singleton.dispatch(FetchCartBloc());
+      _singleton.add(FetchCartBloc());
     }
     return _singleton;
   }
@@ -52,7 +52,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
 
     if (event is AddDishIntoCart) {
       yield CartBlocAddedDish(_repository.addDishIntoCart(event.dish));
-      dispatch(SaveCartBloc());
+      add(SaveCartBloc());
     }
 
     if (event is AddDiscountCode) {
@@ -60,7 +60,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
         yield CartBlocAddingDiscount();
         var discount = await _repository.addDiscountCode(event.discountCode);
         yield CartBlocAddedDiscount(discount);
-        dispatch(SaveCartBloc());
+        add(SaveCartBloc());
       }
       catch(e)
       {
@@ -72,20 +72,20 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
     if (event is RemoveDishFromCart) {
       _repository.removeDishFromCart(event.dishId);
       yield CartBlocRemovedDish(event.dishId);
-      dispatch(SaveCartBloc());
+      add(SaveCartBloc());
     }
 
     if (event is ChangeDistQuantityInCart) {
       _repository.changeDistQuantityInCart(event.dishId, event.quantity);
       yield CartBlocChangedDishQuantity(event.dishId, event.quantity);
-      dispatch(SaveCartBloc());
+      add(SaveCartBloc());
     }
 
     if (event is CreateBillFromCart) {
       yield CartBlocCreatingBill();
       try {
         if (currentCart.listDishes.length == 0)
-          throw Exception('Chưa có món ăn!');
+          throw ('Chưa có món ăn!');
         var bill = await _repository.createBill(event.tableNumber);
         await _repository.clearCart();
         yield CartBlocCreatedBill(bill);

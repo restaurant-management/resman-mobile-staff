@@ -20,7 +20,6 @@ class CurrentUserBloc extends Bloc<CurrentUserEvent, CurrentUserState> {
     return _singleton;
   }
 
-
   @override
   CurrentUserState get initialState => CurrentUserProfileEmpty();
 
@@ -34,6 +33,9 @@ class CurrentUserBloc extends Bloc<CurrentUserEvent, CurrentUserState> {
       } catch (e) {
         yield CurrentUserProfileFetchFailure(e.toString());
       }
+    }
+    if (event is LogOut) {
+      yield CurrentUserProfileEmpty();
     }
   }
 }

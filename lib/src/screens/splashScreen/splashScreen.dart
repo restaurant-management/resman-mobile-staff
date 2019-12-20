@@ -116,7 +116,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: AnimationLogo(
                 animationTime: 1000,
                 onAnimationCompleted: () {
-                  authenticationBloc.dispatch(AppStarted());
+                  authenticationBloc.add(AppStarted());
                 },
               ),
             ),
