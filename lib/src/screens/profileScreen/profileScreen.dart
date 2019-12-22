@@ -105,7 +105,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       text: "Thông tin",
                     ),
                     Tab(
-                      icon: Icon(Icons.pin_drop),
+                      icon: Icon(Icons.monetization_on),
                       text: "Mã giảm giá",
                     ),
                   ],

@@ -10,6 +10,7 @@ import 'package:resman_mobile_staff/src/blocs/changePasswordBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/changePasswordBloc/state.dart';
 
 import 'package:resman_mobile_staff/src/models/userModel.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 import '../../widgets/AppBars/backAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
@@ -168,19 +169,7 @@ class EditPasswordState extends State<EditPasswordScreen> {
                               GradientButton(
                                 increaseWidthBy: 50,
                                 child: Text('Lưu'),
-                                gradient: LinearGradient(
-                                  colors: <Color>[
-                                    !isChanging
-                                        ? Color.fromRGBO(88, 39, 176, 1)
-                                        : Color.fromRGBO(0, 0, 0, 0.3),
-                                    !isChanging
-                                        ? Color.fromRGBO(0, 39, 176, 1)
-                                        : Color.fromRGBO(0, 0, 0, 0.3),
-                                  ],
-                                  stops: [0.1, 1.0],
-                                  begin: Alignment.bottomRight,
-                                  end: Alignment.topLeft,
-                                ),
+                                gradient: GradientColor.of(context).primaryLinearGradient,
                                 callback: () {
                                   // TODO Validate _validateInputs()
                                   if (true) {
