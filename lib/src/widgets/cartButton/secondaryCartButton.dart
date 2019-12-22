@@ -60,7 +60,10 @@ class _SecondaryCartButtonState extends State<SecondaryCartButton> {
             child: Icon(
               Icons.shopping_cart,
               color: widget.color != null ? widget.color : Colors.white,
-            ), onPressed: () {},
+            ),
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
           ),
         ),
       ),

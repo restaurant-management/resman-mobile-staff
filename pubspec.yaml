@@ -33,6 +33,7 @@ dependencies:
   flutter_dotenv: ^2.1.0
   shared_preferences: ^0.5.4+6
   firebase_storage: ^3.0.0
+  cached_network_image: ^2.0.0-rc
 
   # Check that you have this dependency (added in the previous step)
   firebase_core: ^0.4.0+9
