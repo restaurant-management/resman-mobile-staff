@@ -30,12 +30,13 @@ class EditProfileBloc extends Bloc<EditProfileBlocEvent, EditProfileBlocState> {
         }
       }
       yield EditProfileBlocSaving(event.currentUser, event.newFullName,
-          event.newBirthday, event.newEmail);
+          event.newBirthday, event.newPhoneNumber);
       try {
         var savedUser = await _repository.saveProfile(
             event.currentUser,
             event.newFullName,
-            event.newEmail,
+            event.newPhoneNumber,
+            event.address,
             event.newBirthday,
             newAvatarUrl ?? event.currentUser.avatar);
         yield EditProfileBlocSaved(savedUser);

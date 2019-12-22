@@ -14,6 +14,7 @@ import 'package:resman_mobile_staff/src/blocs/editProfileBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/editProfileBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/editProfileBloc/state.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 import 'package:resman_mobile_staff/src/widgets/loadingIndicator.dart';
 
 import '../../widgets/AppBars/backAppBar.dart';
@@ -56,7 +57,8 @@ class EditProfileForm extends StatefulWidget {
 
 class EditProfileState extends State<EditProfileForm> {
   String _name;
-  String _email;
+  String _phoneNumber;
+  String _address;
   String _oldAvatar;
   File _newAvatar;
   DateTime _birthday;
@@ -71,7 +73,8 @@ class EditProfileState extends State<EditProfileForm> {
     isSaving = false;
     _birthday = currentUser.birthday;
     _name = currentUser.fullName;
-    _email = currentUser.email;
+    _phoneNumber = currentUser.phoneNumber;
+    _address = currentUser.address;
     _oldAvatar = currentUser.avatar;
     if (_birthday != null)
       _birthdayTextFieldController.text =
@@ -157,18 +160,18 @@ class EditProfileState extends State<EditProfileForm> {
                 child: ClipOval(
                   child: _newAvatar != null
                       ? Image.file(
-                    _newAvatar,
-                    fit: BoxFit.cover,
-                  )
+                          _newAvatar,
+                          fit: BoxFit.cover,
+                        )
                       : _oldAvatar != null
-                      ? Image.network(
-                    _oldAvatar,
-                    fit: BoxFit.cover,
-                  )
-                      : Image.asset(
-                    'assets/images/default-avatar.jpg',
-                    fit: BoxFit.cover,
-                  ),
+                          ? Image.network(
+                              _oldAvatar,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              'assets/images/default-avatar.jpg',
+                              fit: BoxFit.cover,
+                            ),
                 ),
               ),
               Positioned(
@@ -226,14 +229,14 @@ class EditProfileState extends State<EditProfileForm> {
             Form(
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Container(
                     decoration: new BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      shape: BoxShape.circle,
                       color: Colors.white,
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -248,7 +251,7 @@ class EditProfileState extends State<EditProfileForm> {
                                   color: primaryColor,
                                 ),
                                 contentPadding:
-                                EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                    EdgeInsets.fromLTRB(20, 15, 20, 15),
                                 labelText: 'Họ và tên',
                                 labelStyle: TextStyle(color: primaryColor),
                               ),
@@ -259,16 +262,16 @@ class EditProfileState extends State<EditProfileForm> {
                               },
                             ),
                             TextFormField(
-                              initialValue: _email,
+                              initialValue: _phoneNumber,
                               style: TextStyle(color: primaryColor),
                               decoration: InputDecoration(
                                   prefixIcon: Icon(
-                                    Icons.mail,
+                                    Icons.dialer_sip,
                                     color: primaryColor,
                                   ),
                                   contentPadding:
-                                  EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                  labelText: 'Email',
+                                      EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                  labelText: 'Số điện thoại',
                                   labelStyle: TextStyle(color: primaryColor)),
                             ),
                             GestureDetector(
@@ -284,12 +287,25 @@ class EditProfileState extends State<EditProfileForm> {
                                         color: primaryColor,
                                       ),
                                       contentPadding:
-                                      EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                          EdgeInsets.fromLTRB(20, 15, 20, 15),
                                       labelText: 'Ngày sinh',
                                       labelStyle:
-                                      TextStyle(color: primaryColor)),
+                                          TextStyle(color: primaryColor)),
                                 ),
                               ),
+                            ),
+                            TextFormField(
+                              initialValue: _address,
+                              style: TextStyle(color: primaryColor),
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.directions,
+                                    color: primaryColor,
+                                  ),
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(20, 15, 20, 15),
+                                  labelText: 'Địa chỉ',
+                                  labelStyle: TextStyle(color: primaryColor)),
                             ),
                             SizedBox(
                               height: 8,
@@ -297,27 +313,18 @@ class EditProfileState extends State<EditProfileForm> {
                             GradientButton(
                               increaseWidthBy: 50,
                               child: Text('Lưu'),
-                              gradient: LinearGradient(
-                                colors: <Color>[
-                                  !isSaving
-                                      ? Color.fromRGBO(88, 39, 176, 1)
-                                      : Color.fromRGBO(0, 0, 0, 0.3),
-                                  !isSaving
-                                      ? Color.fromRGBO(0, 39, 176, 1)
-                                      : Color.fromRGBO(0, 0, 0, 0.3),
-                                ],
-                                stops: [0.1, 1.0],
-                                begin: Alignment.bottomRight,
-                                end: Alignment.topLeft,
-                              ),
+                              gradient: GradientColor.of(context)
+                                  .primaryLinearGradient,
                               callback: () {
                                 if (!isSaving)
                                   _editProfileBloc.add(SaveNewProfile(
-                                      currentUser,
-                                      _name,
-                                      _birthday,
-                                      _email,
-                                      _newAvatar != null ? _newAvatar : null));
+                                    currentUser,
+                                    _name,
+                                    _birthday,
+                                    _phoneNumber,
+                                    _newAvatar != null ? _newAvatar : null,
+                                    _address,
+                                  ));
                               },
                             ),
                           ],

@@ -13,6 +13,7 @@ class GraphQuery
         fullName: "$fullName", 
         phoneNumber: "$phoneNumber", 
         ${birthday != null ? 'birthday: "$birthday"' : ''}
+        address: "$address"
       ) {
         uuid
       }

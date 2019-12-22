@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 
 import '../../models/userModel.dart';
+import '../graphClient.dart';
+import '../graphQuery.dart';
 
 class UserProvider {
   static String apiUrl = EnvVariables.apiUrl;
@@ -89,34 +90,15 @@ class UserProvider {
     }
   }
 
-  Future<UserModel> editUserProfile(String token, String username, String email,
+  Future<UserModel> editUserProfile(String token, String username, String phoneNumber, String address,
       String fullName, DateTime birthday, String avatar) async {
-    Map<String, String> headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': token
-    };
-    Map<String, String> body = {};
-    if (birthday != null)
-      body.addAll(
-          {'birthday': DateFormat('yyyy-MM-dd').format(birthday).toString()});
-    if (email != null) body.addAll({'email': email});
-    if (fullName != null) body.addAll({'fullName': fullName});
-    if (avatar != null) body.addAll({'avatar': avatar});
+    final data = await (GraphClient()
+      ..authorization(token)
+      ..addBody(GraphQuery.changeProfile(
+          fullName: fullName, avatar: avatar, birthday: birthday, address: address, phoneNumber: phoneNumber)))
+        .connect();
 
-    final response = await client.put('$apiUrl/api/users/$username',
-        headers: headers, body: body);
-    if (response.statusCode == 200) {
-      return UserModel.fromJson(jsonDecode(response.body));
-    } else {
-      String message;
-      try {
-        message = jsonDecode(response.body)['message'];
-      } catch (e) {
-        print('Error: $e');
-      }
-      if (message != null && message.isNotEmpty) throw (message);
-      throw ('Sửa thông tin thất bại.');
-    }
+    return UserModel.fromJson(data['changeProfileAsUser']);
   }
 
   Future changePassword(

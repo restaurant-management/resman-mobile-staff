@@ -108,16 +108,15 @@ class Repository {
     FirebaseStorage.instance.ref().child(fileName);
     StorageUploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
     StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-    print(await taskSnapshot.ref.getDownloadURL());
     return await taskSnapshot.ref.getDownloadURL();
   }
 
-  Future<UserModel> saveProfile(UserModel user, String fullName, String email,
+  Future<UserModel> saveProfile(UserModel user, String fullName, String phoneNumber, String address,
       DateTime birthday, String avatar) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
     return await _userProvider.editUserProfile(
-        token, user.username, email, fullName, birthday, avatar);
+        token, user.username, phoneNumber, address, fullName, birthday, avatar);
   }
 
   /// Daily dishes
