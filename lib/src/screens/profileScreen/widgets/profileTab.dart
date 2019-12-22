@@ -20,6 +20,10 @@ class ProfileTab extends StatelessWidget {
           title: Text(user.fullName ?? user.username ?? "Không có tên"),
         ),
         ListTile(
+          leading: Icon(Icons.dialer_sip),
+          title: Text(user.phoneNumber ?? 'Chưa cập nhật'),
+        ),
+        ListTile(
           leading: Icon(Icons.mail),
           title: Text(user.email ?? "Không có email"),
         ),
