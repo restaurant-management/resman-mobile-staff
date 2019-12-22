@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-import 'package:resman_mobile_staff/src/models/storeModel.dart';
 
 class DiscountCodeModel extends Equatable {
   String _code;

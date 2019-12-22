@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/state.dart';
 import 'package:resman_mobile_staff/src/models/cartModel.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 
 class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {

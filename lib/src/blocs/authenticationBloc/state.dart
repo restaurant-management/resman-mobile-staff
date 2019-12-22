@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:resman_mobile_staff/src/models/roleModel.dart';
 
 abstract class AuthenticationState extends Equatable {
   AuthenticationState([List props = const []]) : super();

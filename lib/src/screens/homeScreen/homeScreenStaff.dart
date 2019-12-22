@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenStaff/tableButton.dart';
 import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';

@@ -6,7 +6,7 @@ import 'package:resman_mobile_staff/src/blocs/authenticationBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/state.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';
 
 import '../editProfileScreen/editPasswordScreen.dart';

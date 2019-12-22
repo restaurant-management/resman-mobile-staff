@@ -65,7 +65,7 @@ class _PrimaryCartButtonState extends State<PrimaryCartButton> {
               color: widget.color != null
                   ? widget.color
                   : Theme.of(context).colorScheme.onPrimary,
-            ),
+            ), onPressed: () {},
           ),
         ),
       ),

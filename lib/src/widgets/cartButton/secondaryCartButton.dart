@@ -17,6 +17,7 @@ class SecondaryCartButton extends StatefulWidget {
 class _SecondaryCartButtonState extends State<SecondaryCartButton> {
   int _count = 0;
 
+  // ignore: close_sinks
   final CartBloc _cartBloc = CartBloc();
 
   @override
@@ -59,7 +60,7 @@ class _SecondaryCartButtonState extends State<SecondaryCartButton> {
             child: Icon(
               Icons.shopping_cart,
               color: widget.color != null ? widget.color : Colors.white,
-            ),
+            ), onPressed: () {},
           ),
         ),
       ),

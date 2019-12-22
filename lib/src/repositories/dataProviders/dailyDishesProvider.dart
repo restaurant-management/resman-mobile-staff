@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-import '../../models/userModel.dart';
 
 class DailyDishProvider {
   static String apiUrl = EnvVariables.apiUrl;

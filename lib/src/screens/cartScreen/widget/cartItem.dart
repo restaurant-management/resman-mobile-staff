@@ -8,7 +8,7 @@ import 'package:resman_mobile_staff/src/blocs/cartItemBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartItemBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/cartItemBloc/state.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 
 class CartItem extends StatefulWidget {
   final CartDishModel cartDish;

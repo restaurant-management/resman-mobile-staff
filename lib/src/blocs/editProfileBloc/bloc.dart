@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/currentUserBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/currentUserBloc/event.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 
 import 'event.dart';
 import 'state.dart';

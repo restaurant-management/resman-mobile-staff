@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/currentUserBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/currentUserBloc/state.dart';
-import 'package:resman_mobile_staff/src/blocs/loginBloc/state.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/homeScreenChef.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/homeScreenStaff.dart';

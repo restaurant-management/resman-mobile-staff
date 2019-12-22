@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 

@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 import 'sumaryBill.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';

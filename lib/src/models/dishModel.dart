@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 
 class DishModal extends Equatable {
   int _dishId;

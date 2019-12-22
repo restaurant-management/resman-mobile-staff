@@ -7,7 +7,6 @@ import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/widgets/su
 import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/widgets/dishListStaff.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/backAppBar.dart';
 
-import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
 
 class BillDetailScreenStaff extends StatefulWidget {

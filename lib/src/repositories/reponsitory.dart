@@ -9,8 +9,8 @@ import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
 import 'package:resman_mobile_staff/src/models/cartModel.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/models/discountCodeModel.dart';
-import 'package:resman_mobile_staff/src/respositories/dataProviders/billProvider.dart';
-import 'package:resman_mobile_staff/src/respositories/dataProviders/dailyDishesProvider.dart';
+import 'package:resman_mobile_staff/src/repositories/dataProviders/billProvider.dart';
+import 'package:resman_mobile_staff/src/repositories/dataProviders/dailyDishesProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/userModel.dart';
 import '../utils/validateEmail.dart';
@@ -120,9 +120,10 @@ class Repository {
   }
 
   /// Daily dishes
-  Future<void> fetchDailyDishes() async {
+  Future<List<DailyDishModel>> fetchDailyDishes() async {
     _dailyDish = await _dailyDishProvider.getAll();
     print(_dailyDish);
+    return _dailyDish;
   }
 
   /// Cart repository

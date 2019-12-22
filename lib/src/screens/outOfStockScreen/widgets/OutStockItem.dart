@@ -18,11 +18,8 @@ class OutStockItem extends StatefulWidget {
 class _OutStockItemState extends State<OutStockItem> {
   CartDishModel get cartDish => widget.cartDish;
 
-  int _count;
-
   @override
   void initState() {
-    _count = cartDish.quantity;
     super.initState();
   }
 

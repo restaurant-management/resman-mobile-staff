@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/billBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/billItemBloc/state.dart';
-import 'package:resman_mobile_staff/src/enums/billStatus.dart';
-import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 
 import 'event.dart';
 

@@ -51,7 +51,7 @@ class _OutStockFooterState extends State<OutStockFooter> {
                   stops: [0.1, 1.0],
                   begin: Alignment.bottomRight,
                   end: Alignment.topLeft,
-                ),
+                ), callback: () {},
               ),
             )
           ],
