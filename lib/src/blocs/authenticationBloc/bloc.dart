@@ -22,6 +22,12 @@ class AuthenticationBloc
   }
 
   @override
+  Future<void> close() async {
+    return;
+    super.close();
+  }
+
+  @override
   AuthenticationState get initialState => AuthenticationUninitialized();
 
   @override

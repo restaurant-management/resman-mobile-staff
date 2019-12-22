@@ -1,23 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
-
-//import 'package:restaurant_management_mobile/src/blocs/dailyDishBloc/bloc.dart';
-//import 'package:restaurant_management_mobile/src/blocs/dailyDishBloc/event.dart';
-//import 'package:restaurant_management_mobile/src/blocs/dailyDishBloc/state.dart';
-//import 'package:restaurant_management_mobile/src/widgets/dishList/dailyDishesList.dart';
-//import 'package:restaurant_management_mobile/src/widgets/loadingIndicator.dart';
+import 'package:resman_mobile_staff/src/widgets/dishList/dishesList.dart';
 
 import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/cartButton/secondaryCartButton.dart';
 import '../../widgets/drawerScaffold.dart';
-import '../../widgets/dishList/dailyDishesList.dart';
 
 class DishesTodayScreen extends StatefulWidget {
   @override
@@ -54,7 +46,7 @@ class _DishesTodayScreenState extends State<DishesTodayScreen> {
       floatingActionButton: SecondaryCartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Stack(children: <Widget>[
-        DailyDishesList(listDailyDish: listDailyDish),
+        DishesList(listDailyDish: listDailyDish),
         Align(
           heightFactor: 60,
           alignment: Alignment.bottomCenter,

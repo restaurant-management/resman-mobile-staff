@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/respositories/responsitory.dart';
 import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
-import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenStaff/tableButton.dart';
 import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/cartButton/secondaryCartButton.dart';
-import 'package:resman_mobile_staff/src/widgets/dishList/dailyDishesList.dart';
+import 'package:resman_mobile_staff/src/widgets/dishList/dishesList.dart';
 import 'package:resman_mobile_staff/src/widgets/drawerScaffold.dart';
 import 'package:resman_mobile_staff/src/widgets/loadingIndicator.dart';
 
@@ -36,6 +34,13 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
 
   void onPress() {
     print("Button Pressed!");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    authenticationBloc.close();
+    super.dispose();
   }
 
   @override
@@ -148,7 +153,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
                     scrollDirection: Axis.vertical,
                     itemCount: 1,
                     itemBuilder: (BuildContext context, int index) {
-                      return DailyDishesList(listDailyDish: dailyDishes);
+                      return DishesList(listDailyDish: dailyDishes);
                     },
                   ),
                 ),

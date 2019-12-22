@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
+import 'package:resman_mobile_staff/src/widgets/dishList/dishesList.dart';
 
 import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/cartButton/secondaryCartButton.dart';
-import '../../widgets/dishList/dailyDishesList.dart';
 import '../../widgets/drawerScaffold.dart';
 
 class PreparedBillScreen extends StatefulWidget {
@@ -38,7 +38,7 @@ class _PreparedBillScreenState extends State<PreparedBillScreen> {
             flex: 3,
             child: ListView(
               children: <Widget>[
-                DailyDishesList(listDailyDish: FakeData.listDailyDish),
+                DishesList(listDailyDish: FakeData.listDailyDish),
               ],
             ),
           ),

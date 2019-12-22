@@ -43,7 +43,7 @@ class UserModel extends Equatable {
 
   UserModel.fromJson(Map<String, dynamic> parsedJson) {
     _uuid = parsedJson['uuid'];
-    _username = parsedJson['userName'];
+    _username = parsedJson['username'];
     _fullName = parsedJson['fullName'];
     _avatar = parsedJson['avatar'];
     _email = parsedJson['email'];

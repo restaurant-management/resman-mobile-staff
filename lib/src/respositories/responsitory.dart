@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:meta/meta.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
@@ -100,6 +102,25 @@ class Repository {
     print(_currentUser);
   }
 
+  Future<String> uploadAvatar(File imageFile, String username) async {
+    String fileName = username + '-' + DateTime.now().toString();
+    StorageReference firebaseStorageRef =
+    FirebaseStorage.instance.ref().child(fileName);
+    StorageUploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
+    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    print(await taskSnapshot.ref.getDownloadURL());
+    return await taskSnapshot.ref.getDownloadURL();
+  }
+
+  Future<UserModel> saveProfile(UserModel user, String fullName, String email,
+      DateTime birthday, String avatar) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+    return await _userProvider.editUserProfile(
+        token, user.username, email, fullName, birthday, avatar);
+  }
+
+  /// Daily dishes
   Future<void> fetchDailyDishes() async {
     _dailyDish = await _dailyDishProvider.getAll();
     print(_dailyDish);
