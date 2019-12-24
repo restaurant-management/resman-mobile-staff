@@ -61,12 +61,9 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
         var discount = await _repository.addDiscountCode(event.discountCode);
         yield CartBlocAddedDiscount(discount);
         add(SaveCartBloc());
-      }
-      catch(e)
-      {
+      } catch (e) {
         yield CartBlocAddedDiscountFailure(e.toString());
       }
-
     }
 
     if (event is RemoveDishFromCart) {
@@ -84,8 +81,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
     if (event is CreateBillFromCart) {
       yield CartBlocCreatingBill();
       try {
-        if (currentCart.listDishes.length == 0)
-          throw ('Chưa có món ăn!');
+        if (currentCart.listDishes.length == 0) throw ('Chưa có món ăn!');
         var bill = await _repository.createBill(event.tableNumber);
         await _repository.clearCart();
         yield CartBlocCreatedBill(bill);

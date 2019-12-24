@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class EnvVariables{
+class EnvVariables {
   static const String PrepsTokenKey = 'jwt-login-token';
   static const String PrepsUsernameOrEmail = 'logged-in-username-or-email';
   static const String PrepsCart = 'user-cart';
@@ -10,8 +10,7 @@ class EnvVariables{
   static String graphServer = DotEnv().env['GRAPH_URL'];
 
   // Role
-  static const  String StaffRole = 'staff';
+  static const String StaffRole = 'staff';
   static const String ChefRole = 'chef';
   static const String WareManagerRole = 'ware-manager';
-
 }

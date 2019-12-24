@@ -5,7 +5,8 @@ class ExpandedDetail extends StatefulWidget {
   final String title;
   final bool expand;
 
-  const ExpandedDetail({Key key, this.expand = false, this.child, @required this.title})
+  const ExpandedDetail(
+      {Key key, this.expand = false, this.child, @required this.title})
       : super(key: key);
 
   @override
@@ -41,7 +42,9 @@ class ExpandedDetailState extends State<ExpandedDetail> {
                 style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               Icon(
-                !expanded ? Icons.keyboard_arrow_left : Icons.keyboard_arrow_down,
+                !expanded
+                    ? Icons.keyboard_arrow_left
+                    : Icons.keyboard_arrow_down,
                 color: Colors.black,
               ),
             ],
@@ -98,7 +101,7 @@ class _ExpandedSectionState extends State<ExpandedSection>
         setState(() {});
       });
 
-    if(widget.expand) expandController.forward();
+    if (widget.expand) expandController.forward();
   }
 
   @override

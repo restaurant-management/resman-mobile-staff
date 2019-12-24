@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:meta/meta.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:meta/meta.dart';
 import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
@@ -12,6 +12,7 @@ import 'package:resman_mobile_staff/src/models/discountCodeModel.dart';
 import 'package:resman_mobile_staff/src/repositories/dataProviders/billProvider.dart';
 import 'package:resman_mobile_staff/src/repositories/dataProviders/dailyDishesProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/userModel.dart';
 import '../utils/validateEmail.dart';
 import 'dataProviders/userProvider.dart';
@@ -84,8 +85,7 @@ class Repository {
   Future changeUserPassword(String oldPassword, String newPassword) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
-    await _userProvider.changePassword(
-        token, oldPassword, newPassword);
+    await _userProvider.changePassword(token, oldPassword, newPassword);
   }
 
   Future<void> fetchCurrentUserProfile() async {
@@ -105,14 +105,19 @@ class Repository {
   Future<String> uploadAvatar(File imageFile, String username) async {
     String fileName = username + '-' + DateTime.now().toString();
     StorageReference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child(fileName);
+        FirebaseStorage.instance.ref().child(fileName);
     StorageUploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
     StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
     return await taskSnapshot.ref.getDownloadURL();
   }
 
-  Future<UserModel> saveProfile(UserModel user, String fullName, String phoneNumber, String address,
-      DateTime birthday, String avatar) async {
+  Future<UserModel> saveProfile(
+      UserModel user,
+      String fullName,
+      String phoneNumber,
+      String address,
+      DateTime birthday,
+      String avatar) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
     return await _userProvider.editUserProfile(
@@ -214,14 +219,15 @@ class Repository {
     });
 
     return await _billProvider.createBill(_currentUser.stores[0].id, token,
-        tableNumber, dishIds, dishNotes, dishQuantities, note: currentCart?.note, discountCode: currentCart.discountCode?.code);
+        tableNumber, dishIds, dishNotes, dishQuantities,
+        note: currentCart?.note, discountCode: currentCart.discountCode?.code);
   }
 
   Future<List<BillModel>> getAllBillStaff() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
     return await _billProvider.getAllStaff(token);
-}
+  }
 
   Future<List<BillModel>> updateDiscountCode(String discountCode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

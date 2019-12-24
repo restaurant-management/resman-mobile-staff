@@ -12,9 +12,9 @@ class DishListChef extends StatefulWidget {
 
   const DishListChef(
       {Key key,
-        this.headerHeight,
-        this.footerHeight,
-        @required this.billDetails})
+      this.headerHeight,
+      this.footerHeight,
+      @required this.billDetails})
       : assert(billDetails != null),
         super(key: key);
 
@@ -40,8 +40,8 @@ class _DishListChefState extends State<DishListChef> {
               children: <Widget>[
                 headerHeight != null
                     ? SizedBox(
-                  height: headerHeight,
-                )
+                        height: headerHeight,
+                      )
                     : Container(),
                 DishItemChef(
                   billDishModel: items[index],
@@ -56,8 +56,8 @@ class _DishListChefState extends State<DishListChef> {
                 ),
                 footerHeight != null
                     ? SizedBox(
-                  height: footerHeight + 8,
-                )
+                        height: footerHeight + 8,
+                      )
                     : Container(),
               ],
             );

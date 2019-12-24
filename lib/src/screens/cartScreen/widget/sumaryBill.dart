@@ -56,17 +56,22 @@ class _SummaryBillState extends State<SummaryBill> {
                               var listDishes = _cartBloc.currentCart.listDishes;
                               double sum = 0;
                               for (int i = 0; i < listDishes.length; i++) {
-                                sum +=
-                                    listDishes[i].quantity * listDishes[i].price;
+                                sum += listDishes[i].quantity *
+                                    listDishes[i].price;
                               }
 
-                              if (_cartBloc.currentCart.discountCode != null)
-                                {
-                                  double discount = sum * _cartBloc.currentCart.discountCode.discount/100;
-                                  if (discount > _cartBloc.currentCart.discountCode.maxPriceDiscount)
-                                    discount = _cartBloc.currentCart.discountCode.maxPriceDiscount;
-                                  sum -= discount;
-                                }
+                              if (_cartBloc.currentCart.discountCode != null) {
+                                double discount = sum *
+                                    _cartBloc
+                                        .currentCart.discountCode.discount /
+                                    100;
+                                if (discount >
+                                    _cartBloc.currentCart.discountCode
+                                        .maxPriceDiscount)
+                                  discount = _cartBloc.currentCart.discountCode
+                                      .maxPriceDiscount;
+                                sum -= discount;
+                              }
 
                               return Text('${sum.round() ?? 0} VNĐ');
                             }
@@ -95,21 +100,27 @@ class _SummaryBillState extends State<SummaryBill> {
                           builder: (BuildContext context, state) {
                             if (state is CartBlocSaved ||
                                 state is CartBlocFetched) {
-                            var discountText = 'Mã giảm giá?';
-                            if (_cartBloc.currentCart.discountCode != null)
-                            {
-                              discountText = _cartBloc.currentCart.discountCode.code;
+                              var discountText = 'Mã giảm giá?';
+                              if (_cartBloc.currentCart.discountCode != null) {
+                                discountText =
+                                    _cartBloc.currentCart.discountCode.code;
+                              }
+                              return Text(
+                                discountText,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                                overflow: TextOverflow.ellipsis,
+                              );
                             }
                             return Text(
-                              discountText,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
-                              overflow: TextOverflow.ellipsis,
-                            );
-                            }
-                            return Text(
-                                'Mã giảm giá?',
-                              style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+                              'Mã giảm giá?',
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                             );
                           },
                         ),

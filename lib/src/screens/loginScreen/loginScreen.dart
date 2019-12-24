@@ -10,7 +10,6 @@ import 'package:resman_mobile_staff/src/screens/homeScreen/homeScreenWareManager
 
 import '../../blocs/authenticationBloc/bloc.dart';
 import '../../blocs/loginBloc/bloc.dart';
-
 import 'widgets/imageBackground.dart';
 import 'widgets/loginForm.dart';
 
@@ -27,6 +26,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   LoginBloc _loginBloc;
+
   // ignore: close_sinks
   CurrentUserBloc _currentUserBloc;
   bool isLoading;
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (BuildContext context, userState) {
         if (userState is CurrentUserProfileFetched) {
           userState.user?.roles?.forEach(
-                (role) {
+            (role) {
               if (role.slug == EnvVariables.StaffRole) {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (BuildContext context) => HomeScreenChef(),
                   ),
                 );
-              }else if (role.slug == EnvVariables.WareManagerRole) {
+              } else if (role.slug == EnvVariables.WareManagerRole) {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (BuildContext context) => HomeScreenWareManager(),
@@ -93,21 +93,21 @@ class _LoginScreenState extends State<LoginScreen> {
             PageView.builder(
               controller: controller,
               itemBuilder: (context, position) {
-                  return Transform(
-                    transform: Matrix4.identity()
-                      ..rotateY(currentPageValue - position)
-                      ..rotateZ(currentPageValue - position),
-                    child: LoginForm(
-                      loginBloc: _loginBloc,
-                      authenticationBloc: _authenticationBloc,
-                      onTap: () {
-                        controller.animateToPage(1,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.decelerate);
-                      },
-                    ),
-                  );
-                },
+                return Transform(
+                  transform: Matrix4.identity()
+                    ..rotateY(currentPageValue - position)
+                    ..rotateZ(currentPageValue - position),
+                  child: LoginForm(
+                    loginBloc: _loginBloc,
+                    authenticationBloc: _authenticationBloc,
+                    onTap: () {
+                      controller.animateToPage(1,
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.decelerate);
+                    },
+                  ),
+                );
+              },
               itemCount: 1,
             ),
           ],

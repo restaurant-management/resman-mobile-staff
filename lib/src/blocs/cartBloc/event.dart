@@ -69,6 +69,7 @@ class AddDiscountCode extends CartBlocEvent {
   final String discountCode;
 
   AddDiscountCode(this.discountCode);
+
   @override
   String toString() => 'CreateBillFromCart';
 
@@ -83,6 +84,7 @@ class CreateBillFromCart extends CartBlocEvent {
   final String voucherCode;
 
   CreateBillFromCart(this.tableNumber, {this.voucherCode, this.discountCode});
+
   @override
   String toString() => 'CreateBillFromCart';
 

@@ -28,7 +28,8 @@ class CartDishModel {
     _price = parseJson['price'];
   }
 
-  CartDishModel.fromDailyDish(DailyDishModel dailyDish, {int quantity = 1, note = ""}) {
+  CartDishModel.fromDailyDish(DailyDishModel dailyDish,
+      {int quantity = 1, note = ""}) {
     _dishId = dailyDish.dish.dishId;
     _quantity = quantity;
     _price = dailyDish.dish.defaultPrice;

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../../models/dailyDishModel.dart';
 
 abstract class DailyDishState extends Equatable {

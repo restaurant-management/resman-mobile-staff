@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 class GraphClient {
-  final String _apiUrl = 'https://resman-web-admin-api.herokuapp.com/graph?lng=vi';
+  final String _apiUrl =
+      'https://resman-web-admin-api.herokuapp.com/graph?lng=vi';
   Map<String, String> _headers;
   Map<String, String> _body;
   Client _client;
@@ -31,7 +32,7 @@ class GraphClient {
 
   connect() async {
     final response =
-    await _client.post(_apiUrl, headers: _headers, body: _body);
+        await _client.post(_apiUrl, headers: _headers, body: _body);
     final decoded = jsonDecode(response.body);
 
     _client.close();

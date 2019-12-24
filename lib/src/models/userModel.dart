@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/models/storeModel.dart';
+
 import 'roleModel.dart';
 
 class UserModel extends Equatable {

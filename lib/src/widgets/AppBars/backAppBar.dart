@@ -43,7 +43,7 @@ class _BackAppBarState extends State<BackAppBar> {
     return AppBar(
       flexibleSpace: Container(
         decoration: BoxDecoration(
-            gradient: GradientColor.of(context).primaryLinearGradient,
+          gradient: GradientColor.of(context).primaryLinearGradient,
         ),
       ),
       elevation: 4,

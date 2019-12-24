@@ -29,25 +29,25 @@ class _AddCartButtonState extends State<AddCartButton> {
       child: Container(
         height: 50,
         decoration: BoxDecoration(
-          gradient: GradientColor.of(context).primaryLinearGradient
-        ),
+            gradient: GradientColor.of(context).primaryLinearGradient),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             isCreating
                 ? CircularProgressIndicator(
-              backgroundColor: Colors.white,
-            )
+                    backgroundColor: Colors.white,
+                  )
                 : Icon(
-              Icons.add_shopping_cart,
-              color: Theme.of(context).colorScheme.onPrimary,
-            ),
+                    Icons.add_shopping_cart,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
             SizedBox(
               width: 8,
             ),
             Text(
               'Thêm vào hoá đơn',
-              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 20),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary, fontSize: 20),
             )
           ],
         ),

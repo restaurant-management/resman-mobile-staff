@@ -11,12 +11,12 @@ class BillStatus extends BaseEnum {
 
   BillStatus(String value)
       : super(value, [
-    'created',
-    'paid',
-    'preparing',
-    'prepare-done',
-    'delivering',
-    'shipping',
-    'complete',
-  ]);
+          'created',
+          'paid',
+          'preparing',
+          'prepare-done',
+          'delivering',
+          'shipping',
+          'complete',
+        ]);
 }

@@ -15,9 +15,14 @@ class SaveNewProfile extends EditProfileBlocEvent {
   final String address;
   final File newAvatar;
 
-  SaveNewProfile(this.currentUser, this.newFullName, this.newBirthday,
-      this.newPhoneNumber,  this.newAvatar, this.address,)
-      : super([currentUser, newFullName, newBirthday, newPhoneNumber, newAvatar]);
+  SaveNewProfile(
+    this.currentUser,
+    this.newFullName,
+    this.newBirthday,
+    this.newPhoneNumber,
+    this.newAvatar,
+    this.address,
+  ) : super([currentUser, newFullName, newBirthday, newPhoneNumber, newAvatar]);
 
   @override
   String toString() => 'SaveNewProfile';

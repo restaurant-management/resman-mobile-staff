@@ -1,8 +1,7 @@
-
 import 'package:equatable/equatable.dart';
 
-import 'dishModel.dart';
 import '../enums/daySession.dart';
+import 'dishModel.dart';
 
 class DailyDishModel extends Equatable {
   DateTime _day;

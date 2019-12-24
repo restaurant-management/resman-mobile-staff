@@ -17,8 +17,7 @@ class BillItemInitialize extends BillItemState {
 class BillItemUpdatingStatus extends BillItemState {
   final BillModel bill;
 
-  BillItemUpdatingStatus(this.bill)
-      : super([bill]);
+  BillItemUpdatingStatus(this.bill) : super([bill]);
 
   @override
   String toString() => 'BillItemUpdatingStatus';

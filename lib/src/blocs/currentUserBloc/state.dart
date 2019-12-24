@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 
 abstract class CurrentUserState extends Equatable {
-  CurrentUserState([List props = const[]]) : super();
+  CurrentUserState([List props = const []]) : super();
 }
 
 class CurrentUserProfileEmpty extends CurrentUserState {
@@ -37,7 +37,6 @@ class CurrentUserProfileFetched extends CurrentUserState {
 }
 
 class CurrentUserProfileFetchFailure extends CurrentUserState {
-
   final String error;
 
   CurrentUserProfileFetchFailure(this.error) : super([error]);

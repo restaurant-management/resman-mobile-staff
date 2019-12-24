@@ -1,11 +1,10 @@
-class GraphQuery
-{
+class GraphQuery {
   static String changeProfile(
       {String avatar,
-        String fullName,
-        String phoneNumber,
-        DateTime birthday,
-        String address}) {
+      String fullName,
+      String phoneNumber,
+      DateTime birthday,
+      String address}) {
     return '''
     mutation {
       changeProfileAsUser(

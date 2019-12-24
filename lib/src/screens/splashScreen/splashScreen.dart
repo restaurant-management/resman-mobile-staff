@@ -87,7 +87,9 @@ class _SplashScreenState extends State<SplashScreen> {
             if (state is CurrentUserProfileFetchFailure) {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (BuildContext context) => LoginScreen(authenticationBloc: authenticationBloc,),
+                  builder: (BuildContext context) => LoginScreen(
+                    authenticationBloc: authenticationBloc,
+                  ),
                 ),
               );
             }

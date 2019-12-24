@@ -32,17 +32,15 @@ class _BillDetailScreenChefState extends State<BillDetailScreenChef> {
         showShoppingCart: false,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body:
-      DishListChef(
-            billDetails: FakeData.billDishes,
-          ),
+      body: DishListChef(
+        billDetails: FakeData.billDishes,
+      ),
 //      bottomNavigationBar: SizedBox(
 //          height: 56,
 //          child: SummaryBill(
 //            billDetails: FakeData.billDishes,
 //          )),
     );
-
   }
 
   @override

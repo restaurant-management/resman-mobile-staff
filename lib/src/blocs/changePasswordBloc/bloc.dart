@@ -17,7 +17,8 @@ class ChangePasswordBloc
     if (event is ChangePasswordEvent) {
       yield ChangePasswordBlocChanging();
       try {
-        await _repository.changeUserPassword(event.oldPassword, event.newPassword);
+        await _repository.changeUserPassword(
+            event.oldPassword, event.newPassword);
         yield ChangePasswordBlocChanged();
       } catch (e) {
         yield ChangePasswordBlocFailure(e.toString());

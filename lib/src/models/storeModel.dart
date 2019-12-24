@@ -14,7 +14,6 @@ class StoreModel extends Equatable {
   DateTime _openTime;
   DateTime _closeTime;
 
-
   @override
   // TODO: implement props
   List<Object> get props => [_id];

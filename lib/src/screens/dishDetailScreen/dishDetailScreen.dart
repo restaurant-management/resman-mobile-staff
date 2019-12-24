@@ -18,7 +18,7 @@ class DishDetailScreen extends StatefulWidget {
 
   const DishDetailScreen({Key key, this.dishModal, this.dailyDish})
       : assert((dishModal == null || dailyDish == null) &&
-      (dishModal != null || dailyDish != null)),
+            (dishModal != null || dailyDish != null)),
         super(key: key);
 
   @override
@@ -59,8 +59,8 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
       endDrawer: CartDrawer(),
       bottomNavigationBar: widget.dailyDish != null
           ? AddCartButton(
-        dailyDish: widget.dailyDish,
-      )
+              dailyDish: widget.dailyDish,
+            )
           : Container(),
       body: SingleChildScrollView(
         child: Column(
@@ -103,13 +103,13 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
                   IconButton(
                     icon: liked
                         ? Icon(
-                      Icons.favorite,
-                      color: primaryColor,
-                    )
+                            Icons.favorite,
+                            color: primaryColor,
+                          )
                         : Icon(
-                      Icons.favorite_border,
-                      color: Colors.black,
-                    ),
+                            Icons.favorite_border,
+                            color: Colors.black,
+                          ),
                     onPressed: () {
                       setState(() {
                         liked = !liked;

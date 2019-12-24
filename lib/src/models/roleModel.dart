@@ -20,7 +20,6 @@ class RoleModel extends Equatable {
 
   int get level => _level;
 
-
   RoleModel.fromJson(Map<String, dynamic> parsedJson) {
     _slug = parsedJson['slug'];
     _name = parsedJson['name'];

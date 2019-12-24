@@ -7,6 +7,7 @@ import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
+
 import 'sumaryBill.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';
 
@@ -100,11 +101,9 @@ class _CartFooterState extends State<CartFooter> {
                 try {
                   _cartBloc.add(CreateBillFromCart(tableNumber));
                   _showCreateSuccess();
-                }catch(e)
-                {
+                } catch (e) {
                   _showCreateFail();
                 }
-
               },
             ),
           ],
@@ -184,7 +183,7 @@ class _CartFooterState extends State<CartFooter> {
               child: new Text(
                 "Đóng",
                 style:
-                TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -220,7 +219,7 @@ class _CartFooterState extends State<CartFooter> {
                     TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               ),
               onPressed: () {
-                note="";
+                note = "";
                 Navigator.of(context).pop();
                 _showSelectTableNumber();
               },

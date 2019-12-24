@@ -10,6 +10,7 @@ class CurrentUserBloc extends Bloc<CurrentUserEvent, CurrentUserState> {
   final Repository _repository = Repository();
 
   List<RoleModel> _roles;
+
   List<RoleModel> get getRoles => _roles;
 
   CurrentUserBloc._internal();

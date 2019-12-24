@@ -191,8 +191,8 @@ class _CartListState extends State<CartList> {
                     color: Theme.of(context).primaryColor,
                     child: new Text(
                       "Oke",
-                      style:
-                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();

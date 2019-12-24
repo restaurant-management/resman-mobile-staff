@@ -68,7 +68,9 @@ class _CartItemState extends State<CartItem> {
     });
     final primaryColor = Theme.of(context).primaryColor;
     return GestureDetector(
-      onTap: () { _showNote(cartDish.dishId);},
+      onTap: () {
+        _showNote(cartDish.dishId);
+      },
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         shape: RoundedRectangleBorder(
@@ -79,7 +81,8 @@ class _CartItemState extends State<CartItem> {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20), topLeft: Radius.circular(20)),
+                  bottomLeft: Radius.circular(20),
+                  topLeft: Radius.circular(20)),
               child: BlocBuilder(
                 bloc: _cartItemBloc,
                 builder: (BuildContext context, state) {
@@ -231,7 +234,7 @@ class _CartItemState extends State<CartItem> {
               child: new Text(
                 "Hủy bỏ",
                 style:
-                TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               ),
               onPressed: () {
                 note = "";
@@ -245,7 +248,7 @@ class _CartItemState extends State<CartItem> {
               child: new Text(
                 "Xác nhận",
                 style:
-                TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                    TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               ),
               onPressed: () {
                 note = noteTextFieldController.text ?? "";

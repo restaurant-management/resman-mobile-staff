@@ -12,13 +12,13 @@ class LoadingButton extends StatefulWidget {
 
   LoadingButton(
       {Key key,
-        this.onPressed,
-        this.child,
-        this.width,
-        this.height,
-        this.color,
-        this.loadingIconSize,
-        this.widthTurnOnIcon})
+      this.onPressed,
+      this.child,
+      this.width,
+      this.height,
+      this.color,
+      this.loadingIconSize,
+      this.widthTurnOnIcon})
       : super(key: key);
 
   @override
@@ -51,8 +51,8 @@ class LoadingButtonState extends State<LoadingButton>
     super.initState();
     _buttonController = new AnimationController(
         duration: new Duration(milliseconds: 1000), vsync: this)
-      ..addStatusListener((state){
-        if(state == AnimationStatus.completed){
+      ..addStatusListener((state) {
+        if (state == AnimationStatus.completed) {
           onPressed?.call();
         }
       });
@@ -104,20 +104,20 @@ class LoadingButtonState extends State<LoadingButton>
                 _playAnimation();
               },
               child: _buttonSqueezeAnimation.value >
-                  (widthTurnOnIcon != null ? widthTurnOnIcon : 75.0)
+                      (widthTurnOnIcon != null ? widthTurnOnIcon : 75.0)
                   ? title != null ? title : Container()
                   : SizedBox(
-                  height: loadingIconSize != null ? loadingIconSize : 30,
-                  width: loadingIconSize != null ? loadingIconSize : 30,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 1.0,
-                    valueColor:
-                    new AlwaysStoppedAnimation<Color>(Colors.white),
-                  ))),
+                      height: loadingIconSize != null ? loadingIconSize : 30,
+                      width: loadingIconSize != null ? loadingIconSize : 30,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1.0,
+                        valueColor:
+                            new AlwaysStoppedAnimation<Color>(Colors.white),
+                      ))),
         ));
   }
 
-  loadingComplete(){
+  loadingComplete() {
     _buttonController.reverse();
   }
 }

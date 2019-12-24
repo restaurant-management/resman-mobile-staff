@@ -26,7 +26,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
   ScrollController scrollController;
   final tabList = ['Hóa đơn', 'Đang chuẩn bị'];
   TabController _tabController;
-  List<BillModel> unStageBill  = new List<BillModel>();
+  List<BillModel> unStageBill = new List<BillModel>();
   List<BillModel> stageBill = new List<BillModel>();
 
   void onpress() {

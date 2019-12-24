@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+
 import '../../repositories/reponsitory.dart';
 import '../authenticationBloc/bloc.dart';
 import '../authenticationBloc/event.dart';
@@ -25,7 +26,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       try {
         final token = await _repository.authenticate(
-            usernameOrEmail: event.usernameOrEmail,
+          usernameOrEmail: event.usernameOrEmail,
           password: event.password,
         );
         authenticationBloc.add(LoggedIn(event.usernameOrEmail, token));

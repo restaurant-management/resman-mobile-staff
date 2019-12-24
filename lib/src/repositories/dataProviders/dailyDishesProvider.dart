@@ -5,8 +5,6 @@ import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class DailyDishProvider {
   static String apiUrl = EnvVariables.apiUrl;
   Client client = Client();
@@ -14,10 +12,11 @@ class DailyDishProvider {
   Future<List<DailyDishModel>> getAll() async {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': (await SharedPreferences.getInstance()).getString(EnvVariables.PrepsTokenKey),
+      'Authorization': (await SharedPreferences.getInstance())
+          .getString(EnvVariables.PrepsTokenKey),
     };
-    final response =
-    await client.get('$apiUrl/api/daily_dishes/today?storeId=1', headers: headers);
+    final response = await client
+        .get('$apiUrl/api/daily_dishes/today?storeId=1', headers: headers);
     if (response.statusCode == 200) {
       List<DailyDishModel> result = [];
       List<dynamic> list = jsonDecode(response.body);

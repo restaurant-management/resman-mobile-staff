@@ -16,12 +16,13 @@ class ListImport extends StatefulWidget {
 
 class _ListImportState extends State<ListImport> {
   List<StockModel> get items => widget.items;
+
   double get headerHeight => widget.headerHeight;
+
   double get footerHeight => widget.footerHeight;
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       height: 200,
       child: ListView.builder(
@@ -37,7 +38,7 @@ class _ListImportState extends State<ListImport> {
                       )
                     : Container(),
                 ImportItem(
-                    stockModel: items[index],
+                  stockModel: items[index],
                 ),
               ],
             );

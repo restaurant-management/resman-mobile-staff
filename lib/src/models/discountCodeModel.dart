@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 class DiscountCodeModel extends Equatable {
@@ -26,7 +25,8 @@ class DiscountCodeModel extends Equatable {
         ? DateTime.tryParse(jsonParsed["endAt"])
         : null;
     _minBillPrice = double.tryParse(jsonParsed["minBillPrice"].toString());
-    _maxPriceDiscount = double.tryParse(jsonParsed["maxPriceDiscount"].toString());
+    _maxPriceDiscount =
+        double.tryParse(jsonParsed["maxPriceDiscount"].toString());
     _discount = double.tryParse(jsonParsed["discount"].toString());
   }
 

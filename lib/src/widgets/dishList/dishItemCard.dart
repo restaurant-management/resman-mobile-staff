@@ -57,17 +57,17 @@ class _DishItemCardState extends State<DishItemCard> {
                 ),
               ),
               widget.dailyDish.dish.price > 0 &&
-                  widget.dailyDish.dish.price -
-                      widget.dailyDish.dish.defaultPrice <
-                      0 &&
-                  widget.dailyDish.dish.defaultPrice != 0
+                      widget.dailyDish.dish.price -
+                              widget.dailyDish.dish.defaultPrice <
+                          0 &&
+                      widget.dailyDish.dish.defaultPrice != 0
                   ? _buildDiscount(
-                  discount: ((widget.dailyDish.dish.price -
-                      widget.dailyDish.dish.defaultPrice) *
-                      100 /
-                      widget.dailyDish.dish.defaultPrice)
-                      .round()
-                      .toString())
+                      discount: ((widget.dailyDish.dish.price -
+                                  widget.dailyDish.dish.defaultPrice) *
+                              100 /
+                              widget.dailyDish.dish.defaultPrice)
+                          .round()
+                          .toString())
                   : Container(),
             ]),
             Padding(
@@ -108,11 +108,11 @@ class _DishItemCardState extends State<DishItemCard> {
                           ),
                           price != null && price > 0 && price < defaultPrice
                               ? Text(
-                            '$defaultPrice VNĐ',
-                            style: TextStyle(
-                                color: Colors.grey,
-                                decoration: TextDecoration.lineThrough),
-                          )
+                                  '$defaultPrice VNĐ',
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      decoration: TextDecoration.lineThrough),
+                                )
                               : Container(),
                         ],
                       ),
@@ -142,16 +142,16 @@ class _DishItemCardState extends State<DishItemCard> {
                 onPressed: _loading
                     ? null
                     : () {
-                  CartBloc().add(AddDishIntoCart(widget.dailyDish));
-                  setState(() {
-                    _loading = true;
-                    Future.delayed(Duration(seconds: 1)).then((_) {
-                      setState(() {
-                        _loading = false;
-                      });
-                    });
-                  });
-                },
+                        CartBloc().add(AddDishIntoCart(widget.dailyDish));
+                        setState(() {
+                          _loading = true;
+                          Future.delayed(Duration(seconds: 1)).then((_) {
+                            setState(() {
+                              _loading = false;
+                            });
+                          });
+                        });
+                      },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -160,12 +160,12 @@ class _DishItemCardState extends State<DishItemCard> {
                       height: 20,
                       child: _loading
                           ? CircularProgressIndicator(
-                        strokeWidth: 1,
-                      )
+                              strokeWidth: 1,
+                            )
                           : Icon(
-                        Icons.add_shopping_cart,
-                        color: primaryColor,
-                      ),
+                              Icons.add_shopping_cart,
+                              color: primaryColor,
+                            ),
                     ),
                     SizedBox(
                       width: 8,
@@ -187,23 +187,23 @@ class _DishItemCardState extends State<DishItemCard> {
   Widget _buildDiscount({String discount = ''}) {
     return discount != ''
         ? Positioned(
-      right: 5,
-      top: 5,
-      width: 40,
-      height: 40,
-      child: Stack(children: <Widget>[
-        Image.asset(
-          'assets/icons/sticker.png',
-          fit: BoxFit.cover,
-        ),
-        Center(
-          child: Text(
-            '$discount%',
-            style: TextStyle(color: Colors.white),
-          ),
-        )
-      ]),
-    )
+            right: 5,
+            top: 5,
+            width: 40,
+            height: 40,
+            child: Stack(children: <Widget>[
+              Image.asset(
+                'assets/icons/sticker.png',
+                fit: BoxFit.cover,
+              ),
+              Center(
+                child: Text(
+                  '$discount%',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ]),
+          )
         : SizedBox();
   }
 }

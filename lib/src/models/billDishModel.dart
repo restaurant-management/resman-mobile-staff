@@ -40,7 +40,8 @@ class BillDishModel extends Equatable {
     _dish = DishModal.fromJson(json["dish"]);
   }
 
-  BillDishModel.fromDailyDish(DailyDishModel dailyDish, String note, int quantity) {
+  BillDishModel.fromDailyDish(
+      DailyDishModel dailyDish, String note, int quantity) {
     _note = note;
     _quantity = quantity;
     _dish = dailyDish.dish;

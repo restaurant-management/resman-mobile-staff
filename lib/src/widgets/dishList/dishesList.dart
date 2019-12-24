@@ -51,8 +51,8 @@ class _DishesListState extends State<DishesList> {
               flex: 1,
               child: i + 1 < listDailyDish.length
                   ? DishItemCard(
-                dailyDish: listDailyDish[i + 1],
-              )
+                      dailyDish: listDailyDish[i + 1],
+                    )
                   : Container(),
             ),
           ],

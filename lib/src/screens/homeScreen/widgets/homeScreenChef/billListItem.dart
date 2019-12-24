@@ -7,7 +7,6 @@ import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScree
 
 import '../../../../../FakeData.dart';
 
-
 class BillListItem extends StatefulWidget {
   final BillModel bill;
   final int count;
@@ -27,11 +26,8 @@ class _BillListItemState extends State<BillListItem> {
     final primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => BillDetailScreen(
-                )));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BillDetailScreen()));
       },
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -71,8 +67,8 @@ class _BillListItemState extends State<BillListItem> {
                     margin: EdgeInsets.all(0),
                     color: Colors.teal,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20))),
+                        borderRadius:
+                            BorderRadius.only(bottomLeft: Radius.circular(20))),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
@@ -132,7 +128,8 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(DateFormat('hh:mm dd/MM/yyyy').format(bill.createAt))
+                        Text(DateFormat('hh:mm dd/MM/yyyy')
+                            .format(bill.createAt))
                       ],
                     ),
                   ),
@@ -145,10 +142,10 @@ class _BillListItemState extends State<BillListItem> {
       ),
     );
   }
-  Widget _buildButton(BuildContext context, BillModel bill) {
 
-    return _buildButtonWidget('Xác nhận chuẩn bị', increaseWidthBy: 90,
-        onPressed: widget.onPressed);
+  Widget _buildButton(BuildContext context, BillModel bill) {
+    return _buildButtonWidget('Xác nhận chuẩn bị',
+        increaseWidthBy: 90, onPressed: widget.onPressed);
   }
 
   Widget _buildButtonWidget(String text,
@@ -186,8 +183,7 @@ class _BillListItemState extends State<BillListItem> {
       return 'Chưa thanh toán';
     else if (status == "Preparing")
       return 'Đang chuẩn bị';
-    else if (status == "Ordered")
-      return 'Chuẩn bị xong';
+    else if (status == "Ordered") return 'Chuẩn bị xong';
     return 'Đã hoàn thành';
   }
 }

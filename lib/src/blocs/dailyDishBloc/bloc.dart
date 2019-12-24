@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import '../../repositories/reponsitory.dart';
 
+import '../../repositories/reponsitory.dart';
 import 'event.dart';
 import 'state.dart';
 
@@ -11,7 +11,7 @@ class DailyDishBloc extends Bloc<DailyDishEvent, DailyDishState> {
 
   static DailyDishBloc _singleton = DailyDishBloc._internal();
 
-  factory DailyDishBloc(){
+  factory DailyDishBloc() {
     return _singleton;
   }
 

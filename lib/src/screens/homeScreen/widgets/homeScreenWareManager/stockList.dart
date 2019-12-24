@@ -51,8 +51,9 @@ class _StockListState extends State<StockList> {
                               widget.headerContent,
                               style: TextStyles.h4Headline.merge(
                                 TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.onBackground,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
                                 ),
                               ),
                             ),

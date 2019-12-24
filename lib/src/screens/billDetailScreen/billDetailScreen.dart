@@ -14,6 +14,7 @@ class BillDetailScreen extends StatefulWidget {
   final BillModel bill;
 
   const BillDetailScreen({Key key, this.bill}) : super(key: key);
+
   @override
   _BillDetailScreenState createState() => _BillDetailScreenState();
 }
@@ -32,20 +33,20 @@ class _BillDetailScreenState extends State<BillDetailScreen> {
     //Fake data
 
     return DrawerScaffold(
-      appBar: BackAppBar(tittle: "Thông tin hóa đơn",),
+      appBar: BackAppBar(
+        tittle: "Thông tin hóa đơn",
+      ),
 //      floatingActionButton: SecondaryCartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body:
-      DishList(
-            billDetails: FakeData.billDishes,
-          ),
+      body: DishList(
+        billDetails: FakeData.billDishes,
+      ),
       bottomNavigationBar: SizedBox(
           height: 61,
           child: SummaryBill(
             billDetails: FakeData.billDishes,
           )),
     );
-
   }
 
   @override

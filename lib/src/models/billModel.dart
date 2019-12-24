@@ -25,26 +25,19 @@ class BillModel extends Equatable {
   UserModel _updateBy;
   List<BillDishModel> _dishes;
 
-
   BillModel.fromJson(Map<String, dynamic> json) {
-    _updateAt = json['updateAt'] != null
-        ? DateTime.parse(json['updateAt'])
-        : null;
-    _insertAt = json['insertAt'] != null
-        ? DateTime.parse(json['insertAt'])
-        : null;
-    _deleteAt = json['deleteAt'] != null
-        ? DateTime.parse(json['deleteAt'])
-        : null;
-    _createAt = json['createAt'] != null
-        ? DateTime.parse(json['createAt'])
-        : null;
-    _prepareAt = json['prepareAt'] != null
-        ? DateTime.parse(json['prepareAt'])
-        : null;
-    _collectAt = json['collectAt'] != null
-        ? DateTime.parse(json['collectAt'])
-        : null;
+    _updateAt =
+        json['updateAt'] != null ? DateTime.parse(json['updateAt']) : null;
+    _insertAt =
+        json['insertAt'] != null ? DateTime.parse(json['insertAt']) : null;
+    _deleteAt =
+        json['deleteAt'] != null ? DateTime.parse(json['deleteAt']) : null;
+    _createAt =
+        json['createAt'] != null ? DateTime.parse(json['createAt']) : null;
+    _prepareAt =
+        json['prepareAt'] != null ? DateTime.parse(json['prepareAt']) : null;
+    _collectAt =
+        json['collectAt'] != null ? DateTime.parse(json['collectAt']) : null;
   }
 
   String getStatus() {

@@ -15,7 +15,7 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
     if (event is FetchCartItemDetail) {
       var dishesToday = _repository.dailyDish;
       var result = dishesToday.firstWhere(
-              (dish) => dish.dish.dishId == event.cartDish.dishId,
+          (dish) => dish.dish.dishId == event.cartDish.dishId,
           orElse: () => null);
       if (result == null) {
         yield CartItemToFetchDetailNotSellToDay(event.cartDish);
@@ -24,5 +24,4 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
       }
     }
   }
-
 }
