@@ -46,7 +46,7 @@ class CartBlocAddedDiscount extends CartBlocState {
 
   @override
   String toString() =>
-      'CartBlocAddedDiscount (discountCode: ${discount.code}, value: ${discount.discount})';
+      'CartBlocAddedDiscount (discountCode: ${discount.code ?? ""}, value: ${discount.discount ?? ""})';
 
   @override
   // TODO: implement props

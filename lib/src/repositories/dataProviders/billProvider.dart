@@ -11,7 +11,7 @@ class BillProvider {
   static String apiUrl = EnvVariables.apiUrl;
   Client client = Client();
 
-  Future<List<BillModel>> getAll(String token) async {
+  Future<List<BillModel>> getAllStaff(String token) async {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': token

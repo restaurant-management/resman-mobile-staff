@@ -18,7 +18,7 @@ class BillBloc extends Bloc<BillBlocEvent, BillBlocState> {
       yield BillBlocFetching();
       try {
         var listBill;
-        listBill = await _repository.getAllBill();
+        listBill = await _repository.getAllBillStaff();
         yield BillBlocFetched(listBill);
       } catch (e) {
         yield BillBlocFetchFailure(e.toString());

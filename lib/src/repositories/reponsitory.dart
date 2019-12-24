@@ -214,14 +214,14 @@ class Repository {
     });
 
     return await _billProvider.createBill(_currentUser.stores[0].id, token,
-        tableNumber, dishIds, dishNotes, dishQuantities, note: currentCart.note, discountCode: currentCart.discountCode.code);
+        tableNumber, dishIds, dishNotes, dishQuantities, note: currentCart?.note, discountCode: currentCart.discountCode?.code);
   }
 
-  Future<List<BillModel>> getAllBill() async {
+  Future<List<BillModel>> getAllBillStaff() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
-    return await _billProvider.getAll(token);
-  }
+    return await _billProvider.getAllStaff(token);
+}
 
   Future<List<BillModel>> updateDiscountCode(String discountCode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

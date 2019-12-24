@@ -20,4 +20,16 @@ class GraphQuery
     }
     ''';
   }
+
+  static String getAllBillStaff() {
+    return '''
+    {
+      totalAllBillsByStaff(
+     
+      ) {
+        uuid
+      }
+    }
+    ''';
+  }
 }
