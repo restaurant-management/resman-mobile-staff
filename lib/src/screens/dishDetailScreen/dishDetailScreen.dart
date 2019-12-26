@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_images_slider/flutter_images_slider.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dishModel.dart';
+import 'package:resman_mobile_staff/src/screens/cartScreen/cartDrawer.dart';
 
 import '../../widgets/AppBars/backAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
@@ -17,7 +18,7 @@ class DishDetailScreen extends StatefulWidget {
 
   const DishDetailScreen({Key key, this.dishModal, this.dailyDish})
       : assert((dishModal == null || dailyDish == null) &&
-      (dishModal != null || dailyDish != null)),
+            (dishModal != null || dailyDish != null)),
         super(key: key);
 
   @override
@@ -55,10 +56,11 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return DrawerScaffold(
       appBar: BackAppBar(),
+      endDrawer: CartDrawer(),
       bottomNavigationBar: widget.dailyDish != null
           ? AddCartButton(
-        dailyDish: widget.dailyDish,
-      )
+              dailyDish: widget.dailyDish,
+            )
           : Container(),
       body: SingleChildScrollView(
         child: Column(
@@ -92,7 +94,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
-                      _dish.name,
+                      _dish.name ?? "Chưa cập nhật",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                       style: Theme.of(context).textTheme.headline,
@@ -101,13 +103,13 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
                   IconButton(
                     icon: liked
                         ? Icon(
-                      Icons.favorite,
-                      color: primaryColor,
-                    )
+                            Icons.favorite,
+                            color: primaryColor,
+                          )
                         : Icon(
-                      Icons.favorite_border,
-                      color: Colors.black,
-                    ),
+                            Icons.favorite_border,
+                            color: Colors.black,
+                          ),
                     onPressed: () {
                       setState(() {
                         liked = !liked;
@@ -122,7 +124,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
               child: Row(
                 children: <Widget>[
                   Text(
-                    '${_dish.defaultPrice} VNĐ',
+                    '${_dish.defaultPrice ?? 0}',
                     style: TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
@@ -141,7 +143,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
             ExpandedDetail(
               title: 'Chi tiết',
               child: Text(
-                _dish.description,
+                _dish.description ?? "Chưa cập nhật",
                 style: TextStyle(color: Colors.black),
               ),
               expand: true,

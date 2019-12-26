@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
-import 'package:resman_mobile_staff/src/models/billModel.dart';
 
 class DishItemChef extends StatefulWidget {
   final BillDishModel billDishModel;
@@ -17,9 +16,9 @@ class DishItemChef extends StatefulWidget {
 
 class _DishItemChefState extends State<DishItemChef> {
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
-
     final primaryColor = Theme.of(context).primaryColor;
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -67,11 +66,11 @@ class _DishItemChefState extends State<DishItemChef> {
           Column(
             children: <Widget>[
               CupertinoButton(
-                  child: Icon(
-                    Icons.check,
-                    color: isChecked ? Colors.green : Colors.grey,
-                  ),
-                  onPressed: () => setState(() => isChecked = !isChecked),
+                child: Icon(
+                  Icons.check,
+                  color: isChecked ? Colors.green : Colors.grey,
+                ),
+                onPressed: () => setState(() => isChecked = !isChecked),
               ),
             ],
           )

@@ -51,7 +51,7 @@ class _OutStockListState extends State<OutStockList> {
                 return Column(
                   children: <Widget>[
                     OutStockItem(
-                        cartDish: items[index],
+                      cartDish: items[index],
                     ),
                     footerHeight != null
                         ? SizedBox(
@@ -61,8 +61,8 @@ class _OutStockListState extends State<OutStockList> {
                   ],
                 );
               return OutStockItem(
-                    cartDish: items[index],
-                  );
+                cartDish: items[index],
+              );
             }),
 //        ListView.builder(
 //            scrollDirection: Axis.vertical,

@@ -17,8 +17,7 @@ class StockModel extends Equatable {
 
   List<String> get images => _images;
 
-  StockModel.fromJson(Map<String, dynamic> parsedJson)
-  {
+  StockModel.fromJson(Map<String, dynamic> parsedJson) {
     _name = parsedJson["name"];
     _price = parsedJson["price"];
     _remain = parsedJson["remain"];
@@ -31,5 +30,4 @@ class StockModel extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => [_name];
-
 }

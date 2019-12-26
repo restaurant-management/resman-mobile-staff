@@ -84,6 +84,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 },
               );
             }
+            if (state is CurrentUserProfileFetchFailure) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LoginScreen(
+                    authenticationBloc: authenticationBloc,
+                  ),
+                ),
+              );
+            }
             return null;
 //              this.setState(() => {
 //                loading = true;
@@ -108,7 +117,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: AnimationLogo(
                 animationTime: 1000,
                 onAnimationCompleted: () {
-                  authenticationBloc.dispatch(AppStarted());
+                  authenticationBloc.add(AppStarted());
                 },
               ),
             ),

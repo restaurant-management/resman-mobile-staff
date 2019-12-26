@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:resman_mobile_staff/src/models/billDishModel.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
-import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 
 import '../../../../../FakeData.dart';
 
-
 class BillListItem extends StatefulWidget {
-  final BillDishModel billDish;
+  final BillModel bill;
   final int count;
   final Function onPressed;
   final IconData icon;
 
-  BillListItem({Key key, this.billDish, this.count, this.onPressed, this.icon})
+  BillListItem({Key key, this.bill, this.count, this.onPressed, this.icon})
       : super(key: key);
 
   _BillListItemState createState() => _BillListItemState();
@@ -29,11 +26,8 @@ class _BillListItemState extends State<BillListItem> {
     final primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => BillDetailScreen(
-                )));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BillDetailScreen()));
       },
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -60,7 +54,7 @@ class _BillListItemState extends State<BillListItem> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: Text(
-                        'Mã: ${bill.billId}',
+                        'Mã: ${bill.id}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -73,8 +67,8 @@ class _BillListItemState extends State<BillListItem> {
                     margin: EdgeInsets.all(0),
                     color: Colors.teal,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20))),
+                        borderRadius:
+                            BorderRadius.only(bottomLeft: Radius.circular(20))),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
@@ -109,7 +103,7 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(bill.collectValue.toString())
+                        Text("10")
                       ],
                     ),
                   ),
@@ -134,7 +128,8 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(DateFormat('hh:mm dd/MM/yyyy').format(bill.createAt))
+                        Text(DateFormat('hh:mm dd/MM/yyyy')
+                            .format(bill.createAt))
                       ],
                     ),
                   ),
@@ -147,10 +142,10 @@ class _BillListItemState extends State<BillListItem> {
       ),
     );
   }
-  Widget _buildButton(BuildContext context, BillModel bill) {
 
-    return _buildButtonWidget('Xác nhận chuẩn bị', increaseWidthBy: 90,
-        onPressed: widget.onPressed);
+  Widget _buildButton(BuildContext context, BillModel bill) {
+    return _buildButtonWidget('Xác nhận chuẩn bị',
+        increaseWidthBy: 90, onPressed: widget.onPressed);
   }
 
   Widget _buildButtonWidget(String text,
@@ -188,8 +183,7 @@ class _BillListItemState extends State<BillListItem> {
       return 'Chưa thanh toán';
     else if (status == "Preparing")
       return 'Đang chuẩn bị';
-    else if (status == "Ordered")
-      return 'Chuẩn bị xong';
+    else if (status == "Ordered") return 'Chuẩn bị xong';
     return 'Đã hoàn thành';
   }
 }

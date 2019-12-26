@@ -15,10 +15,10 @@ class _MapFabState extends State<MapFab> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     _animationController =
-    AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-      ..addListener(() {
-        setState(() {});
-      });
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+          ..addListener(() {
+            setState(() {});
+          });
     _translateButton = Tween<double>(
       begin: _fabHeight,
       end: -14.0,
@@ -175,7 +175,7 @@ class _MapFabState extends State<MapFab> with SingleTickerProviderStateMixin {
         Transform(
           child: takePhoto(context),
           transform:
-          Matrix4.translationValues(0, _translateButton.value * 2, 0),
+              Matrix4.translationValues(0, _translateButton.value * 2, 0),
         ),
         Transform(
           child: fromGallery(context),

@@ -21,7 +21,7 @@ class _BillStatusItem extends State<BillStatusItem> {
             width: 80,
             decoration: BoxDecoration(
               color: Colors.transparent,
-              border: Border.all( width: 2, color: Colors.black),
+              border: Border.all(width: 2, color: Colors.black),
               borderRadius: const BorderRadius.all(const Radius.circular(10)),
             ),
             child: Center(

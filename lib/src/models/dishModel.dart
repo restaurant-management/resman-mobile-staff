@@ -5,6 +5,7 @@ class DishModal extends Equatable {
   String _name;
   String _description;
   List<String> _images;
+  int _price;
   int _defaultPrice;
 
   int get dishId => _dishId;
@@ -17,22 +18,21 @@ class DishModal extends Equatable {
 
   int get defaultPrice => _defaultPrice;
 
+  int get price => _price;
+
   DishModal.fromJson(Map<String, dynamic> parsedJson) {
-    _dishId = parsedJson['dishId'];
+    _dishId = parsedJson['id'];
     _name = parsedJson['name'];
     _description = parsedJson['description'];
     _images = (parsedJson['images'] as List<dynamic>)
         .map((e) => e.toString())
         .toList();
     _defaultPrice = parsedJson['defaultPrice'];
+    _price = parsedJson['price'];
   }
 
-//  static List<DishModal> fromDishesJsonString(String jsonString) {
-//
-//  }
-
   @override
-  String toString() => '{dishId: $_dishId, name: $_name}';
+//  String toString() => '{dishId: $_dishId, name: $_name}';
 
   @override
   List<Object> get props => null;

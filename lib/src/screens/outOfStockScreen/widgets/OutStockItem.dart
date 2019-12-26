@@ -18,11 +18,8 @@ class OutStockItem extends StatefulWidget {
 class _OutStockItemState extends State<OutStockItem> {
   CartDishModel get cartDish => widget.cartDish;
 
-  int _count;
-
   @override
   void initState() {
-    _count = cartDish.quantity;
     super.initState();
   }
 
@@ -39,7 +36,11 @@ class _OutStockItemState extends State<OutStockItem> {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               minSize: 20,
               color: Theme.of(context).colorScheme.secondary,
-              child: new Text("Close", style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
+              child: new Text(
+                "Close",
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -48,7 +49,12 @@ class _OutStockItemState extends State<OutStockItem> {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               minSize: 20,
               color: Theme.of(context).primaryColor,
-              child: new Text("Yes", style: TextStyle(color: Theme.of(context).colorScheme.onPrimary,),),
+              child: new Text(
+                "Yes",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

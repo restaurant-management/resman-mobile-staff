@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resman_mobile_staff/src/models/stockModel.dart';
 
-class StockItem extends StatefulWidget
-{
+class StockItem extends StatefulWidget {
   final StockModel stockModel;
 
   const StockItem({Key key, this.stockModel}) : super(key: key);
@@ -53,7 +52,8 @@ class _StockItemState extends State<StockItem> {
               SizedBox(
                 height: 10,
               ),
-              Text('${widget.stockModel.price} VND/${widget.stockModel.unit}'),
+              Text(
+                  '${widget.stockModel.price ?? "Chưa cập nhật"} / ${widget.stockModel.unit ?? "Chưa cập nhật"}'),
             ],
           ),
           Column(
@@ -63,15 +63,16 @@ class _StockItemState extends State<StockItem> {
                 width: 80,
                 child: Center(
                     child: Text(
-                      'Số lượng',
-                      style: TextStyle(color: colors.primaryColor),
-                    )),
+                  'Số lượng',
+                  style: TextStyle(color: colors.primaryColor),
+                )),
               ),
               SizedBox(
                   height: 30,
                   child: Row(
                     children: <Widget>[
-                      Text('${widget.stockModel.remain.toString()} ${widget.stockModel.unit}'),
+                      Text(
+                          '${widget.stockModel.remain.toString()} ${widget.stockModel.unit}'),
                     ],
                   )),
             ],

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../responsitories/responsitory.dart';
+import '../../repositories/reponsitory.dart';
 import '../authenticationBloc/bloc.dart';
 import '../authenticationBloc/event.dart';
 import 'event.dart';
@@ -26,11 +26,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       try {
         final token = await _repository.authenticate(
-            usernameOrEmail: event.usernameOrEmail,
-//          usernameOrEmail: "2",
+          usernameOrEmail: event.usernameOrEmail,
           password: event.password,
         );
-        authenticationBloc.dispatch(LoggedIn(event.usernameOrEmail, token));
+        authenticationBloc.add(LoggedIn(event.usernameOrEmail, token));
       } catch (e) {
         yield LoginFailure(error: e.toString());
       }

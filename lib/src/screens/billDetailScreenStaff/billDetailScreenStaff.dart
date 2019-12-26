@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
-import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/widgets/summaryBill.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/widgets/dishListStaff.dart';
+import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/widgets/summaryBill.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/backAppBar.dart';
 
-import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
 
 class BillDetailScreenStaff extends StatefulWidget {

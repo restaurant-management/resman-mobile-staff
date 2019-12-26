@@ -1,5 +1,5 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/animation.dart';
+import 'package:flutter/widgets.dart';
 
 class AnimationLogo extends StatefulWidget {
   final VoidCallback onAnimationCompleted;

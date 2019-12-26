@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/models/dishModel.dart';
 
 class BillDishModel extends Equatable {
@@ -7,6 +8,11 @@ class BillDishModel extends Equatable {
   DateTime _preparedAt;
   DateTime _deliveryAt;
   int _quantity;
+
+  set quantity(int value) {
+    _quantity = value;
+  }
+
   int _price;
   DishModal _dish;
 
@@ -32,12 +38,13 @@ class BillDishModel extends Equatable {
     _quantity = json["quantity"];
     _price = json["price"];
     _dish = DishModal.fromJson(json["dish"]);
-//    List<dynamic> dishDetail = json["dish"];
-//    _dish = [];
-//    for(int i=0; i<dishDetail.length; i++)
-//      {
-//        _dish.add(DishModal.fromJson(dishDetail[i]));
-//      }
+  }
+
+  BillDishModel.fromDailyDish(
+      DailyDishModel dailyDish, String note, int quantity) {
+    _note = note;
+    _quantity = quantity;
+    _dish = dailyDish.dish;
   }
 
   @override
@@ -47,4 +54,6 @@ class BillDishModel extends Equatable {
 
   @override
   List<Object> get props => [_billHistoryId];
+
+  BillDishModel();
 }

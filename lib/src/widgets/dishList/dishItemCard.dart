@@ -1,28 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-//import 'package:restaurant_management_mobile/src/blocs/cartBloc/bloc.dart';
-//import 'package:restaurant_management_mobile/src/blocs/cartBloc/event.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
-import 'package:resman_mobile_staff/src/models/dishModel.dart';
 import 'package:resman_mobile_staff/src/screens/dishDetailScreen/dishDetailScreen.dart';
 
-class DishItemCard extends StatelessWidget {
+class DishItemCard extends StatefulWidget {
   final DailyDishModel dailyDish;
-  final DishModal dish;
-  final String buttonText;
 
-  const DishItemCard({Key key, this.dailyDish, this.dish, this.buttonText}) : super(key: key);
+  const DishItemCard({Key key, this.dailyDish}) : super(key: key);
+
+  @override
+  _DishItemCardState createState() => _DishItemCardState();
+}
+
+class _DishItemCardState extends State<DishItemCard> {
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
     final Size contextSize = MediaQuery.of(context).size;
     final Color primaryColor = Theme.of(context).primaryColor;
+    final price = widget.dailyDish.dish.price ?? 0;
+    final defaultPrice = widget.dailyDish.dish.defaultPrice ?? 0;
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
+        Navigator.push(
+          context,
           MaterialPageRoute(
-            builder: (BuildContext context) => DishDetailScreen(dailyDish: dailyDish,),
+            builder: (context) => DishDetailScreen(
+              dailyDish: widget.dailyDish,
+            ),
           ),
         );
       },
@@ -32,7 +40,7 @@ class DishItemCard extends StatelessWidget {
         elevation: 4.0,
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Stack(children: <Widget>[
               ClipRRect(
@@ -42,13 +50,25 @@ class DishItemCard extends StatelessWidget {
                 child: FadeInImage.assetNetwork(
                   placeholder: 'assets/images/placeholder.png',
                   fit: BoxFit.cover,
-                  image: dailyDish.dish.images.length > 0
-                      ? dailyDish.dish.images[0] ?? ''
+                  image: widget.dailyDish.dish.images.length > 0
+                      ? widget.dailyDish.dish.images[0] ?? ''
                       : '',
-                  width: contextSize.width / 2.2,
                   height: contextSize.width / 2,
                 ),
               ),
+              widget.dailyDish.dish.price > 0 &&
+                      widget.dailyDish.dish.price -
+                              widget.dailyDish.dish.defaultPrice <
+                          0 &&
+                      widget.dailyDish.dish.defaultPrice != 0
+                  ? _buildDiscount(
+                      discount: ((widget.dailyDish.dish.price -
+                                  widget.dailyDish.dish.defaultPrice) *
+                              100 /
+                              widget.dailyDish.dish.defaultPrice)
+                          .round()
+                          .toString())
+                  : Container(),
             ]),
             Padding(
               padding: EdgeInsets.all(8),
@@ -59,7 +79,7 @@ class DishItemCard extends StatelessWidget {
                   SizedBox(
                     width: contextSize.width / 2.4,
                     child: Text(
-                      dailyDish.dish.name,
+                      widget.dailyDish.dish.name,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -77,15 +97,23 @@ class DishItemCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
+                          Text(
+                            price != null && price > 0 && price < defaultPrice
+                                ? '$price VNĐ'
+                                : '$defaultPrice VNĐ',
+                            style: Theme.of(context).textTheme.body1,
+                          ),
                           SizedBox(
                             width: 5,
                           ),
-                          Text(
-                            '${dailyDish.dish.defaultPrice} VNĐ',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          price != null && price > 0 && price < defaultPrice
+                              ? Text(
+                                  '$defaultPrice VNĐ',
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      decoration: TextDecoration.lineThrough),
+                                )
+                              : Container(),
                         ],
                       ),
                     ),
@@ -111,19 +139,39 @@ class DishItemCard extends StatelessWidget {
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20)),
                 ),
-                onPressed: () {},
+                onPressed: _loading
+                    ? null
+                    : () {
+                        CartBloc().add(AddDishIntoCart(widget.dailyDish));
+                        setState(() {
+                          _loading = true;
+                          Future.delayed(Duration(seconds: 1)).then((_) {
+                            setState(() {
+                              _loading = false;
+                            });
+                          });
+                        });
+                      },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(
-                      Icons.shopping_cart,
-                      color: primaryColor,
+                    SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: _loading
+                          ? CircularProgressIndicator(
+                              strokeWidth: 1,
+                            )
+                          : Icon(
+                              Icons.add_shopping_cart,
+                              color: primaryColor,
+                            ),
                     ),
                     SizedBox(
                       width: 8,
                     ),
                     Text(
-                      buttonText != null ? buttonText : 'Thêm',
+                      'Thêm',
                       style: TextStyle(color: primaryColor),
                     ),
                   ],

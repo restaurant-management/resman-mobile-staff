@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resman_mobile_staff/src/screens/outOfStockScreen/widgets/outStockFooter.dart';
 import 'package:resman_mobile_staff/src/screens/outOfStockScreen/widgets/outStockHeader.dart';
 import 'package:resman_mobile_staff/src/screens/outOfStockScreen/widgets/outStockList.dart';
 

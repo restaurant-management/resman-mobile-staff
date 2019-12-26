@@ -12,9 +12,9 @@ class DishListStaff extends StatefulWidget {
 
   const DishListStaff(
       {Key key,
-        this.headerHeight = 10,
-        this.footerHeight = 10,
-        @required this.billDetails})
+      this.headerHeight = 10,
+      this.footerHeight = 10,
+      @required this.billDetails})
       : assert(billDetails != null),
         super(key: key);
 
@@ -40,8 +40,8 @@ class _DishListStaffState extends State<DishListStaff> {
               children: <Widget>[
                 headerHeight != null
                     ? SizedBox(
-                  height: headerHeight,
-                )
+                        height: headerHeight,
+                      )
                     : Container(),
                 DishItemStaff(
                   billDishModel: items[index],
@@ -56,8 +56,8 @@ class _DishListStaffState extends State<DishListStaff> {
                 ),
                 footerHeight != null
                     ? SizedBox(
-                  height: footerHeight + 8,
-                )
+                        height: footerHeight + 8,
+                      )
                     : Container(),
               ],
             );

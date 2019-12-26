@@ -52,7 +52,7 @@ class SummaryBill extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                '$sum VNĐ',
+                '$sum',
                 style: TextStyles.body1.merge(
                   TextStyle(color: colorScheme.onSurface, fontSize: 20),
                 ),

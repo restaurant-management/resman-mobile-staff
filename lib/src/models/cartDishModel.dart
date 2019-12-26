@@ -4,10 +4,17 @@ class CartDishModel {
   int _dishId;
   int _quantity;
   int _price;
+  String _note;
+
+  String get note => _note;
 
   int get dishId => _dishId;
 
   int get quantity => _quantity;
+
+  set note(String value) {
+    _note = value;
+  }
 
   set quantity(int q) {
     _quantity = q < 1 ? 1 : q;
@@ -21,7 +28,8 @@ class CartDishModel {
     _price = parseJson['price'];
   }
 
-  CartDishModel.fromDailyDish(DailyDishModel dailyDish, {int quantity = 1}) {
+  CartDishModel.fromDailyDish(DailyDishModel dailyDish,
+      {int quantity = 1, note = ""}) {
     _dishId = dailyDish.dish.dishId;
     _quantity = quantity;
     _price = dailyDish.dish.defaultPrice;

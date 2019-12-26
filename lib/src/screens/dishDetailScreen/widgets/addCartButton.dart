@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
+import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 class AddCartButton extends StatefulWidget {
   final DailyDishModel dailyDish;
@@ -19,30 +22,36 @@ class _AddCartButtonState extends State<AddCartButton> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-        color: Theme.of(context).primaryColor,
-        onPressed: () {},
+    return GestureDetector(
+      onTap: () {
+        CartBloc().add(AddDishIntoCart(widget.dailyDish));
+      },
+      child: Container(
         height: 50,
+        decoration: BoxDecoration(
+            gradient: GradientColor.of(context).primaryLinearGradient),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             isCreating
                 ? CircularProgressIndicator(
-              backgroundColor: Colors.white,
-            )
+                    backgroundColor: Colors.white,
+                  )
                 : Icon(
-              Icons.add_shopping_cart,
-              color: Colors.white,
-            ),
+                    Icons.add_shopping_cart,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
             SizedBox(
               width: 8,
             ),
             Text(
               'Thêm vào hoá đơn',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary, fontSize: 20),
             )
           ],
         ),
+      ),
     );
   }
 }

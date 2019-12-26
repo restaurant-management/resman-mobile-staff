@@ -4,7 +4,6 @@ import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:resman_mobile_staff/src/models/dishModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
 
-
 class DishListItem extends StatefulWidget {
   final DishModal dish;
   final Function onPressed;
@@ -18,17 +17,16 @@ class DishListItem extends StatefulWidget {
 
 class _DishListItemState extends State<DishListItem> {
   DishModal get dishItem => widget.dish;
+
   String get note => widget.note;
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => BillDetailScreen(
-                )));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BillDetailScreen()));
       },
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -68,8 +66,8 @@ class _DishListItemState extends State<DishListItem> {
                     margin: EdgeInsets.all(0),
                     color: Colors.teal,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20))),
+                        borderRadius:
+                            BorderRadius.only(bottomLeft: Radius.circular(20))),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
@@ -142,11 +140,10 @@ class _DishListItemState extends State<DishListItem> {
       ),
     );
   }
-  Widget _buildButton(BuildContext context) {
 
-    return _buildButtonWidget('Xác nhận chuẩn bị xong', increaseWidthBy: 90,
-        onPressed: () {
-        });
+  Widget _buildButton(BuildContext context) {
+    return _buildButtonWidget('Xác nhận chuẩn bị xong',
+        increaseWidthBy: 90, onPressed: () {});
   }
 
   Widget _buildButtonWidget(String text,

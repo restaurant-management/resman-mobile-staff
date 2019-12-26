@@ -15,13 +15,17 @@ class ProfileTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
+//        ListTile(
+//          leading: Icon(Icons.contact_mail),
+//          title: Text(user.fullName ?? user.username ?? "Không có tên"),
+//        ),
         ListTile(
-          leading: Icon(Icons.contact_mail),
-          title: Text(user.fullName ?? user.username),
+          leading: Icon(Icons.call),
+          title: Text(user.phoneNumber ?? 'Chưa cập nhật'),
         ),
         ListTile(
           leading: Icon(Icons.mail),
-          title: Text(user.email),
+          title: Text(user.email ?? "Không có email"),
         ),
         ListTile(
           leading: Icon(Icons.calendar_today),
@@ -31,7 +35,7 @@ class ProfileTab extends StatelessWidget {
         ),
         ListTile(
           leading: Icon(Icons.directions),
-          title: Text(user.address),
+          title: Text(user.address ?? 'Chưa cập nhật'),
         ),
       ],
     );

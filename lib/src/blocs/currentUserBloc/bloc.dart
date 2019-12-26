@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:resman_mobile_staff/src/models/roleModel.dart';
-import 'package:resman_mobile_staff/src/responsitories/responsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 
 import 'event.dart';
 import 'state.dart';
@@ -10,6 +10,7 @@ class CurrentUserBloc extends Bloc<CurrentUserEvent, CurrentUserState> {
   final Repository _repository = Repository();
 
   List<RoleModel> _roles;
+
   List<RoleModel> get getRoles => _roles;
 
   CurrentUserBloc._internal();
@@ -33,6 +34,9 @@ class CurrentUserBloc extends Bloc<CurrentUserEvent, CurrentUserState> {
       } catch (e) {
         yield CurrentUserProfileFetchFailure(e.toString());
       }
+    }
+    if (event is LogOut) {
+      yield CurrentUserProfileEmpty();
     }
   }
 }

@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/billDetailScreenStaff.dart';
 
 class TableButton extends StatefulWidget {
@@ -21,17 +22,31 @@ class _TableButtonState extends State<TableButton> {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     ThemeData colorTheme = Theme.of(context);
 
+//    padding: EdgeInsets.all(0),
+//    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.amber),
+//    height: 15,
+//    width: 15,
+//    alignment: Alignment(0.0, 0.0),
+
     return Badge(
-      badgeContent: widget.isDone
-          ? Icon(
-              Icons.check,
-              size: 15,
-              color: Colors.white,
-            )
-          : Text(widget.badgeNumber.toString(),
-              style: TextStyle(
-                color: Colors.white,
-              )),
+      shape: BadgeShape.circle,
+      badgeContent: SizedBox(
+        width: 12,
+        height: 12,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: widget.isDone
+              ? Icon(
+                  Icons.check,
+                  size: 14,
+                  color: Colors.white,
+                )
+              : Text(widget.badgeNumber.toString(),
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+        ),
+      ),
       animationType: BadgeAnimationType.scale,
       badgeColor: widget.isDone ? colorScheme.onSurface : colorScheme.error,
       position: BadgePosition.topRight(top: 10, right: 10),
@@ -190,7 +205,6 @@ class _TableButtonState extends State<TableButton> {
                     height: 20,
                   ),
                   TextFormField(
-
                     keyboardType: TextInputType.multiline,
                     maxLines: 3,
                     decoration: InputDecoration(

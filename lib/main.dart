@@ -7,7 +7,7 @@ import 'src/App.dart';
 Future main() async {
   // Ensure all widgets were init
   WidgetsFlutterBinding.ensureInitialized();
-  BlocSupervisor().delegate = SimpleBlocDelegate();
+  BlocSupervisor.delegate = SimpleBlocDelegate();
   await DotEnv().load('.env');
   runApp(App());
 }

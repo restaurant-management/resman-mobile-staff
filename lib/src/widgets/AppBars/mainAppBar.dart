@@ -43,9 +43,7 @@ class _MainAppBarState extends State<MainAppBar> {
         tag: 'HeroLogoImage',
         child: _titleMaker(widget.tittle),
       ),
-      actions: <Widget>[
-        PrimaryCartButton()
-      ],
+      actions: <Widget>[PrimaryCartButton()],
     );
   }
 

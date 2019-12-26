@@ -1,4 +1,4 @@
-package md.comrestaurantmanagementresmanmobilecustomerblobmasterreadme.github.resman_mobile_customer
+package com.superse.resman_mobile_staff
 
 import android.os.Bundle
 

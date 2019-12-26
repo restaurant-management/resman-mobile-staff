@@ -6,7 +6,6 @@ import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/widgets/dishListChef.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/backAppBar.dart';
 
-import '../../widgets/AppBars/mainAppBar.dart';
 import '../../widgets/drawerScaffold.dart';
 
 class BillDetailScreenChef extends StatefulWidget {
@@ -33,17 +32,15 @@ class _BillDetailScreenChefState extends State<BillDetailScreenChef> {
         showShoppingCart: false,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body:
-      DishListChef(
-            billDetails: FakeData.billDishes,
-          ),
+      body: DishListChef(
+        billDetails: FakeData.billDishes,
+      ),
 //      bottomNavigationBar: SizedBox(
 //          height: 56,
 //          child: SummaryBill(
 //            billDetails: FakeData.billDishes,
 //          )),
     );
-
   }
 
   @override

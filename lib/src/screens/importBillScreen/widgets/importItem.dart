@@ -82,7 +82,7 @@ class _ImportItemState extends State<ImportItem> {
                     ),
                   ),
                   Text(
-                    'VND/${widget.stockModel.unit}',
+                    '/${widget.stockModel.unit ?? "Chưa cập nhật"}',
                     style: TextStyles.h6Headline.merge(
                       TextStyle(color: colors.colorScheme.onSurface),
                     ),

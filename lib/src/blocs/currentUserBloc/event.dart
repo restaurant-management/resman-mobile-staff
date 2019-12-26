@@ -10,7 +10,14 @@ class FetchCurrentUserProfile extends CurrentUserEvent {
 
   @override
   List<Object> get props => null;
+}
 
+class LogOut extends CurrentUserEvent {
+  @override
+  String toString() => 'FetchCurrentUserProfile';
+
+  @override
+  List<Object> get props => null;
 }
 
 class GetAllCurrentUserPermissions extends CurrentUserEvent {

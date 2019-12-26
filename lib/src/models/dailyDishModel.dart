@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
-import 'dishModel.dart';
 import '../enums/daySession.dart';
+import 'dishModel.dart';
 
 class DailyDishModel extends Equatable {
   DateTime _day;
@@ -26,13 +24,16 @@ class DailyDishModel extends Equatable {
   DateTime get confirmAt => _confirmAt;
 
   DailyDishModel.fromJson(Map<String, dynamic> parsedJson) {
-    _day = DateTime.tryParse(parsedJson['day']);
+    _day =
+        parsedJson['day'] != null ? DateTime.tryParse(parsedJson['day']) : null;
     _session = DaySession(parsedJson['session']);
     _storeId = parsedJson['storeId'];
     _confirmBy = parsedJson['confirmBy'];
-    _confirmAt = DateTime.tryParse(parsedJson['confirmAt']);
-    print(parsedJson['dishes']);
-    _dish = DishModal.fromJson(parsedJson['dishes']);
+    _confirmAt = parsedJson['confirmAt'] != null
+        ? DateTime.tryParse(parsedJson['confirmAt'])
+        : null;
+    print(parsedJson['dish']);
+    _dish = DishModal.fromJson(parsedJson['dish']);
   }
 
   @override

@@ -12,9 +12,9 @@ class DishList extends StatefulWidget {
 
   const DishList(
       {Key key,
-        this.headerHeight,
-        this.footerHeight,
-        @required this.billDetails})
+      this.headerHeight,
+      this.footerHeight,
+      @required this.billDetails})
       : assert(billDetails != null),
         super(key: key);
 
@@ -40,8 +40,8 @@ class _DishListState extends State<DishList> {
               children: <Widget>[
                 headerHeight != null
                     ? SizedBox(
-                  height: headerHeight,
-                )
+                        height: headerHeight,
+                      )
                     : Container(),
                 DishItem(
                   billDishModel: items[index],
@@ -56,8 +56,8 @@ class _DishListState extends State<DishList> {
                 ),
                 footerHeight != null
                     ? SizedBox(
-                  height: footerHeight + 8,
-                )
+                        height: footerHeight + 8,
+                      )
                     : Container(),
               ],
             );

@@ -3,8 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 import '../../utils/outlineText.dart';
 import '../editProfileScreen/editProfileScreen.dart';
@@ -24,12 +24,10 @@ class ProfileScreen extends StatefulWidget {
 class ProfileScreenState extends State<ProfileScreen> {
   ScrollController scrollController;
 
-  // UserModel get user => widget.user;
-  UserModel user = FakeData.user;
+  UserModel get user => widget.user;
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context);
     return Scaffold(
       body: DefaultTabController(
@@ -67,24 +65,29 @@ class ProfileScreenState extends State<ProfileScreen> {
               title: OutlineText(
                 color: Colors.transparent,
                 textColor: colors.colorScheme.onPrimary,
-                text: user.fullName ?? user.username,
+                text: user.fullName ?? user.username ?? "Không có tên",
               ),
               centerTitle: true,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: _buildAvatar(),
-                background: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/login-background.jpg'),
-                      fit: BoxFit.cover,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: GradientColor.of(context).primaryLinearGradient,
+                ),
+                child: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: _buildAvatar(),
+                  background: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/login-background.jpg'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  child: new BackdropFilter(
-                    filter: new ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-                    child: new Container(
-                      decoration: new BoxDecoration(
-                          color: Colors.white.withOpacity(0.0)),
+                    child: new BackdropFilter(
+                      filter: new ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+                      child: new Container(
+                        decoration: new BoxDecoration(
+                            color: Colors.white.withOpacity(0.0)),
+                      ),
                     ),
                   ),
                 ),
@@ -94,14 +97,14 @@ class ProfileScreenState extends State<ProfileScreen> {
               delegate: _SliverAppBarDelegate(
                 TabBar(
                   labelColor: colors.primaryColor,
-                  unselectedLabelColor: colors.colorScheme.secondary,
+                  unselectedLabelColor: colors.colorScheme.primaryVariant,
                   tabs: [
                     Tab(
                       icon: Icon(Icons.assignment_ind),
                       text: "Thông tin",
                     ),
                     Tab(
-                      icon: Icon(Icons.pin_drop),
+                      icon: Icon(Icons.monetization_on),
                       text: "Mã giảm giá",
                     ),
                   ],
@@ -179,7 +182,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     scrollController = new ScrollController();
-        scrollController.addListener(() => setState(() {}));
+    scrollController.addListener(() => setState(() {}));
   }
 }
 
