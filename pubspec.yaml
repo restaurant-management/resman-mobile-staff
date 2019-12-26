@@ -26,17 +26,17 @@ dependencies:
   pull_to_refresh: ^1.4.3
   intl: ^0.15.8
   gradient_widgets: ^0.4.1
-  image_picker: ^0.4.0
+  image_picker: ^0.6.2+3
   badges: ^1.1.0
   flutter_images_slider: ^0.0.2
   http: ^0.12.0+2
   flutter_dotenv: ^2.1.0
   shared_preferences: ^0.5.4+6
-  firebase_storage: ^3.0.0
+  firebase_storage: ^3.1.0
   cached_network_image: ^2.0.0-rc
 
   # Check that you have this dependency (added in the previous step)
-  firebase_core: ^0.4.0+9
+#  firebase_core: ^0.4.0+9
 
 #  # Add the dependency for the FlutterFire plugin for Google Analytics
 #  firebase_analytics: ^5.0.2
