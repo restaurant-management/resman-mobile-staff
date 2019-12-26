@@ -39,12 +39,12 @@ class _BillDetailScreenState extends State<BillDetailScreen> {
 //      floatingActionButton: SecondaryCartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: DishList(
-        billDetails: FakeData.billDishes,
+        billDetails: widget.bill.dishes ?? [],
       ),
       bottomNavigationBar: SizedBox(
           height: 61,
           child: SummaryBill(
-            billDetails: FakeData.billDishes,
+            billDetails: widget.bill.dishes ?? [],
           )),
     );
   }

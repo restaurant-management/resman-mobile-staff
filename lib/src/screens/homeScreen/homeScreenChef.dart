@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenChef/billDetailScreenChef.dart';
 import 'package:resman_mobile_staff/src/screens/homeScreen/widgets/homeScreenChef/billListItem.dart';
+import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';
 import 'package:resman_mobile_staff/src/screens/outOfStockScreen/outOfStockDrawer.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/mainAppBar.dart';
 import 'package:resman_mobile_staff/src/widgets/customAppBar.dart';
@@ -24,10 +26,13 @@ class _HomeScreenChefState extends State<HomeScreenChef>
     with SingleTickerProviderStateMixin {
   AuthenticationBloc authenticationBloc;
   ScrollController scrollController;
+  bool isFetched = false;
+  bool isFail = false;
   final tabList = ['Hóa đơn', 'Đang chuẩn bị'];
   TabController _tabController;
   List<BillModel> unStageBill = new List<BillModel>();
   List<BillModel> stageBill = new List<BillModel>();
+  Repository _repository = new Repository();
 
   void onpress() {
     print("Button Pressed!");
@@ -39,7 +44,22 @@ class _HomeScreenChefState extends State<HomeScreenChef>
     scrollController = new ScrollController();
     scrollController.addListener(() => setState(() {}));
     _tabController = TabController(vsync: this, length: tabList.length);
-    unStageBill.add(FakeData.bill);
+    _repository
+        .getAllBillChef()
+        .then((List value) {
+          setState(() {
+            unStageBill =value;
+          });
+          setState(() => this.isFetched = true);
+        })
+        .catchError((e) {
+      setState(() => this.isFail = true);
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => LoginScreen(),
+        ),
+      );
+    });
   }
 
   @override

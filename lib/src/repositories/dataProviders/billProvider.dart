@@ -7,6 +7,9 @@ import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/models/discountCodeModel.dart';
 
+import '../graphClient.dart';
+import '../graphQuery.dart';
+
 class BillProvider {
   static String apiUrl = EnvVariables.apiUrl;
   Client client = Client();
@@ -37,6 +40,22 @@ class BillProvider {
       if (message != null && message.isNotEmpty) throw (message);
       throw ('Có lỗi xảy ra khi tải danh sách hoá đơn.');
     }
+  }
+
+  Future<List<BillModel>> getAllChef(String token) async {
+    final data = await (GraphClient()
+      ..authorization(token)
+      ..addBody(GraphQuery.getAllBillChef()))
+        .connect();
+
+    List<BillModel> listBill = List<BillModel>();
+    Iterable i = data["todayAllBillsByChef"]["bills"] as List;
+    List<BillModel> list = i.map((model) => BillModel.fromJson(model)).toList();
+    list.forEach((bill) {
+      listBill.add(bill);
+    });
+
+    return listBill;
   }
 
   Future<List<BillModel>> getAllUserBills(String token, String username) async {

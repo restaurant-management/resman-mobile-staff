@@ -22,12 +22,12 @@ class BillListItem extends StatefulWidget {
 class _BillListItemState extends State<BillListItem> {
   @override
   Widget build(BuildContext context) {
-    var bill = FakeData.bill;
+    var bill = widget.bill;
     final primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BillDetailScreen()));
+            MaterialPageRoute(builder: (context) => BillDetailScreen(bill: widget.bill,)));
       },
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -54,7 +54,7 @@ class _BillListItemState extends State<BillListItem> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: Text(
-                        'Mã: ${bill.id}',
+                        'Mã: ${bill.id ?? "" }',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

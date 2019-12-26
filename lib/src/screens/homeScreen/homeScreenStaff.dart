@@ -54,7 +54,7 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
       setState(() => this.isFail = true);
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (BuildContext context) => LoginScreen(),
+          builder: (BuildContext context) => LoginScreen(authenticationBloc: this.authenticationBloc,),
         ),
       );
     });

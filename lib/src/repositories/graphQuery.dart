@@ -20,15 +20,21 @@ class GraphQuery {
     ''';
   }
 
-  static String getAllBillStaff() {
+  static String getAllBillChef() {
     return '''
     {
-      totalAllBillsByStaff(
-     
-      ) {
-        uuid
-      }
+  todayAllBillsByChef{
+    bills {
+      tableNumber,
+      createAt,
+      prepareAt,
+      collectAt,
+      collectValue,
+      note,
+    dishes{ quantity, dish {name, images, price}}
     }
+  }
+}
     ''';
   }
 }

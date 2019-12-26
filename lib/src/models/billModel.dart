@@ -38,6 +38,10 @@ class BillModel extends Equatable {
         json['prepareAt'] != null ? DateTime.parse(json['prepareAt']) : null;
     _collectAt =
         json['collectAt'] != null ? DateTime.parse(json['collectAt']) : null;
+    var listDishes = json['dishes'] as List ?? [];
+    _dishes = listDishes.isNotEmpty
+        ? listDishes.map((i) => BillDishModel.fromJson(i)).toList()
+        : [];
   }
 
   String getStatus() {

@@ -229,6 +229,12 @@ class Repository {
     return await _billProvider.getAllStaff(token);
   }
 
+  Future<List<BillModel>> getAllBillChef() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+    return await _billProvider.getAllChef(token);
+  }
+
   Future<List<BillModel>> updateDiscountCode(String discountCode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);

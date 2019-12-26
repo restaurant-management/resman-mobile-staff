@@ -24,9 +24,11 @@ class DishModal extends Equatable {
     _dishId = parsedJson['id'];
     _name = parsedJson['name'];
     _description = parsedJson['description'];
-    _images = (parsedJson['images'] as List<dynamic>)
-        .map((e) => e.toString())
-        .toList();
+    _images = parsedJson['images'] != null
+        ? (parsedJson['images'] as List<dynamic>)
+            .map((e) => e.toString())
+            .toList()
+        : [];
     _defaultPrice = parsedJson['defaultPrice'];
     _price = parsedJson['price'];
   }
