@@ -5,26 +5,29 @@ import 'package:flutter/painting.dart';
 import 'fontFamily.dart';
 
 class TextStyles {
-  static TextStyle body1 = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 17, color: Colors.white);
-  static TextStyle body2 = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 15, color: Colors.white);
-  static TextStyle h1Headline = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 38, color: Colors.white);
-  static TextStyle h3Headline = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 28, color: Colors.white);
-  static TextStyle h4Headline = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 20, color: Colors.white);
-  static TextStyle h5Headline = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 18, color: Colors.white);
-  static TextStyle h6Headline = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 16, color: Colors.white);
-  static TextStyle subTitle1 = TextStyle(
-      fontFamily: FontFamilies.lato, fontSize: 17, color: Colors.white);
-  static TextStyle subTitle2 = TextStyle(
-      fontFamily: FontFamilies.latoLight, fontSize: 16, color: Colors.white);
-  static TextStyle subTitle3 = TextStyle(
-      fontFamily: FontFamilies.latoLight, fontSize: 14, color: Colors.white);
-  static TextStyle link2 = TextStyle(
-      fontFamily: FontFamilies.latoSemiBold, fontSize: 15, color: Colors.white);
+  static TextStyle h1  = TextStyle(
+      fontFamily: 'Roboto', fontSize: 32, color: Colors.white);
+  static TextStyle h1Bold = TextStyle(
+      fontFamily: 'Roboto', fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white);
+  static TextStyle h2  = TextStyle(
+      fontFamily: 'Roboto', fontSize: 24, color: Colors.white);
+  static TextStyle h2Bold = TextStyle(
+      fontFamily: 'Roboto', fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white);
+  static TextStyle h3  = TextStyle(
+      fontFamily: 'Roboto', fontSize: 18.72, color: Colors.white);
+  static TextStyle h3Bold = TextStyle(
+      fontFamily: 'Roboto', fontSize: 18.72, fontWeight: FontWeight.bold, color: Colors.white);
+  static TextStyle h4  = TextStyle(
+      fontFamily: 'Roboto', fontSize: 16, color: Colors.white);
+  static TextStyle h4Bold = TextStyle(
+      fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white);
+  static TextStyle h5  = TextStyle(
+      fontFamily: 'Roboto', fontSize: 13.28, color: Colors.white);
+  static TextStyle h5Bold = TextStyle(
+      fontFamily: 'Roboto', fontSize: 13.28, fontWeight: FontWeight.bold, color: Colors.white);
+  static TextStyle h6  = TextStyle(
+      fontFamily: 'Roboto', fontSize: 10.72, color: Colors.white);
+  static TextStyle h6Bold = TextStyle(
+      fontFamily: 'Roboto', fontSize: 10.72, fontWeight: FontWeight.bold, color: Colors.white);
+
 }

@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
+import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 import 'package:resman_mobile_staff/src/screens/outOfStockScreen/widgets/OutStockItem.dart';
 
 class OutStockList extends StatefulWidget {
+  final List<DailyDishModel> dailyDish;
+
   final double headerHeight;
   final double footerHeight;
 
-  const OutStockList({Key key, this.headerHeight, this.footerHeight})
+  const OutStockList({Key key, this.headerHeight, this.footerHeight, this.dailyDish})
       : super(key: key);
 
   @override
@@ -17,7 +20,7 @@ class OutStockList extends StatefulWidget {
 }
 
 class _OutStockListState extends State<OutStockList> {
-  List<CartDishModel> get items => FakeData.listCart;
+  List<DailyDishModel> get items => widget.dailyDish;
 
   double get headerHeight => widget.headerHeight;
 
@@ -33,7 +36,6 @@ class _OutStockListState extends State<OutStockList> {
             scrollDirection: Axis.vertical,
             itemCount: items.length,
             itemBuilder: (context, index) {
-              final item = items[index].dishId.toString();
               if (index == 0)
                 return Column(
                   children: <Widget>[
@@ -43,7 +45,7 @@ class _OutStockListState extends State<OutStockList> {
                           )
                         : Container(),
                     OutStockItem(
-                      cartDish: items[index],
+                      dailyDish: items[index],
                     ),
                   ],
                 );
@@ -51,7 +53,7 @@ class _OutStockListState extends State<OutStockList> {
                 return Column(
                   children: <Widget>[
                     OutStockItem(
-                      cartDish: items[index],
+                      dailyDish: items[index],
                     ),
                     footerHeight != null
                         ? SizedBox(
@@ -61,7 +63,7 @@ class _OutStockListState extends State<OutStockList> {
                   ],
                 );
               return OutStockItem(
-                cartDish: items[index],
+                dailyDish: items[index],
               );
             }),
 //        ListView.builder(

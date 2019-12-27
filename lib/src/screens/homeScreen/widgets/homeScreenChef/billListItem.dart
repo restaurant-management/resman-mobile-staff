@@ -4,8 +4,7 @@ import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
-
-import '../../../../../FakeData.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 class BillListItem extends StatefulWidget {
   final BillModel bill;
@@ -26,8 +25,12 @@ class _BillListItemState extends State<BillListItem> {
     final primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BillDetailScreen(bill: widget.bill,)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BillDetailScreen(
+                      billId: widget.bill.id,
+                    )));
       },
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -54,7 +57,7 @@ class _BillListItemState extends State<BillListItem> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: Text(
-                        'Mã: ${bill.id ?? "" }',
+                        'Mã: ${bill.id ?? ""}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -159,19 +162,7 @@ class _BillListItemState extends State<BillListItem> {
           child: Text(text),
           increaseWidthBy: increaseWidthBy,
           callback: onPressed,
-          gradient: LinearGradient(
-            colors: <Color>[
-              !isUpdating
-                  ? Color.fromRGBO(88, 150, 176, 1)
-                  : Color.fromRGBO(0, 0, 0, 0.3),
-              !isUpdating
-                  ? Color.fromRGBO(88, 39, 176, 1)
-                  : Color.fromRGBO(0, 0, 0, 0.3),
-            ],
-            stops: [0.1, 1.0],
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
-          ),
+          gradient: GradientColor.of(context).primaryLinearGradient,
         ),
       ],
     );
@@ -179,11 +170,11 @@ class _BillListItemState extends State<BillListItem> {
 
   String _mapBillStatus(BillModel bill) {
     var status = bill.getStatus();
-    if (status == "Prepared")
+    if (status == "prepared")
       return 'Chưa thanh toán';
-    else if (status == "Preparing")
+    else if (status == "preparing")
       return 'Đang chuẩn bị';
     else if (status == "Ordered") return 'Chuẩn bị xong';
-    return 'Đã hoàn thành';
+    return 'Chưa chuẩn bị';
   }
 }

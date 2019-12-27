@@ -223,6 +223,13 @@ class Repository {
         note: currentCart?.note, discountCode: currentCart.discountCode?.code);
   }
 
+  Future<BillModel> prepareBill(int billId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+
+    return await _billProvider.prepareBill(token, billId);
+  }
+
   Future<List<BillModel>> getAllBillStaff() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
@@ -238,5 +245,11 @@ class Repository {
   Future<List<BillModel>> updateDiscountCode(String discountCode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
+  }
+
+  Future<BillModel> getBill(int billId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+    return await _billProvider.getBill(token, billId);
   }
 }

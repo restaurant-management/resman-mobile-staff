@@ -36,7 +36,7 @@ class SummaryBill extends StatelessWidget {
               ),
               Text(
                 'Tổng tiền: ',
-                style: TextStyles.body1.merge(
+                style: TextStyles.h4.merge(
                   TextStyle(color: primaryColor, fontSize: 20),
                 ),
               ),
@@ -53,7 +53,7 @@ class SummaryBill extends StatelessWidget {
               ),
               Text(
                 '$sum',
-                style: TextStyles.body1.merge(
+                style: TextStyles.h4.merge(
                   TextStyle(color: colorScheme.onSurface, fontSize: 20),
                 ),
               ),

@@ -44,8 +44,8 @@ class BillProvider {
 
   Future<List<BillModel>> getAllChef(String token) async {
     final data = await (GraphClient()
-      ..authorization(token)
-      ..addBody(GraphQuery.getAllBillChef()))
+          ..authorization(token)
+          ..addBody(GraphQuery.getAllBillChef()))
         .connect();
 
     List<BillModel> listBill = List<BillModel>();
@@ -128,24 +128,12 @@ class BillProvider {
   }
 
   Future<BillModel> getBill(String token, int billId) async {
-    Map<String, String> headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': token
-    };
-    final response =
-        await client.post('$apiUrl/api/bills/$billId', headers: headers);
-    if (response.statusCode == 200) {
-      return BillModel.fromJson(jsonDecode(response.body));
-    } else {
-      String message;
-      try {
-        message = jsonDecode(response.body)['message'];
-      } catch (e) {
-        print('Error: $e');
-      }
-      if (message != null && message.isNotEmpty) throw (message);
-      throw ('Có lỗi xảy ra khi tải hoá đơn.');
-    }
+    final data = await (GraphClient()
+      ..authorization(token)
+      ..addBody(GraphQuery.getBillById(billId)))
+        .connect();
+
+    return BillModel.fromJson(data['getBill']);
   }
 
   Future<BillModel> updatePaidBillStatus(String token, int billId) async {
@@ -295,5 +283,14 @@ class BillProvider {
       if (message != null && message.isNotEmpty) throw (message);
       throw ('Có lỗi xảy ra khi xác thực hóa đơn.');
     }
+  }
+
+  Future<BillModel> prepareBill(String token, int billId) async {
+    final data = await (GraphClient()
+          ..authorization(token)
+          ..addBody(GraphQuery.prepareBill(billId)))
+        .connect();
+
+    return BillModel.fromJson(data['prepareBill']);
   }
 }

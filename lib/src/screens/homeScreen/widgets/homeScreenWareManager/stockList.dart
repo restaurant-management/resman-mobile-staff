@@ -49,7 +49,7 @@ class _StockListState extends State<StockList> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               widget.headerContent,
-                              style: TextStyles.h4Headline.merge(
+                              style: TextStyles.h4.merge(
                                 TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme

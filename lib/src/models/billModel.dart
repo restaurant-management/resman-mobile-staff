@@ -20,12 +20,25 @@ class BillModel extends Equatable {
   double _rating;
   String _note;
   UserModel _createBy;
+  UserModel _prepareBy;
   StoreModel _store;
   DateTime _updateAt;
   UserModel _updateBy;
   List<BillDishModel> _dishes;
 
   BillModel.fromJson(Map<String, dynamic> json) {
+    _id = int.tryParse(json['id'].toString());
+    _tableNumber = json['tableNumber'];
+    _collectValue = json['collectValue'];
+    _voucherCode = json['voucherCode'];
+    _voucherValue = json['voucherValue'];
+    _discountCode = json['discountCode'];
+    _discountValue = json['discountValue'];
+    _rating = json['rating'];
+    _note = json['note'];
+
+    _createBy = UserModel.fromJson(json['createBy']);
+
     _updateAt =
         json['updateAt'] != null ? DateTime.parse(json['updateAt']) : null;
     _insertAt =
@@ -38,6 +51,7 @@ class BillModel extends Equatable {
         json['prepareAt'] != null ? DateTime.parse(json['prepareAt']) : null;
     _collectAt =
         json['collectAt'] != null ? DateTime.parse(json['collectAt']) : null;
+
     var listDishes = json['dishes'] as List ?? [];
     _dishes = listDishes.isNotEmpty
         ? listDishes.map((i) => BillDishModel.fromJson(i)).toList()
@@ -107,5 +121,29 @@ class BillModel extends Equatable {
 
   List<BillDishModel> get dishes => _dishes;
 
+  UserModel get prepareBy => _prepareBy;
+
   BillModel();
+
+  double get rawPrice {
+    double sum = 0;
+    for (int i = 0; i < dishes.length; i++) {
+      sum += dishes[i].quantity * dishes[i].price;
+    }
+    return sum;
+  }
+
+  double get realPrice {
+    // Calculate voucher discount price
+    double voucherPrice = voucherValue != null
+        ? voucherIsPercent ? (rawPrice * voucherValue / 100) : voucherValue
+        : 0.0;
+
+    // Calculate discount code price
+    double discountPrice =
+        discountValue != null ? discountValue * rawPrice / 100 : 0.0;
+
+    double realPrice = rawPrice - voucherPrice - discountPrice;
+    return realPrice >= 0.0 ? realPrice : 0.0;
+  }
 }
