@@ -53,7 +53,7 @@ class _BillDetailScreenChefState extends State<BillDetailScreenChef> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: isFetched
           ? DishListChef(
-              billDetails: bill.dishes,
+              bill: bill,
             )
           : LoadingIndicator(),
     );

@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
+import 'package:toast/toast.dart';
 
 class DishItemChef extends StatefulWidget {
+  final int billId;
   final BillDishModel billDishModel;
 
-  const DishItemChef({Key key, @required this.billDishModel})
+  const DishItemChef({Key key, @required this.billDishModel, this.billId})
       : assert(billDishModel != null),
         super(key: key);
 
@@ -16,6 +19,13 @@ class DishItemChef extends StatefulWidget {
 
 class _DishItemChefState extends State<DishItemChef> {
   bool isChecked = false;
+  Repository _repository = Repository();
+
+  @override
+  void initState() {
+    if(widget.billDishModel.preparedAt != null) isChecked = true;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +70,7 @@ class _DishItemChefState extends State<DishItemChef> {
                   ),
                 ),
                 Text('${widget.billDishModel.note.toString()}'),
+                Text(' Số lượng: ${widget.billDishModel.quantity ?? 0}'),
               ],
             ),
           ),
@@ -70,7 +81,20 @@ class _DishItemChefState extends State<DishItemChef> {
                   Icons.check,
                   color: isChecked ? Colors.green : Colors.grey,
                 ),
-                onPressed: () => setState(() => isChecked = !isChecked),
+                onPressed: () {
+                  setState(() {
+                    isChecked = !isChecked;
+                    });
+                  _repository
+                      .prepareBillDish(
+                      widget.billDishModel.dish.dishId, widget.billId)
+                      .catchError((e) {
+                        setState(() {
+                          isChecked = false;
+                        });
+                    Toast.show(e, context);
+                  });
+                },
               ),
             ],
           )

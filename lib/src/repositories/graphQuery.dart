@@ -147,4 +147,16 @@ query{
 }
     ''';
   }
+
+  static String preparedBill(int billId, int dishId) {
+    return '''
+mutation{
+  preparedBillDish(id: $billId, dishId: $dishId){
+    id,
+    tableNumber,
+    dishes {dish {id}}
+  } 
+}
+    ''';
+  }
 }

@@ -221,7 +221,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
               return BillListItem(
                 btnText: 'Chi tiết',
                 bill: stageBill[index],
-                count: 10,
+                count: stageBill[index].dishes.length ?? 0,
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(

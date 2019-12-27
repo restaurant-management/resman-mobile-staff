@@ -242,27 +242,6 @@ class BillProvider {
     }
   }
 
-  Future<BillModel> updateCompleteBillStatus(String token, int billId) async {
-    Map<String, String> headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': token
-    };
-    final response = await client.put('$apiUrl/api/bills/$billId/complete',
-        headers: headers);
-    if (response.statusCode == 200) {
-      return BillModel.fromJson(jsonDecode(response.body));
-    } else {
-      String message;
-      try {
-        message = jsonDecode(response.body)['message'];
-      } catch (e) {
-        print('Error: $e');
-      }
-      if (message != null && message.isNotEmpty) throw (message);
-      throw ('Có lỗi xảy ra khi cập nhật hoàn thành hoá đơn.');
-    }
-  }
-
   Future<DiscountCodeModel> validDiscountCode(
       String token, String discountValue) async {
     Map<String, String> headers = {
@@ -292,5 +271,14 @@ class BillProvider {
         .connect();
 
     return BillModel.fromJson(data['prepareBill']);
+  }
+
+  Future<BillModel> prepareBillDish(String token, int billId, int dishId) async {
+    final data = await (GraphClient()
+      ..authorization(token)
+      ..addBody(GraphQuery.preparedBill(billId, dishId)))
+        .connect();
+
+    return BillModel.fromJson(data['preparedBillDish']);
   }
 }

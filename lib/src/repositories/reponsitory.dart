@@ -230,6 +230,13 @@ class Repository {
     return await _billProvider.prepareBill(token, billId);
   }
 
+  Future<BillModel> prepareBillDish(int billId, int dishId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(EnvVariables.PrepsTokenKey);
+
+    return await _billProvider.prepareBillDish(token, billId, dishId);
+  }
+
   Future<List<BillModel>> getAllBillStaff() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);

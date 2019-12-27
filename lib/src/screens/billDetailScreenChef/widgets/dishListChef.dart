@@ -2,20 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
+import 'package:resman_mobile_staff/src/models/billModel.dart';
 
 import 'dishItemChef.dart';
 
 class DishListChef extends StatefulWidget {
   final double headerHeight;
   final double footerHeight;
-  final List<BillDishModel> billDetails;
+  final BillModel bill;
 
   const DishListChef(
       {Key key,
       this.headerHeight,
       this.footerHeight,
-      @required this.billDetails})
-      : assert(billDetails != null),
+      @required this.bill})
+      : assert(bill != null),
         super(key: key);
 
   @override
@@ -23,7 +24,7 @@ class DishListChef extends StatefulWidget {
 }
 
 class _DishListChefState extends State<DishListChef> {
-  List<BillDishModel> get items => widget.billDetails;
+  List<BillDishModel> get items => widget.bill.dishes;
 
   double get headerHeight => widget.headerHeight;
 
@@ -44,6 +45,7 @@ class _DishListChefState extends State<DishListChef> {
                       )
                     : Container(),
                 DishItemChef(
+                  billId: widget.bill.id,
                   billDishModel: items[index],
                 ),
               ],
@@ -52,6 +54,7 @@ class _DishListChefState extends State<DishListChef> {
             return Column(
               children: <Widget>[
                 DishItemChef(
+                  billId: widget.bill.id,
                   billDishModel: items[index],
                 ),
                 footerHeight != null
@@ -62,6 +65,7 @@ class _DishListChefState extends State<DishListChef> {
               ],
             );
           return DishItemChef(
+            billId: widget.bill.id,
             billDishModel: items[index],
           );
         });
