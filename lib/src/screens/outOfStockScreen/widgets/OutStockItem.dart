@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/FakeData.dart';
 import 'package:resman_mobile_staff/src/models/cartDishModel.dart';
+import 'package:resman_mobile_staff/src/models/dailyDishModel.dart';
 
 class OutStockItem extends StatefulWidget {
-  final CartDishModel cartDish;
+  final DailyDishModel dailyDish;
 
-  const OutStockItem({Key key, @required this.cartDish})
-      : assert(cartDish != null),
+  const OutStockItem({Key key, @required this.dailyDish})
+      : assert(dailyDish != null),
         super(key: key);
 
   @override
@@ -16,7 +17,7 @@ class OutStockItem extends StatefulWidget {
 }
 
 class _OutStockItemState extends State<OutStockItem> {
-  CartDishModel get cartDish => widget.cartDish;
+  DailyDishModel get dailyDish => widget.dailyDish;
 
   @override
   void initState() {
@@ -30,7 +31,7 @@ class _OutStockItemState extends State<OutStockItem> {
         // return object of type Dialog
         return AlertDialog(
           title: Text('Báo hết món'),
-          content: Text('Món ' + cartDish.dishId.toString() + ' đã hết?'),
+          content: Text('Món ' + dailyDish.dish.name.toString() + ' đã hết?'),
           actions: <Widget>[
             new CupertinoButton(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -81,7 +82,7 @@ class _OutStockItemState extends State<OutStockItem> {
                   bottomLeft: Radius.circular(20),
                   topLeft: Radius.circular(20)),
               child: Image.network(
-                FakeData.dailyDish.dish.images[0],
+                dailyDish.dish.images[0],
                 fit: BoxFit.cover,
                 width: 80,
                 height: 80,
@@ -95,7 +96,7 @@ class _OutStockItemState extends State<OutStockItem> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: Text(
-                    "widget.dai.dish.name",
+                    dailyDish.dish.name ?? 'Chưa cập nhật',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
@@ -107,7 +108,7 @@ class _OutStockItemState extends State<OutStockItem> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  '{widget.billDishModel.note.toString()}',
+                  dailyDish.day.toString(),
                   maxLines: 1,
                 ),
               ],

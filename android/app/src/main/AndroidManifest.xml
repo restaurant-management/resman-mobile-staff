@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="resman_mobile_staff"
+        android:label="Resman"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name="com.superse.resman_mobile_staff.MainActivity"

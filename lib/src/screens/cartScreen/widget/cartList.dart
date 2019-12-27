@@ -112,7 +112,7 @@ class _CartListState extends State<CartList> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => BillDetailScreen(
-                          bill: state.bill,
+                          billId: state.bill.id,
                         ),
                       ),
                     );

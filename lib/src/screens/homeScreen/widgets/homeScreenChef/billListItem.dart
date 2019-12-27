@@ -4,16 +4,16 @@ import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScreen.dart';
-
-import '../../../../../FakeData.dart';
+import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 class BillListItem extends StatefulWidget {
+  final String btnText;
   final BillModel bill;
   final int count;
   final Function onPressed;
   final IconData icon;
 
-  BillListItem({Key key, this.bill, this.count, this.onPressed, this.icon})
+  BillListItem({Key key, this.bill, this.count, this.onPressed, this.icon, this.btnText})
       : super(key: key);
 
   _BillListItemState createState() => _BillListItemState();
@@ -22,12 +22,16 @@ class BillListItem extends StatefulWidget {
 class _BillListItemState extends State<BillListItem> {
   @override
   Widget build(BuildContext context) {
-    var bill = FakeData.bill;
+    var bill = widget.bill;
     final primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => BillDetailScreen()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BillDetailScreen(
+                      billId: widget.bill.id,
+                    )));
       },
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -54,7 +58,7 @@ class _BillListItemState extends State<BillListItem> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
                       child: Text(
-                        'Mã: ${bill.id}',
+                        'Mã: ${bill.id ?? ""}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -103,7 +107,7 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text("10")
+                        Text("${widget.count ?? 0}")
                       ],
                     ),
                   ),
@@ -144,7 +148,7 @@ class _BillListItemState extends State<BillListItem> {
   }
 
   Widget _buildButton(BuildContext context, BillModel bill) {
-    return _buildButtonWidget('Xác nhận chuẩn bị',
+    return _buildButtonWidget( widget.btnText ?? 'Xác nhận chuẩn bị',
         increaseWidthBy: 90, onPressed: widget.onPressed);
   }
 
@@ -159,19 +163,7 @@ class _BillListItemState extends State<BillListItem> {
           child: Text(text),
           increaseWidthBy: increaseWidthBy,
           callback: onPressed,
-          gradient: LinearGradient(
-            colors: <Color>[
-              !isUpdating
-                  ? Color.fromRGBO(88, 150, 176, 1)
-                  : Color.fromRGBO(0, 0, 0, 0.3),
-              !isUpdating
-                  ? Color.fromRGBO(88, 39, 176, 1)
-                  : Color.fromRGBO(0, 0, 0, 0.3),
-            ],
-            stops: [0.1, 1.0],
-            begin: Alignment.bottomRight,
-            end: Alignment.topLeft,
-          ),
+          gradient: GradientColor.of(context).primaryLinearGradient,
         ),
       ],
     );
@@ -184,6 +176,6 @@ class _BillListItemState extends State<BillListItem> {
     else if (status == "Preparing")
       return 'Đang chuẩn bị';
     else if (status == "Ordered") return 'Chuẩn bị xong';
-    return 'Đã hoàn thành';
+    return 'Chưa chuẩn bị';
   }
 }

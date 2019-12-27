@@ -13,7 +13,7 @@ class UserProvider {
 
   Future<String> login(String usernameOrEmail, String password) async {
     print('Login...');
-    final response = await client.post('$apiUrl/api/users/login',
+    final response = await client.post('$apiUrl/api/users/login?lang=vi',
         body: {'usernameOrEmail': usernameOrEmail, 'password': password});
     print(response.body);
     if (response.statusCode == 200) {

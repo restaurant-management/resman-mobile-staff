@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/event.dart';
 import 'package:resman_mobile_staff/src/blocs/authenticationBloc/state.dart';
+import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';
@@ -102,18 +103,18 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(
-              Icons.description,
-              color: Colors.pinkAccent,
-            ),
-            title: Text(
-              'Hoá đơn của tôi',
-              style: TextStyle(color: Colors.pinkAccent, fontSize: 16),
-            ),
-            onTap: () => Scaffold.of(context).openEndDrawer(),
-          ),
-          ListTile(
+//          ListTile(
+//            leading: Icon(
+//              Icons.description,
+//              color: Colors.pinkAccent,
+//            ),
+//            title: Text(
+//              'Hoá đơn của tôi',
+//              style: TextStyle(color: Colors.pinkAccent, fontSize: 16),
+//            ),
+//            onTap: () => Scaffold.of(context).openEndDrawer(),
+//          ),
+          (_repository.currentUser.roles[0].slug ==  EnvVariables.ChefRole) ? ListTile(
             leading: Icon(
               Icons.check_box,
               color: Colors.orange,
@@ -123,7 +124,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               style: TextStyle(color: Colors.orange, fontSize: 16),
             ),
             onTap: () => Scaffold.of(context).openEndDrawer(),
-          ),
+          ) : Container(),
           ListTile(
             leading: Icon(
               Icons.assignment_ind,
@@ -167,6 +168,13 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             ),
             onTap: () {
               widget.authenticationBloc.add(LoggedOut());
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LoginScreen(
+                    authenticationBloc: widget.authenticationBloc,
+                  ),
+                ),
+              );
             },
           )
         ],
