@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "533407297046",
+    "firebase_url": "https://restaurant-management-storage.firebaseio.com",
+    "project_id": "restaurant-management-storage",
+    "storage_bucket": "restaurant-management-storage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533407297046:android:b7a31d848042cbe2c64f37",
+        "android_client_info": {
+          "package_name": "com.resman.chat.flutter_socket_chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiwR9JXlLyZjCx_I6Mys-dzpoo8TuE2CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "533407297046-93heenhpv9hvdkqr67bpvs88blqfskoh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.superse.restaurant-management"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533407297046:android:d2ba9b11083d324bc64f37",
+        "android_client_info": {
+          "package_name": "com.superse.resman_mobile_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiwR9JXlLyZjCx_I6Mys-dzpoo8TuE2CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "533407297046-93heenhpv9hvdkqr67bpvs88blqfskoh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.superse.restaurant-management"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533407297046:android:0dff2c2232c7f3ddc64f37",
+        "android_client_info": {
+          "package_name": "com.superse.resman_mobile_staff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiwR9JXlLyZjCx_I6Mys-dzpoo8TuE2CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "533407297046-93heenhpv9hvdkqr67bpvs88blqfskoh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.superse.restaurant-management"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533407297046:android:0f2fce9fd20eba83",
+        "android_client_info": {
+          "package_name": "com.superse.restaurant_management_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiwR9JXlLyZjCx_I6Mys-dzpoo8TuE2CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533407297046-e83quvt7pf1g5k7a56jlv6oabnsh9cg7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "533407297046-93heenhpv9hvdkqr67bpvs88blqfskoh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.superse.restaurant-management"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
