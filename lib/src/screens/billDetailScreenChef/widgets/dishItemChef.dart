@@ -23,7 +23,7 @@ class _DishItemChefState extends State<DishItemChef> {
 
   @override
   void initState() {
-    if(widget.billDishModel.preparedAt != null) isChecked = true;
+    if (widget.billDishModel.preparedAt != null) isChecked = true;
     super.initState();
   }
 
@@ -84,14 +84,14 @@ class _DishItemChefState extends State<DishItemChef> {
                 onPressed: () {
                   setState(() {
                     isChecked = !isChecked;
-                    });
+                  });
                   _repository
                       .prepareBillDish(
-                      widget.billDishModel.dish.dishId, widget.billId)
+                          widget.billId, widget.billDishModel.dish.dishId)
                       .catchError((e) {
-                        setState(() {
-                          isChecked = false;
-                        });
+                    setState(() {
+                      isChecked = false;
+                    });
                     Toast.show(e, context);
                   });
                 },
