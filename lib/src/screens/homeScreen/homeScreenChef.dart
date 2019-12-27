@@ -58,8 +58,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
           unStageBill.insert(0, item);
       });
 
-      setState(() {
-      });
+      setState(() {});
       setState(() => this.isFetched = true);
     }).catchError((e) {
       setState(() => this.isFail = true);
@@ -82,6 +81,16 @@ class _HomeScreenChefState extends State<HomeScreenChef>
     await _socket.InitConnect();
 
     _socket.socket.on('new_bill', (data) {
+      setState(() {
+        unStageBill.insert(0, BillModel.fromJson(data));
+        unStageBillKey.currentState.insertItem(0);
+        showMessage('Có hóa đơn mới!');
+        scrollController.animateTo(0,
+            duration: Duration(milliseconds: 1000), curve: Curves.bounceIn);
+      });
+    });
+
+    _socket.socket.on('new_prepare_d_bill', (data) {
       setState(() {
         unStageBill.insert(0, BillModel.fromJson(data));
         unStageBillKey.currentState.insertItem(0);
@@ -158,11 +167,13 @@ class _HomeScreenChefState extends State<HomeScreenChef>
                       opacity: animation,
                       child: BillListItem(
                         bill: unStageBill[index],
-                        count: 10,
+                        count: unStageBill[index].dishes?.length ?? 0,
                         onPressed: () {
                           setState(() => stageBill.add(unStageBill[index]));
-                          _repository.prepareBill(unStageBill[index].id).then( (_) {}
-                          ).catchError((e){
+                          _repository
+                              .prepareBill(unStageBill[index].id)
+                              .then((_) {})
+                              .catchError((e) {
                             Toast.show(e.toString(), context);
                           });
                           _socket.socket.emit(
@@ -208,12 +219,15 @@ class _HomeScreenChefState extends State<HomeScreenChef>
             itemCount: stageBill.length,
             itemBuilder: (BuildContext context, int index) {
               return BillListItem(
+                btnText: 'Chi tiết',
                 bill: stageBill[index],
                 count: 10,
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => BillDetailScreenChef(),
+                      builder: (BuildContext context) => BillDetailScreenChef(
+                        billId: stageBill[index].id,
+                      ),
                     ),
                   );
                 },

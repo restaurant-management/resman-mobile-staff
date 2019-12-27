@@ -168,6 +168,13 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
             ),
             onTap: () {
               widget.authenticationBloc.add(LoggedOut());
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LoginScreen(
+                    authenticationBloc: widget.authenticationBloc,
+                  ),
+                ),
+              );
             },
           )
         ],

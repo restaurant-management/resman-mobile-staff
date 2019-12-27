@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 
 class GraphClient {
-  final String _apiUrl =
-      'https://resman-web-admin-api.herokuapp.com/graph?lng=vi';
+  final String _apiUrl = EnvVariables.graphServer;
   Map<String, String> _headers;
   Map<String, String> _body;
   Client _client;

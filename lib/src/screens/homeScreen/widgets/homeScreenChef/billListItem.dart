@@ -7,12 +7,13 @@ import 'package:resman_mobile_staff/src/screens/billDetailScreen/billDetailScree
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 
 class BillListItem extends StatefulWidget {
+  final String btnText;
   final BillModel bill;
   final int count;
   final Function onPressed;
   final IconData icon;
 
-  BillListItem({Key key, this.bill, this.count, this.onPressed, this.icon})
+  BillListItem({Key key, this.bill, this.count, this.onPressed, this.icon, this.btnText})
       : super(key: key);
 
   _BillListItemState createState() => _BillListItemState();
@@ -106,7 +107,7 @@ class _BillListItemState extends State<BillListItem> {
                         SizedBox(
                           height: 8,
                         ),
-                        Text("10")
+                        Text("${widget.count ?? 0}")
                       ],
                     ),
                   ),
@@ -147,7 +148,7 @@ class _BillListItemState extends State<BillListItem> {
   }
 
   Widget _buildButton(BuildContext context, BillModel bill) {
-    return _buildButtonWidget('Xác nhận chuẩn bị',
+    return _buildButtonWidget( widget.btnText ?? 'Xác nhận chuẩn bị',
         increaseWidthBy: 90, onPressed: widget.onPressed);
   }
 
@@ -170,9 +171,9 @@ class _BillListItemState extends State<BillListItem> {
 
   String _mapBillStatus(BillModel bill) {
     var status = bill.getStatus();
-    if (status == "prepared")
+    if (status == "Prepared")
       return 'Chưa thanh toán';
-    else if (status == "preparing")
+    else if (status == "Preparing")
       return 'Đang chuẩn bị';
     else if (status == "Ordered") return 'Chuẩn bị xong';
     return 'Chưa chuẩn bị';

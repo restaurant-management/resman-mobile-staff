@@ -37,7 +37,7 @@ class BillModel extends Equatable {
     _rating = json['rating'];
     _note = json['note'];
 
-    _createBy = UserModel.fromJson(json['createBy']);
+    _prepareBy = json['prepareBy'] != null ? UserModel.fromJson(json['prepareBy']) : null;
 
     _updateAt =
         json['updateAt'] != null ? DateTime.parse(json['updateAt']) : null;

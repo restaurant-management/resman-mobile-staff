@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:resman_mobile_staff/src/models/billModel.dart';
 import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
+import 'package:resman_mobile_staff/src/repositories/socketProvider/billDetailSocket.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/widgets/dishListStaff.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/widgets/summaryBill.dart';
 import 'package:resman_mobile_staff/src/widgets/AppBars/backAppBar.dart';
@@ -26,6 +27,8 @@ class _BillDetailScreenStaffState extends State<BillDetailScreenStaff> {
   Repository _repository = Repository();
   BillModel bill;
   bool isFetched = false;
+  BillDetailSocket _socket = BillDetailSocket();
+
 
   @override
   void initState() {
@@ -38,7 +41,19 @@ class _BillDetailScreenStaffState extends State<BillDetailScreenStaff> {
     }).catchError((e) {
       Toast.show(e, context);
     });
+
+    _connectSocket();
     _refreshController = RefreshController();
+  }
+
+  void _connectSocket() async {
+    await _socket.InitConnect(widget.billId);
+
+    _socket.socket.on('new_delivered_bill_dish', (newBill) {
+      setState(() {
+        bill = newBill;
+      });
+    });
   }
 
   @override
@@ -68,6 +83,7 @@ class _BillDetailScreenStaffState extends State<BillDetailScreenStaff> {
 
   @override
   void dispose() {
+    _socket.socket.close();
     _refreshController.dispose();
     super.dispose();
   }
