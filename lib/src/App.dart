@@ -14,7 +14,7 @@ class App extends StatelessWidget {
           accentColor: Colors.cyan[600],
           hintColor: Colors.white,
           colorScheme: ColorScheme(
-            primary: Color(0xff9c27b0),
+            primary: Color(0xff6CABDD),
             primaryVariant: Color(0xff7979E2),
             brightness: Brightness.light,
             error: Colors.red,

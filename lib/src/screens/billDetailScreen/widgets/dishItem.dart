@@ -41,7 +41,7 @@ class DishItem extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: Text(
-                    billDishModel.dish.name,
+                    billDishModel.dish.name ?? 'Chưa cập nhật',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
@@ -54,7 +54,7 @@ class DishItem extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Text('${billDishModel.note.toString()}'),
+                Text('${billDishModel.note ?? ""}'),
               ],
             ),
           ),

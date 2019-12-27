@@ -5,11 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/screens/billDetailScreenStaff/billDetailScreenStaff.dart';
 
 class TableButton extends StatefulWidget {
+  final int billId;
   final int tableNumber;
   final int badgeNumber;
-  final bool isDone;
+  final String status;
 
-  const TableButton({Key key, this.tableNumber, this.badgeNumber, this.isDone})
+  const TableButton({Key key, this.tableNumber, this.badgeNumber, this.status, this.billId})
       : super(key: key);
 
   @override
@@ -30,25 +31,36 @@ class _TableButtonState extends State<TableButton> {
 
     return Badge(
       shape: BadgeShape.circle,
+      showBadge: widget.badgeNumber > 0 || widget.status != 'preparing',
       badgeContent: SizedBox(
         width: 12,
         height: 12,
         child: FittedBox(
           fit: BoxFit.scaleDown,
-          child: widget.isDone
+          child: widget.status == 'prepared'
               ? Icon(
                   Icons.check,
                   size: 14,
                   color: Colors.white,
                 )
-              : Text(widget.badgeNumber.toString(),
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
+              : widget.status == 'preparing'
+                  ? Text(
+                      widget.badgeNumber.toString(),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
+                  : Icon(
+                      Icons.more_horiz,
+                      size: 14,
+                      color: Colors.white,
+                    ),
         ),
       ),
       animationType: BadgeAnimationType.scale,
-      badgeColor: widget.isDone ? colorScheme.onSurface : colorScheme.error,
+      badgeColor: widget.status != 'preparing'
+          ? colorScheme.onSurface
+          : colorScheme.error,
       position: BadgePosition.topRight(top: 10, right: 10),
       child: CupertinoButton(
         child: Container(
@@ -98,7 +110,9 @@ class _TableButtonState extends State<TableButton> {
           ),
         ),
         onPressed: () {
-          widget.isDone ? _showPayment() : _navigateToBillStaffDetail();
+          widget.status == 'prepared'
+              ? _showPayment()
+              : _navigateToBillStaffDetail();
         },
       ),
     );
@@ -108,7 +122,7 @@ class _TableButtonState extends State<TableButton> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BillDetailScreenStaff(),
+        builder: (context) => BillDetailScreenStaff(billId: widget.billId),
       ),
     );
   }

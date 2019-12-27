@@ -100,22 +100,22 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
                       style: Theme.of(context).textTheme.headline,
                     ),
                   ),
-                  IconButton(
-                    icon: liked
-                        ? Icon(
-                            Icons.favorite,
-                            color: primaryColor,
-                          )
-                        : Icon(
-                            Icons.favorite_border,
-                            color: Colors.black,
-                          ),
-                    onPressed: () {
-                      setState(() {
-                        liked = !liked;
-                      });
-                    },
-                  )
+//                  IconButton(
+//                    icon: liked
+//                        ? Icon(
+//                            Icons.favorite,
+//                            color: primaryColor,
+//                          )
+//                        : Icon(
+//                            Icons.favorite_border,
+//                            color: Colors.black,
+//                          ),
+//                    onPressed: () {
+//                      setState(() {
+//                        liked = !liked;
+//                      });
+//                    },
+//                  )
                 ],
               ),
             ),
@@ -124,7 +124,7 @@ class _DishDetailScreenState extends State<DishDetailScreen> {
               child: Row(
                 children: <Widget>[
                   Text(
-                    '${_dish.defaultPrice ?? 0}',
+                    '${_dish.defaultPrice ?? 0} VNĐ',
                     style: TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,

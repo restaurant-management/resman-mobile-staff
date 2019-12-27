@@ -83,7 +83,7 @@ class _ImportItemState extends State<ImportItem> {
                   ),
                   Text(
                     '/${widget.stockModel.unit ?? "Chưa cập nhật"}',
-                    style: TextStyles.h6Headline.merge(
+                    style: TextStyles.h3.merge(
                       TextStyle(color: colors.colorScheme.onSurface),
                     ),
                   )
