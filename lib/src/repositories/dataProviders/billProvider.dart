@@ -273,6 +273,15 @@ class BillProvider {
     return BillModel.fromJson(data['prepareBill']);
   }
 
+  Future<BillModel> deliveredBillDish(String token, int billId, int dishId) async {
+    final data = await (GraphClient()
+      ..authorization(token)
+      ..addBody(GraphQuery.deliveredBill(billId, dishId)))
+        .connect();
+
+    return BillModel.fromJson(data['deliveredBillDish']);
+  }
+
   Future<BillModel> prepareBillDish(String token, int billId, int dishId) async {
     final data = await (GraphClient()
       ..authorization(token)

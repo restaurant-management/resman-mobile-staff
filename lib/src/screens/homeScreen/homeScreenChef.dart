@@ -90,7 +90,7 @@ class _HomeScreenChefState extends State<HomeScreenChef>
       });
     });
 
-    _socket.socket.on('new_prepare_d_bill', (data) {
+    _socket.socket.on('new_d_bill', (data) {
       setState(() {
         unStageBill.insert(0, BillModel.fromJson(data));
         unStageBillKey.currentState.insertItem(0);

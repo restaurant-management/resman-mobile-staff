@@ -67,7 +67,7 @@ class _BillDetailScreenStaffState extends State<BillDetailScreenStaff> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: isFetched
           ? DishListStaff(
-              billDetails: bill.dishes,
+              bill: bill,
             )
           : LoadingIndicator(),
       bottomNavigationBar: SizedBox(
