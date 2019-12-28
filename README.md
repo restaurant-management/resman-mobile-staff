@@ -34,7 +34,7 @@ Cross Platform Mobile application for **Staff** of Restaurant Management project
 
 ## Screens for chef
 
-<img src="./Documents/Images/Chef_home.png" height="300em" alt="Home screen for chef" title="Home screen for chef"> <img src="./Documents/Images/Chef_stage_bills.png" height="300em" alt="Showing all bills, this chef is preparing" title="Showing all bills, this chef is preparing"> <img src="./Documents/Images/out_stock_announce.png" height="300em" alt="Out of stock announcement screen" title="Out of stock announcement screen"> <img src="./Documents/Images/Chef_profile_drawer.png" height="300em" alt="Profile drawer" title="Profile drawer"> <img src="./Documents/Images/Chef_bill_status.png" height="300em" alt="Bill status" title="Bill status"> <img src="./Documents/Images/Chef_bill_info.png" height="300em" alt="Bill information" title="Bill information"> 
+<img src="./Documents/Images/Chef_home.png" height="300em" alt="Home screen for chef" title="Home screen for chef"> <img src="./Documents/Images/Chef_stage_bills.png" height="300em" alt="Showing all bills, this chef is preparing" title="Showing all bills, this chef is preparing"> <img src="./Documents/Images/out_stock_announce.png" height="300em" alt="Out of stock announcement screen" title="Out of stock announcement screen"> <img src="./Documents/Images/Chef_bill_status.png" height="300em" alt="Bill status" title="Bill status"> <img src="./Documents/Images/Chef_bill_info.png" height="300em" alt="Bill information" title="Bill information"> 
 
 # Contributors
 Thanks for all contributors ([emoji key](https://allcontributors.org/docs/en/emoji-key)): 
