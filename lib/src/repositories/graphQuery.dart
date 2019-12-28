@@ -1,10 +1,9 @@
 class GraphQuery {
-  static String changeProfile(
-      {String avatar,
-      String fullName,
-      String phoneNumber,
-      DateTime birthday,
-      String address}) {
+  static String changeProfile({String avatar,
+    String fullName,
+    String phoneNumber,
+    DateTime birthday,
+    String address}) {
     return '''
     mutation {
       changeProfileAsUser(
@@ -152,6 +151,18 @@ query{
     return '''
 mutation{
   preparedBillDish(id: $billId, dishId: $dishId){
+    id,
+    tableNumber,
+    dishes {dish {id}}
+  } 
+}
+    ''';
+  }
+
+  static String deliveredBill(int billId, int dishId) {
+    return '''
+mutation{
+  deliveredBillDish(id: $billId, dishId: $dishId){
     id,
     tableNumber,
     dishes {dish {id}}

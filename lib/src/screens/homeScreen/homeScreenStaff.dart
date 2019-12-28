@@ -65,13 +65,20 @@ class _HomeScreenStaffState extends State<HomeScreenStaff> {
     _socket.socket.on('amount_prepared_bill_dish_change', (data) {
       ShortBill _updatedBill = ShortBill.fromJson(data);
 
-      ShortBill _editBill = _listBillInShort.firstWhere(
-          (e) => e.billId == _updatedBill.billId,
-          orElse: () => null);
-
-//      _listBillInShort = listBill.isNotEmpty
-//          ? listBill.map((i) => ShortBill.fromJson(i)).toList()
-//          : [];
+      setState(() {
+        ShortBill _editBill = _listBillInShort.firstWhere(
+                (e) => e.billId == _updatedBill.billId,
+            orElse: () => null);
+        if (_editBill != null)
+          {
+            int index = _listBillInShort.indexOf(_editBill);
+            _listBillInShort[index] = _updatedBill;
+          }
+        else
+          {
+            _listBillInShort.add(_updatedBill);
+          }
+      });
     });
   }
 
