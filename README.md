@@ -30,10 +30,25 @@ Cross Platform Mobile application for **Staff** of Restaurant Management project
 
 ## Screens for staff 
 
-Splash screen
-<img src="./Documents/Images/SplashScreen.png" height="300em">
+<img src="./Documents/Images/SplashScreen.png" height="300em" alt="SplashScreen">
+<img src="./Documents/Images/Login.png" height="300em" alt="Login">
+<img src="./Documents/Images/Staff_home.png" height="300em" alt="Staff home screen">
+<img src="./Documents/Images/Staff_profile_drawer.png" height="300em" alt="Staff Profile">
+<img src="./Documents/Images/Current_cart.png" height="300em" alt="Cart drawer">
+<img src="./Documents/Images/Dish_info.png" height="300em" alt="Dish information screen">
+<img src="./Documents/Images/Staff_bill_status.png" height="300em" alt="Bill status for staff">
+<img src="./Documents/Images/Profile.png" height="300em" alt="Profile Screen">
+<img src="./Documents/Images/Edit_profile.png" height="300em" alt="Edit profile screen">
+<img src="./Documents/Images/Edit_password.png" height="300em" alt="Edit password screen">
 
 ## Screens for chef
+
+<img src="./Documents/Images/Chef_home.png" height="300em" alt="Home screen for chef">
+<img src="./Documents/Images/Chef_stage_bills.png" height="300em" alt="Showing all bills, this chef is preparing">
+<img src="./Documents/Images/out_stock_announce.png" height="300em" alt="Out of stock announcement screen">
+<img src="./Documents/Images/Chef_profile_drawer.png" height="300em" alt="Profile drawer">
+<img src="./Documents/Images/Staff_bill_status.png" height="300em" alt="Bill status">
+<img src="./Documents/Images/Chef_bill_info.png" height="300em" alt="Bill information">
 
 # Contributors
 Thanks for all contributors ([emoji key](https://allcontributors.org/docs/en/emoji-key)): 
