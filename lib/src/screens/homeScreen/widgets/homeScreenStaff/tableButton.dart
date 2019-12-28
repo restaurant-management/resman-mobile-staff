@@ -37,13 +37,13 @@ class _TableButtonState extends State<TableButton> {
         height: 12,
         child: FittedBox(
           fit: BoxFit.scaleDown,
-          child: widget.status == 'prepared'
+          child: widget.status == 'delivered'
               ? Icon(
                   Icons.check,
                   size: 14,
                   color: Colors.white,
                 )
-              : widget.status == 'preparing'
+              : widget.status == 'preparing' || widget.status == 'prepared'
                   ? Text(
                       widget.badgeNumber.toString(),
                       style: TextStyle(
@@ -58,7 +58,7 @@ class _TableButtonState extends State<TableButton> {
         ),
       ),
       animationType: BadgeAnimationType.scale,
-      badgeColor: widget.status != 'preparing'
+      badgeColor: widget.status != 'preparing' && widget.status != 'prepared'
           ? colorScheme.onSurface
           : colorScheme.error,
       position: BadgePosition.topRight(top: 10, right: 10),
@@ -110,7 +110,7 @@ class _TableButtonState extends State<TableButton> {
           ),
         ),
         onPressed: () {
-          widget.status == 'prepared'
+          widget.status == 'delivered'
               ? _showPayment()
               : _navigateToBillStaffDetail();
         },

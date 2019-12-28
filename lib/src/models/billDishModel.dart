@@ -7,6 +7,11 @@ class BillDishModel extends Equatable {
   String _note;
   DateTime _preparedAt;
   DateTime _deliveryAt;
+
+  set deliveryAt(DateTime value) {
+    _deliveryAt = value;
+  }
+
   int _quantity;
 
   set quantity(int value) {

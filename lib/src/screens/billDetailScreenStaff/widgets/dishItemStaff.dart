@@ -2,15 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resman_mobile_staff/src/models/billDishModel.dart';
+import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
+import 'package:toast/toast.dart';
 
-class DishItemStaff extends StatelessWidget {
+class DishItemStaff extends StatefulWidget {
+  final int billId;
   final BillDishModel billDishModel;
   final double cardHeight;
 
   const DishItemStaff(
-      {Key key, @required this.billDishModel, this.cardHeight = 80})
+      {Key key, @required this.billDishModel, this.cardHeight = 80, @required this.billId})
       : assert(billDishModel != null),
         super(key: key);
+
+  @override
+  _DishItemStaffState createState() => _DishItemStaffState();
+}
+
+class _DishItemStaffState extends State<DishItemStaff> {
+  Repository _repository = Repository();
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +37,10 @@ class DishItemStaff extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20), topLeft: Radius.circular(20)),
             child: Image.network(
-              billDishModel.dish.images[0],
+              widget.billDishModel.dish.images[0],
               fit: BoxFit.cover,
-              width: cardHeight,
-              height: cardHeight,
+              width: widget.cardHeight,
+              height: widget.cardHeight,
             ),
           ),
           SizedBox(
@@ -38,7 +48,7 @@ class DishItemStaff extends StatelessWidget {
           ),
           Expanded(
             child: SizedBox(
-              height: cardHeight * 0.8,
+              height: widget.cardHeight * 0.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,7 +56,7 @@ class DishItemStaff extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: Text(
-                      billDishModel.dish.name,
+                      widget.billDishModel.dish.name,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -57,7 +67,7 @@ class DishItemStaff extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Số lượng: ' + billDishModel.quantity.toString(),
+                    'Số lượng: ' + widget.billDishModel.quantity.toString(),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
@@ -65,7 +75,7 @@ class DishItemStaff extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
-                  Text('${billDishModel.note.toString()}'),
+                  Text('${widget.billDishModel.note.toString()}'),
                 ],
               ),
             ),
@@ -73,7 +83,7 @@ class DishItemStaff extends StatelessWidget {
           SizedBox(
             width: 10,
           ),
-          _mapStateToButton(billDishModel, context)
+          _mapStateToButton(widget.billDishModel, context)
         ],
       ),
     );
@@ -112,7 +122,14 @@ class DishItemStaff extends StatelessWidget {
           child: CupertinoButton(
             padding: const EdgeInsets.all(0),
             borderRadius: new BorderRadius.circular(30.0),
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                billDishModel.deliveryAt = DateTime.now();
+              });
+              _repository.deliveredBillDish(widget.billId, billDishModel.dish.dishId).catchError((e){
+                Toast.show(e, context);
+              });
+            },
             child: Icon(
               Icons.arrow_forward,
               color: colors.colorScheme.onPrimary,
