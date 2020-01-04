@@ -5,10 +5,11 @@ import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
 import 'package:resman_mobile_staff/src/widgets/cartButton/primaryCartButton.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
+  final bool isShowAction;
   final PreferredSizeWidget bottom;
   final String tittle;
 
-  MainAppBar({Key key, this.bottom, this.tittle})
+  MainAppBar({Key key, this.bottom, this.tittle, this.isShowAction = true})
       : preferredSize =
             Size.fromHeight(56.0 + (bottom?.preferredSize?.height ?? 0.0)),
         super(key: key);
@@ -43,7 +44,9 @@ class _MainAppBarState extends State<MainAppBar> {
         tag: 'HeroLogoImage',
         child: _titleMaker(widget.tittle),
       ),
-      actions: <Widget>[PrimaryCartButton()],
+      actions: widget.isShowAction
+          ? <Widget>[PrimaryCartButton()]
+          : <Widget>[Container()],
     );
   }
 

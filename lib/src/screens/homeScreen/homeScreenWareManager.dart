@@ -16,7 +16,9 @@ class _HomeScreenWareManagerState extends State<HomeScreenWareManager> {
   @override
   Widget build(BuildContext context) {
     return DrawerScaffold(
-      appBar: MainAppBar(),
+      appBar: MainAppBar(
+        isShowAction: false,
+      ),
       floatingActionButton: ImportFab(),
       body: StockList(
         stockList: FakeData.listStock,

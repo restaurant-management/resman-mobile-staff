@@ -7,6 +7,7 @@ import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 import 'sumaryBill.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';
@@ -100,7 +101,7 @@ class _CartFooterState extends State<CartFooter> {
                     int.parse(tableNumberController.value?.text ?? 0);
                 try {
                   _cartBloc.add(CreateBillFromCart(tableNumber));
-                  _showCreateSuccess();
+                  _showSelectCustomer();
                 } catch (e) {
                   _showCreateFail();
                 }
@@ -120,17 +121,17 @@ class _CartFooterState extends State<CartFooter> {
         return AlertDialog(
           title: Text("Chọn khách hàng"),
           actions: <Widget>[
-            new FlatButton(
+            new CupertinoButton(
               child: new Text("Bỏ qua"),
               onPressed: () {
                 Navigator.of(context).pop();
                 _showCreateSuccess();
               },
             ),
-            new FlatButton(
+            new CupertinoButton(
               child: new Text("Quét mã QR"),
               onPressed: () async {
-//                Future<String> futureString = new QRCodeReader().scan();
+                String cameraScanResult = await scanner.scan();
                 Navigator.of(context).pop();
                 _showCreateSuccess();
               },
