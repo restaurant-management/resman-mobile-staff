@@ -205,7 +205,7 @@ class Repository {
 
   /// Bill
   /// Return bill model.
-  Future<BillModel> createBill(int tableNumber) async {
+  Future<BillModel> createBill(int tableNumber, String customerUuid) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(EnvVariables.PrepsTokenKey);
     List<int> dishIds = List<int>();
@@ -220,7 +220,7 @@ class Repository {
 
     return await _billProvider.createBill(_currentUser.stores[0].id, token,
         tableNumber, dishIds, dishNotes, dishQuantities,
-        note: currentCart?.note, discountCode: currentCart.discountCode?.code);
+        note: currentCart?.note, discountCode: currentCart.discountCode?.code, customerUuid: customerUuid);
   }
 
   Future<BillModel> prepareBill(int billId) async {

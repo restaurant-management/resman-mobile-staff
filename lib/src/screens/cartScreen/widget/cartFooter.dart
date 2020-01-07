@@ -30,6 +30,7 @@ class _CartFooterState extends State<CartFooter> {
   String note;
   final noteTextFieldController = TextEditingController();
   Repository _repository = Repository();
+  String customerUuid;
 
   @override
   void dispose() {
@@ -94,14 +95,12 @@ class _CartFooterState extends State<CartFooter> {
                 style:
                     TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               ),
-              onPressed: () {
+              onPressed: () async {
                 Navigator.of(context).pop();
-//                _showSelectCustomer();
                 int tableNumber =
                     int.parse(tableNumberController.value?.text ?? 0);
                 try {
-                  _cartBloc.add(CreateBillFromCart(tableNumber));
-                  _showSelectCustomer();
+                  _cartBloc.add(CreateBillFromCart(tableNumber, customerUuid: customerUuid));
                 } catch (e) {
                   _showCreateFail();
                 }
@@ -113,7 +112,7 @@ class _CartFooterState extends State<CartFooter> {
     );
   }
 
-  void _showSelectCustomer() {
+  Future _showSelectCustomer() async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -132,8 +131,11 @@ class _CartFooterState extends State<CartFooter> {
               child: new Text("Quét mã QR"),
               onPressed: () async {
                 String cameraScanResult = await scanner.scan();
+                setState(() {
+                  customerUuid = cameraScanResult;
+                });
                 Navigator.of(context).pop();
-                _showCreateSuccess();
+                _showSelectTableNumber();
               },
             ),
           ],
@@ -222,7 +224,7 @@ class _CartFooterState extends State<CartFooter> {
               onPressed: () {
                 note = "";
                 Navigator.of(context).pop();
-                _showSelectTableNumber();
+                _showSelectCustomer();
               },
             ),
             new CupertinoButton(
@@ -238,7 +240,7 @@ class _CartFooterState extends State<CartFooter> {
                 note = noteTextFieldController.text ?? "";
                 _repository.addBillNote(note);
                 Navigator.of(context).pop();
-                _showSelectTableNumber();
+                _showSelectCustomer();
               },
             ),
           ],

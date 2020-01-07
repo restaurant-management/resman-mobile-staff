@@ -9,6 +9,7 @@ import 'package:resman_mobile_staff/src/common/EnvVariables.dart';
 import 'package:resman_mobile_staff/src/models/userModel.dart';
 import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/screens/loginScreen/loginScreen.dart';
+import 'package:resman_mobile_staff/src/screens/qrCodeScreen/qrCodeScreen.dart';
 
 import '../editProfileScreen/editPasswordScreen.dart';
 import '../editProfileScreen/editProfileScreen.dart';
@@ -103,17 +104,18 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               ),
             ),
           ),
-//          ListTile(
-//            leading: Icon(
-//              Icons.description,
-//              color: Colors.pinkAccent,
-//            ),
-//            title: Text(
-//              'Hoá đơn của tôi',
-//              style: TextStyle(color: Colors.pinkAccent, fontSize: 16),
-//            ),
-//            onTap: () => Scaffold.of(context).openEndDrawer(),
-//          ),
+          ListTile(
+            leading: Icon(
+              Icons.description,
+              color: Colors.pinkAccent,
+            ),
+            title: Text(
+              'Mã QR của tôi',
+              style: TextStyle(color: Colors.pinkAccent, fontSize: 16),
+            ),
+            onTap: () {Navigator.push(context,
+                MaterialPageRoute(builder: (context) => QRCodeScreen(user: user,)));},
+          ),
           (_repository.currentUser.roles[0].slug ==  EnvVariables.ChefRole) ? ListTile(
             leading: Icon(
               Icons.check_box,
