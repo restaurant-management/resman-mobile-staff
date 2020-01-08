@@ -124,7 +124,7 @@ class _CartFooterState extends State<CartFooter> {
               child: new Text("Bỏ qua"),
               onPressed: () {
                 Navigator.of(context).pop();
-                _showCreateSuccess();
+                _showSelectTableNumber();
               },
             ),
             new CupertinoButton(
