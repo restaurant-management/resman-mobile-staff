@@ -106,8 +106,8 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
           ),
           ListTile(
             leading: Icon(
-              Icons.description,
-              color: Colors.pinkAccent,
+              Icons.perm_device_information,
+              color: Colors.black,
             ),
             title: Text(
               'Mã QR của tôi',
