@@ -170,4 +170,28 @@ mutation{
 }
     ''';
   }
+
+  static String getWareHouse(int id) {
+    return '''
+    getWarehouse(id: $id) {
+    warehouseStocks {
+      quantity
+      stock {
+        id
+        image
+        name
+        unit
+        price
+      }
+      stockId
+      warehouseId
+    }
+    address
+    description
+    hotline
+    id
+    name
+  }
+    ''';
+  }
 }

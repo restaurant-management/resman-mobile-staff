@@ -72,7 +72,9 @@ class _StockItemState extends State<StockItem> {
                   child: Row(
                     children: <Widget>[
                       Text(
-                          '${widget.stockModel.remain.toString()} ${widget.stockModel.unit}'),
+                    '12'
+//                          '${widget.stockModel.toString()} ${widget.stockModel.unit}'
+                          ),
                     ],
                   )),
             ],

@@ -7,6 +7,7 @@ import 'package:resman_mobile_staff/src/blocs/cartBloc/bloc.dart';
 import 'package:resman_mobile_staff/src/blocs/cartBloc/event.dart';
 import 'package:resman_mobile_staff/src/repositories/reponsitory.dart';
 import 'package:resman_mobile_staff/src/utils/gradientColor.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 import 'sumaryBill.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';
@@ -29,6 +30,7 @@ class _CartFooterState extends State<CartFooter> {
   String note;
   final noteTextFieldController = TextEditingController();
   Repository _repository = Repository();
+  String customerUuid;
 
   @override
   void dispose() {
@@ -93,14 +95,12 @@ class _CartFooterState extends State<CartFooter> {
                 style:
                     TextStyle(color: Theme.of(context).colorScheme.onPrimary),
               ),
-              onPressed: () {
+              onPressed: () async {
                 Navigator.of(context).pop();
-//                _showSelectCustomer();
                 int tableNumber =
                     int.parse(tableNumberController.value?.text ?? 0);
                 try {
-                  _cartBloc.add(CreateBillFromCart(tableNumber));
-                  _showCreateSuccess();
+                  _cartBloc.add(CreateBillFromCart(tableNumber, customerUuid: customerUuid));
                 } catch (e) {
                   _showCreateFail();
                 }
@@ -112,7 +112,7 @@ class _CartFooterState extends State<CartFooter> {
     );
   }
 
-  void _showSelectCustomer() {
+  Future _showSelectCustomer() async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -120,19 +120,22 @@ class _CartFooterState extends State<CartFooter> {
         return AlertDialog(
           title: Text("Chọn khách hàng"),
           actions: <Widget>[
-            new FlatButton(
+            new CupertinoButton(
               child: new Text("Bỏ qua"),
               onPressed: () {
                 Navigator.of(context).pop();
                 _showCreateSuccess();
               },
             ),
-            new FlatButton(
+            new CupertinoButton(
               child: new Text("Quét mã QR"),
               onPressed: () async {
-//                Future<String> futureString = new QRCodeReader().scan();
+                String cameraScanResult = await scanner.scan();
+                setState(() {
+                  customerUuid = cameraScanResult;
+                });
                 Navigator.of(context).pop();
-                _showCreateSuccess();
+                _showSelectTableNumber();
               },
             ),
           ],
@@ -221,7 +224,7 @@ class _CartFooterState extends State<CartFooter> {
               onPressed: () {
                 note = "";
                 Navigator.of(context).pop();
-                _showSelectTableNumber();
+                _showSelectCustomer();
               },
             ),
             new CupertinoButton(
@@ -237,7 +240,7 @@ class _CartFooterState extends State<CartFooter> {
                 note = noteTextFieldController.text ?? "";
                 _repository.addBillNote(note);
                 Navigator.of(context).pop();
-                _showSelectTableNumber();
+                _showSelectCustomer();
               },
             ),
           ],

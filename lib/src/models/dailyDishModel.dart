@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:resman_mobile_staff/src/models/userModel.dart';
 
 import '../enums/daySession.dart';
 import 'dishModel.dart';
@@ -8,7 +9,7 @@ class DailyDishModel extends Equatable {
   DaySession _session;
   int _storeId;
   DishModal _dish;
-  int _confirmBy;
+  UserModel _confirmBy;
   DateTime _confirmAt;
 
   DateTime get day => _day;
@@ -19,7 +20,7 @@ class DailyDishModel extends Equatable {
 
   DishModal get dish => _dish;
 
-  int get confirmBy => _confirmBy;
+  UserModel get confirmBy => _confirmBy;
 
   DateTime get confirmAt => _confirmAt;
 
@@ -28,7 +29,9 @@ class DailyDishModel extends Equatable {
         parsedJson['day'] != null ? DateTime.tryParse(parsedJson['day']) : null;
     _session = DaySession(parsedJson['session']);
     _storeId = parsedJson['storeId'];
-    _confirmBy = parsedJson['confirmBy'];
+    _confirmBy = parsedJson['confirmBy'] != null
+        ? UserModel.fromJson(parsedJson['confirmBy'])
+        : null;
     _confirmAt = parsedJson['confirmAt'] != null
         ? DateTime.tryParse(parsedJson['confirmAt'])
         : null;

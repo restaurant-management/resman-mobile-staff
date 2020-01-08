@@ -20,7 +20,6 @@ class SplashScreen extends StatefulWidget {
     return _SplashScreenState();
   }
 }
-
 class _SplashScreenState extends State<SplashScreen> {
   AuthenticationBloc authenticationBloc;
   CurrentUserBloc currentUserBloc;

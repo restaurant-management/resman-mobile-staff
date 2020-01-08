@@ -82,7 +82,7 @@ class CartBloc extends Bloc<CartBlocEvent, CartBlocState> {
       yield CartBlocCreatingBill();
       try {
         if (currentCart.listDishes.length == 0) throw ('Chưa có món ăn!');
-        var bill = await _repository.createBill(event.tableNumber);
+        var bill = await _repository.createBill(event.tableNumber, event.customerUuid);
         await _repository.clearCart();
         yield CartBlocCreatedBill(bill);
       } catch (e) {
